@@ -1,0 +1,113 @@
+{
+  "header": {
+    "dev": "Dev",
+    "showcase": "Showcase",
+    "premiumPortifolio": "Premium Portfólio",
+    "inputSearchPlaceholder": "Buscar por nome ou tecnologia...",
+    "noResults": "Nenhuma demo encontrada",
+    "showcases": "Showcases",
+    "categories": "Demos",
+    "about": "Sobre",
+    "exploreShowcase": "Explorar Showcase"
+  },
+  "home": {
+    "badgeFastText": "Premium Developer Portfolio",
+    "badgeFirstTitle": "Engenharia",
+    "badgeSecondTitle": "para",
+    "badgeThirdTitle": "explorar.",
+    "badgeDescription": "Um showcase técnico onde cada implementação demonstra uma competência real de engenharia de software. Arquitetura, performance, segurança, PWAs, Browser APIs, renderização 3D e muito mais, reunidos em experiências interativas.",
+    "live": "ao vivo",
+    "totalDemos": "total de demos",
+    "comingSoon": "em breve",
+    "exploreShowcase": "Explorar o Showcase",
+    "meetAuthor": "Conheça o Autor",
+    "scrollToExplore": "Role para explorar",
+    "featuredShowcases": "SHOWCASES EM DESTAQUE",
+    "featuredTitle": "Nossos",
+    "featuredTitleRed": "Showcases",
+    "featuredDescription": "Uma seleção de demos que exploram APIs, arquitetura e boas práticas.",
+    "exploreAllProjects": "EXPLORAR TODAS AS DEMOS",
+    "exploreAllTitle": "Explorar Todas as Demos",
+    "exploreAllDescription": "Filtre por categoria para encontrar o que lhe interessa",
+    "noDemosFound": "Nenhuma demonstração encontrada nesta categoria"
+  },
+  "footer": {
+    "dev": "Dev",
+    "showcase": "Showcase",
+    "premiumPortfolio": "Premium Portfólio",
+    "description": "Um showcase técnico reunindo implementações reais, decisões de arquitetura e práticas modernas de engenharia de software.",
+    "quickLinks": "Links rápidos",
+    "featuredShowcases": "Showcases em Destaque",
+    "allCategories": "Todas as Demos",
+    "about": "Sobre",
+    "builtWith": "Construído com",
+    "letsConnect": "Vamos conectar",
+    "copyright": "© 2026 Dev Showcase · Criado e desenvolvido por Jordão Beghetto Massariol."
+  },
+  "components": {
+    "backToShowcase": "Voltar para o Showcase",
+    "interactiveDemoArea": "Área de demonstração",
+    "interactiveDemoAreaDescription": "A demonstração é 100% funcional — teste agora.",
+    "demoArea": "Área de demonstração",
+    "demoAreaDescription": "A demonstração interativa deste recurso estará disponível em breve.",
+    "liveDemo": "Ao vivo",
+    "featured": "Destaques",
+    "tryDemoLive": "Experimente agora",
+    "viewShowCase": "Ver Showcase",
+    "demoPreview": "Visualizar demonstração",
+    "comingSoon": "Em Breve",
+    "comingSoonDescription": "A demonstração interativa de <b>{name}</b> está em desenvolvimento. A arquitetura e os detalhes técnicos já estão documentados acima.",
+    "followOnGitHub": "Seguir no GitHub",
+    "moreDemosAddedRegularly": "Novas demos são adicionadas regularmente",
+    "live": "Ao vivo",
+    "tryDemo": "Experimente agora",
+    "explore": "Explorar",
+    "changeLanguage": "Mudar idioma",
+    "technologies": "Tecnologias",
+    "architecture": "Arquitetura",
+    "keyConcepts": "Conceitos",
+    "sourceCode": "Visualizar código fonte no GitHub",
+    "previousDemo": "Demo Anterior",
+    "nextDemo": "Próxima Demo"
+  },
+  "languages": {
+    "pt-BR": "Português",
+    "en-US": "English",
+    "es-ES": "Español"
+  },
+  "technologies": {
+    "react": "React 19 + TypeScript",
+    "nextjs": "Next.js 16 (App Router)",
+    "tailwind": "Tailwind CSS v4",
+    "framer": "Framer Motion"
+  },
+  "social": {
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "E-mail"
+  },
+  "error": {
+    "title": "Ops! Algo deu errado",
+    "description": "Esta demo está suspensa por enquanto, estamos atualizando seu funcionamento. Tente novamente mais tarde.",
+    "retry": "Tentar novamente",
+    "backHome": "Voltar para o início"
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "description": "O endereço que você tentou acessar não existe ou foi movido."
+  },
+  "categories": {
+    "all": "Todas",
+    "security": "Segurança",
+    "ux": "UX",
+    "media": "Mídia",
+    "communication": "Comunicação",
+    "accessibilityAI": "Acessibilidade / IA",
+    "pwa": "PWA",
+    "architecture": "Arquitetura",
+    "nativeUX": "UX Nativa",
+    "hardware": "Hardware",
+    "dashboards": "Dashboards",
+    "performance": "Performance"
+  }
+}

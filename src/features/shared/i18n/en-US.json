@@ -1,0 +1,113 @@
+{
+  "header": {
+    "dev": "Dev",
+    "showcase": "Showcase",
+    "premiumPortifolio": "Premium Portfolio",
+    "inputSearchPlaceholder": "Search by name or technology...",
+    "noResults": "No demos found",
+    "showcases": "Showcases",
+    "categories": "Demos",
+    "about": "About",
+    "exploreShowcase": "Explore Showcase"
+  },
+  "home": {
+    "badgeFastText": "Premium Developer Portfolio",
+    "badgeFirstTitle": "Engineering",
+    "badgeSecondTitle": "to",
+    "badgeThirdTitle": "explore.",
+    "badgeDescription": "A technical showcase where each implementation demonstrates a real software engineering skill. Architecture, performance, security, PWAs, Browser APIs, 3D rendering, and more, brought together in interactive experiences.",
+    "live": "live",
+    "totalDemos": "total demos",
+    "comingSoon": "coming soon",
+    "exploreShowcase": "Explore the Showcase",
+    "meetAuthor": "Meet the Developer",
+    "scrollToExplore": "Scroll to explore",
+    "featuredShowcases": "FEATURED SHOWCASES",
+    "featuredTitle": "Our",
+    "featuredTitleRed": "Showcases",
+    "featuredDescription": "A selection of demos that explore APIs, architecture, and best practices.",
+    "exploreAllProjects": "EXPLORE ALL DEMOS",
+    "exploreAllTitle": "Explore All Demos",
+    "exploreAllDescription": "Filter by category to find what interests you",
+    "noDemosFound": "No demos found in this category"
+  },
+  "footer": {
+    "dev": "Dev",
+    "showcase": "Showcase",
+    "premiumPortfolio": "Premium Portfolio",
+    "description": "A technical showcase bringing together real implementations, architecture decisions, and modern software engineering practices.",
+    "quickLinks": "Quick Links",
+    "featuredShowcases": "Featured Showcases",
+    "allCategories": "All Demos",
+    "about": "About",
+    "builtWith": "Built with",
+    "letsConnect": "Let's Connect",
+    "copyright": "© 2026 Dev Showcase · Created and developed by Jordão Beghetto Massariol."
+  },
+  "components": {
+    "backToShowcase": "Back to Showcase",
+    "interactiveDemoArea": "Demo area",
+    "interactiveDemoAreaDescription": "The demo is 100% functional — try it now.",
+    "demoArea": "Demo area",
+    "demoAreaDescription": "The interactive demo for this feature will be available soon.",
+    "liveDemo": "Live",
+    "featured": "Featured",
+    "tryDemoLive": "Try it now",
+    "viewShowCase": "View Showcase",
+    "demoPreview": "Preview demo",
+    "comingSoon": "Coming Soon",
+    "comingSoonDescription": "The interactive demo for <b>{name}</b> is currently under development. The architecture and technical details are documented above.",
+    "followOnGitHub": "Follow on GitHub",
+    "moreDemosAddedRegularly": "More demos added regularly",
+    "live": "Live",
+    "tryDemo": "Try it now",
+    "explore": "Explore",
+    "changeLanguage": "Change language",
+    "technologies": "Technologies",
+    "architecture": "Architecture",
+    "keyConcepts": "Concepts",
+    "sourceCode": "View source code on GitHub",
+    "previousDemo": "Previous Demo",
+    "nextDemo": "Next Demo"
+  },
+  "languages": {
+    "pt-BR": "Português",
+    "en-US": "English",
+    "es-ES": "Español"
+  },
+  "technologies": {
+    "react": "React 19 + TypeScript",
+    "nextjs": "Next.js 16 (App Router)",
+    "tailwind": "Tailwind CSS v4",
+    "framer": "Framer Motion"
+  },
+  "social": {
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "This demo is temporarily paused while we work on it. Please check back soon.",
+    "retry": "Try again",
+    "backHome": "Back to home"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved."
+  },
+  "categories": {
+    "all": "All",
+    "security": "Security",
+    "ux": "UX",
+    "media": "Media",
+    "communication": "Communication",
+    "accessibilityAI": "Accessibility / AI",
+    "pwa": "PWA",
+    "architecture": "Architecture",
+    "nativeUX": "Native UX",
+    "hardware": "Hardware",
+    "dashboards": "Dashboards",
+    "performance": "Performance"
+  }
+}

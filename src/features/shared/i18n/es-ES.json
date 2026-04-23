@@ -1,0 +1,113 @@
+{
+  "header": {
+    "dev": "Dev",
+    "showcase": "Showcase",
+    "premiumPortifolio": "Portfolio Premium",
+    "inputSearchPlaceholder": "Buscar por nombre o tecnología...",
+    "noResults": "Ninguna demo encontrada",
+    "showcases": "Showcases",
+    "categories": "Demos",
+    "about": "Acerca de",
+    "exploreShowcase": "Explorar Showcase"
+  },
+  "home": {
+    "badgeFastText": "Portfolio Premium de Desarrollador",
+    "badgeFirstTitle": "Ingeniería",
+    "badgeSecondTitle": "para",
+    "badgeThirdTitle": "explorar.",
+    "badgeDescription": "Un showcase técnico donde cada implementación demuestra una competencia real de ingeniería de software. Arquitectura, rendimiento, seguridad, PWAs, Browser APIs, renderizado 3D y mucho más, reunidos en experiencias interactivas.",
+    "live": "en vivo",
+    "totalDemos": "total de demos",
+    "comingSoon": "próximamente",
+    "exploreShowcase": "Explorar el Showcase",
+    "meetAuthor": "Conoce al Autor",
+    "scrollToExplore": "Desplázate para explorar",
+    "featuredShowcases": "SHOWCASES DESTACADOS",
+    "featuredTitle": "Nuestros",
+    "featuredTitleRed": "Showcases",
+    "featuredDescription": "Una selección de demos que exploran APIs, arquitectura y buenas prácticas.",
+    "exploreAllProjects": "EXPLORAR TODAS LAS DEMOS",
+    "exploreAllTitle": "Explorar Todas las Demos",
+    "exploreAllDescription": "Filtra por categoría para encontrar lo que te interesa",
+    "noDemosFound": "Ninguna demostración encontrada en esta categoría"
+  },
+  "footer": {
+    "dev": "Dev",
+    "showcase": "Showcase",
+    "premiumPortfolio": "Portfolio Premium",
+    "description": "Un showcase técnico que reúne implementaciones reales, decisiones de arquitectura y prácticas modernas de ingeniería de software.",
+    "quickLinks": "Enlaces rápidos",
+    "featuredShowcases": "Showcases Destacados",
+    "allCategories": "Todas las Demos",
+    "about": "Acerca de",
+    "builtWith": "Construido con",
+    "letsConnect": "Conectemos",
+    "copyright": "© 2026 Dev Showcase · Creado y desarrollado por Jordão Beghetto Massariol."
+  },
+  "components": {
+    "backToShowcase": "Volver al Showcase",
+    "interactiveDemoArea": "Área de demostración",
+    "interactiveDemoAreaDescription": "La demostración es 100% funcional — pruébala ahora.",
+    "demoArea": "Área de demostración",
+    "demoAreaDescription": "La demostración interactiva de esta funcionalidad estará disponible próximamente.",
+    "liveDemo": "En vivo",
+    "featured": "Destacados",
+    "tryDemoLive": "Pruébala ahora",
+    "viewShowCase": "Ver Showcase",
+    "demoPreview": "Ver demostración",
+    "comingSoon": "Próximamente",
+    "comingSoonDescription": "La demostración interactiva de <b>{name}</b> está en desarrollo. La arquitectura y los detalles técnicos ya están documentados arriba.",
+    "followOnGitHub": "Seguir en GitHub",
+    "moreDemosAddedRegularly": "Se añaden nuevas demos regularmente",
+    "live": "En vivo",
+    "tryDemo": "Pruébala ahora",
+    "explore": "Explorar",
+    "changeLanguage": "Cambiar idioma",
+    "technologies": "Tecnologías",
+    "architecture": "Arquitectura",
+    "keyConcepts": "Conceptos",
+    "sourceCode": "Ver código fuente en GitHub",
+    "previousDemo": "Demo Anterior",
+    "nextDemo": "Siguiente Demo"
+  },
+  "languages": {
+    "pt-BR": "Português",
+    "en-US": "English",
+    "es-ES": "Español"
+  },
+  "technologies": {
+    "react": "React 19 + TypeScript",
+    "nextjs": "Next.js 16 (App Router)",
+    "tailwind": "Tailwind CSS v4",
+    "framer": "Framer Motion"
+  },
+  "social": {
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email"
+  },
+  "error": {
+    "title": "Algo salió mal",
+    "description": "Esta demo está en pausa por el momento mientras trabajamos en su funcionamiento. Vuelve a intentarlo en unos minutos.",
+    "retry": "Intentar de nuevo",
+    "backHome": "Volver al inicio"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "La página que buscas no existe o fue movida."
+  },
+  "categories": {
+    "all": "Todas",
+    "security": "Seguridad",
+    "ux": "UX",
+    "media": "Multimedia",
+    "communication": "Comunicación",
+    "accessibilityAI": "Accesibilidad / IA",
+    "pwa": "PWA",
+    "architecture": "Arquitectura",
+    "nativeUX": "UX Nativa",
+    "hardware": "Hardware",
+    "dashboards": "Dashboards",
+    "performance": "Rendimiento"
+  }
+}

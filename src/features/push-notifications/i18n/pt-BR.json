@@ -1,0 +1,58 @@
+{
+  "name": "Web Push Notifications",
+  "description": "Notificações push nativas do sistema operacional, entregues mesmo com o app fechado — Service Worker + VAPID de ponta a ponta.",
+  "longDescription": "Fluxo completo de Web Push do jeito que funciona em produção: o navegador gera uma subscription assinada com a chave pública VAPID, o backend assina cada envio com a chave privada via web-push, e a entrega acontece pelo evento push do Service Worker — por isso a notificação chega mesmo com a aba ou o navegador fechados. A demo guia as três etapas reais do fluxo (permissão → registro do dispositivo → envio de teste) e, por ser uma demonstração, mantém as subscriptions em memória no servidor em vez de um banco de dados.",
+  "tags": "Push API, Notifications API, Service Worker, VAPID, Web Push Protocol",
+  "architecture": "Push API + Notifications API sobre Service Worker, com assinatura VAPID (chave pública no client, par completo no servidor via web-push) e entrega assíncrona pelo evento push do Service Worker",
+  "technologies": "Push API, Notifications API, Service Worker, web-push (VAPID), Next.js API Routes",
+  "concepts": "Push subscription, entrega em background via Service Worker, ciclo de vida de permissão do navegador, assinatura VAPID, Web Push Protocol",
+
+  "summary": "Sumário",
+  "featurePushLabel": "Push Notifications",
+
+  "sectionTitle": "Push Notifications",
+  "desc1": "<b>Push Notifications</b> são notificações enviadas pela aplicação diretamente para o dispositivo do usuário, mesmo quando o site ou a PWA não estão abertos naquele momento.",
+  "desc2": "Elas funcionam de forma parecida com as notificações de aplicativos comuns, aparecendo na tela do celular ou computador para informar eventos, atualizações ou alertas importantes.",
+  "canDoIntro": "Na prática, elas podem ser usadas para:",
+  "canDoItem1": "avisar sobre novas mensagens;",
+  "canDoItem2": "informar atualizações importantes;",
+  "canDoItem3": "enviar lembretes;",
+  "canDoItem4": "notificar promoções ou novidades;",
+  "canDoItem5": "acompanhar status de pedidos e entregas.",
+  "pwaNote": "Em PWAs, as Push Notifications ajudam a aproximar ainda mais a experiência da web da experiência de aplicativos nativos.",
+  "whyItWorksDesc": "Isso é possível porque a entrega não depende da aplicação estar aberta: o navegador mantém uma conexão de baixo nível com o serviço de push, que acorda o Service Worker especificamente para o evento <code>push</code> e exibe a notificação — mesmo com a aba, ou o navegador inteiro, fechados.",
+  "valueNote": "A principal vantagem é manter o usuário engajado mesmo fora da aplicação, permitindo comunicação em tempo real sem a necessidade de instalar um app tradicional pela loja.",
+
+  "howToUseLabel": "Como utilizar?",
+  "howToUseIntro": "O fluxo de notificações acontece em 3 etapas:",
+  "step1": "<b>1.</b> Permitir que a aplicação utilize notificações do dispositivo.",
+  "step2": "<b>2.</b> Registrar este dispositivo para receber notificações.",
+  "step3": "<b>3.</b> Enviar uma notificação de teste.",
+
+  "permissionIntro": "Primeiro, permita que a aplicação utilize a central de notificações do seu navegador:",
+  "permissionGrantedButton": "Notificações Permitidas",
+  "permissionRequestButton": "Habilitar Notificações",
+
+  "subscribeIntro": "Depois, registre este dispositivo para que ele possa receber notificações push:",
+  "subscribeButton": "Ativar Push Notifications",
+  "subscribingButton": "Ativando...",
+
+  "sendIntro": "Por fim, envie uma notificação de teste para validar se tudo está funcionando corretamente:",
+  "sendButton": "Enviar notificação de teste",
+  "sendingButton": "Enviando...",
+
+  "demoWarning": "<b>Atenção:</b> esta demonstração mantém as subscriptions em memória no servidor apenas para fins de teste — elas são perdidas a cada novo deploy e não são usadas para qualquer outra finalidade.",
+  "unsupportedMessage": "Push Notifications não são suportadas neste navegador. Use um navegador desktop ou mobile atualizado, com suporte a Service Worker e Push API.",
+  "permissionDeniedMessage": "Permissão de notificações negada. Para usar esta demo, habilite as notificações para este site nas configurações do navegador e recarregue a página.",
+  "subscribeErrorMessage": "Não foi possível registrar este dispositivo para notificações. Tente novamente.",
+  "sendErrorMessage": "Não foi possível enviar a notificação de teste. Tente novamente.",
+
+  "methodsTitle": "Métodos utilizados",
+  "method1": "<b>Notification.requestPermission()</b> — solicita ao usuário a permissão para exibir notificações",
+  "method2": "<b>navigator.serviceWorker.ready</b> — aguarda o Service Worker ativo antes de registrar a subscription",
+  "method3": "<b>registration.pushManager.subscribe()</b> — cria a subscription de push autenticada com a chave pública VAPID",
+  "method4": "<b>fetch('/api/push/subscribe')</b> — envia a subscription ao backend para ser armazenada",
+  "method5": "<b>webpush.sendNotification()</b> (servidor) — assina e envia o payload da notificação usando o par de chaves VAPID",
+  "method6": "<b>self.addEventListener('push', ...)</b> (Service Worker) — recebe o evento push em background e prepara a notificação",
+  "method7": "<b>self.registration.showNotification()</b> (Service Worker) — exibe a notificação do sistema operacional"
+}

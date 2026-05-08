@@ -1,0 +1,13 @@
+- heading "Tecnologias" [level=2]
+- list:
+  - listitem: Network Information API
+  - listitem: Battery Status API
+  - listitem: Vibration API
+- heading "Arquitetura" [level=2]
+- list:
+  - listitem: Leitura reativa de Browser APIs de hardware
+  - listitem: com listeners de mudança de estado
+- heading "Conceitos" [level=2]
+- list:
+  - listitem: UX adaptativa por condição de rede/energia
+  - listitem: feedback háptico

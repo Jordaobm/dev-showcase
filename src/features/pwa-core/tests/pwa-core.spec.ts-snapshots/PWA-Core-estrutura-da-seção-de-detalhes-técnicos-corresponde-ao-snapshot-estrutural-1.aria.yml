@@ -1,0 +1,16 @@
+- heading "Tecnologias" [level=2]
+- list:
+  - listitem: Web App Manifest
+  - listitem: Service Worker
+  - listitem: Serwist (sobre Workbox)
+- heading "Arquitetura" [level=2]
+- list:
+  - listitem: Offline-first
+  - listitem: Service Worker como proxy de rede
+  - listitem: cache multi-estratégia via Serwist
+- heading "Conceitos" [level=2]
+- list:
+  - listitem: Progressive enhancement
+  - listitem: offline-first
+  - listitem: network proxy pattern
+  - listitem: cache strategy por tipo de asset

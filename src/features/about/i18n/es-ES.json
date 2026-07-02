@@ -1,0 +1,237 @@
+{
+  "hero": {
+    "eyebrow": "Desarrollador de Software",
+    "firstName": "Jordão",
+    "lastName": "Beghetto Massariol",
+    "manifesto": "Desarrollador de software con cinco años de experiencia en el mercado del software, trabajando en arquitectura de aplicaciones para los sectores público y privado, además de liderazgo técnico. A lo largo de mi trayectoria, evolucioné de desarrollador a Líder Técnico, participando activamente en la construcción de soluciones para clientes de diferentes segmentos y niveles de complejidad. Hoy, mi enfoque está nuevamente en el desarrollo y el mantenimiento de aplicaciones modernas, utilizando la tecnología más adecuada para cada contexto.",
+    "location": "Curitiba, PR — Brasil",
+    "downloadResume": "Descargar CV"
+  },
+  "stats": {
+    "experience": "Años de experiencia",
+    "positions": "Posiciones — Junior I a Líder Técnico",
+    "showcases": "Proyectos de mantenimiento",
+    "liveDemos": "Proyectos desarrollados"
+  },
+  "timelineSection": {
+    "eyebrow": "Trayectoria",
+    "titlePlain": "Experiencia &",
+    "titleHighlight": "Formación",
+    "workLabel": "Experiencia Profesional",
+    "educationLabel": "Formación Continua"
+  },
+  "timeline": [
+    {
+      "type": "education",
+      "period": "Jun 2024",
+      "title": "SQL Avanzado",
+      "org": "Udemy",
+      "desc": "Estructuras de datos avanzadas, sintaxis, uso de queries y optimización de bases de datos.",
+      "tags": ["SQL"]
+    },
+    {
+      "type": "education",
+      "period": "May 2024",
+      "title": "Java Spring Boot / Quarkus",
+      "org": "Udemy",
+      "desc": "De lo básico a lo avanzado en Java con Spring Boot y Quarkus para aplicaciones profesionales.",
+      "tags": ["Java", "Spring Boot", "Quarkus"]
+    },
+    {
+      "type": "work",
+      "period": "Jul 2023 — Actualidad",
+      "title": "Líder Técnico",
+      "org": "Supera Inovação em Tecnologia · Remoto",
+      "desc": "Ejerzo el liderazgo técnico del equipo, siendo la referencia arquitectónica y el punto de decisión en stack, patrones de diseño y estructura de nuevos sistemas. Lideré dos rebuilds simultáneos de sistemas estatales, modernizando aplicaciones Groovy/Grails hacia React, TypeScript y Java Spring Boot, y lidero la definición de los contratos REST entre frontend y backend. En el día a día, debido a mis responsabilidades, termino escribiendo un poco menos de código que antes, ya que coordino cada vez más el proceso en sí, escribiendo y refinando tareas, conduciendo daily meetings, planificaciones, refinamientos y retrospectivas, alineando estimaciones y alcance con el equipo, hablando directamente con los clientes sobre plazos, entregas y homologaciones, revisando código y manteniendo siempre en funcionamiento los pipelines de CI/CD y los entornos de desarrollo, homologación y producción. También integro a nuevos desarrolladores al equipo y participo en decisiones estratégicas de la empresa.",
+      "tags": [
+        "Liderazgo Técnico",
+        "Arquitectura de Software",
+        "Ingeniería Inversa",
+        "Groovy/Grails",
+        "Java Spring Boot",
+        "Contratos REST API",
+        "React",
+        "TypeScript",
+        "CI/CD",
+        "GitLab",
+        "Code Review",
+        "Ceremonias Ágiles",
+        "Estimaciones",
+        "Mentoría Técnica",
+        "Selección Técnica",
+        "Decisiones Estratégicas"
+      ]
+    },
+    {
+      "type": "education",
+      "period": "Jul 2022",
+      "title": "Angular",
+      "org": "Udemy",
+      "desc": "Introducción y uso avanzado de Angular, PrimeNG y PrimeFaces en aplicaciones profesionales.",
+      "tags": ["Angular", "PrimeNG"]
+    },
+    {
+      "type": "education",
+      "period": "Jul 2022",
+      "title": "Ignite React",
+      "org": "Rocketseat",
+      "desc": "Uso avanzado de React con Vanilla JS y especialización en la optimización de aplicaciones profesionales.",
+      "tags": ["React"]
+    },
+    {
+      "type": "work",
+      "period": "Jun 2022 — Jun 2023",
+      "title": "Desarrollador de Software Semi Senior",
+      "org": "Supera Inovação em Tecnologia · Remoto",
+      "desc": "Fue aquí donde pasé de ejecutar a decidir. Diseñé los primeros proyectos de rebuild de la empresa, definiendo el stack y la estructura de repositorio para equipos que crecerían en los años siguientes. Realicé entrevistas técnicas de contratación, revisé código de otros desarrolladores y comencé a escribir y refinar tareas para el equipo, además de ampliar mi actuación al framework Angular en proyectos corporativos. El trabajo comenzó a dividirse entre código y proceso — y el proceso pasó a formar cada vez más parte de mi día a día. Decisiones estratégicas de la empresa, junto con mis propios alineamientos profesionales, me hicieron evolucionar cada vez más de nivel. En paralelo, trabajé en algunos proyectos internos de menor alcance donde automatizamos procesos que más adelante beneficiarían mi propia gestión.",
+      "tags": [
+        "Groovy/Grails",
+        "Java Spring Boot",
+        "Contratos REST API",
+        "React",
+        "TypeScript",
+        "CI/CD",
+        "GitLab",
+        "Code Review",
+        "Ceremonias Ágiles",
+        "Estimaciones",
+        "Mentoría Técnica",
+        "Selección Técnica",
+        "Decisiones Estratégicas"
+      ]
+    },
+    {
+      "type": "work",
+      "period": "Mar 2022 — May 2022",
+      "title": "Desarrollador de Software Junior III",
+      "org": "Supera Inovação em Tecnologia · Remoto",
+      "desc": "Empecé a alejarme del teclado por algunos momentos: participé en mis primeras reuniones de definición arquitectónica, todavía como colaborador, no como decisor. En paralelo, profundicé mi conocimiento del stack que utilizábamos en los proyectos de la época (React/Angular en el frontend; Java Spring Boot/Quarkus en el backend; PostgreSQL, MySQL, MongoDB y Redis para bases de datos). El objetivo era ejecutar tareas más rápido sin precarizar el resultado final. Pasé a acompañar el ciclo completo de ceremonias ágiles — daily meetings, planificaciones, refinamientos, revisiones y retrospectiva — como participante activo, no solo como ejecutor de tareas.",
+      "tags": [
+        "React",
+        "Angular",
+        "Java Spring Boot",
+        "PostgreSQL",
+        "MySQL",
+        "Redis",
+        "Arquitectura de Software",
+        "Scrum",
+        "Daily Meetings",
+        "Planificaciones",
+        "Refinamiento",
+        "Retrospectiva",
+        "Feedback"
+      ]
+    },
+    {
+      "type": "work",
+      "period": "Oct 2021 — Feb 2022",
+      "title": "Desarrollador de Software Junior II",
+      "org": "Supera Inovação em Tecnologia · Remoto",
+      "desc": "En esta etapa, comencé a ganar la confianza de los desarrolladores más experimentados y fui asignado a un proyecto de CRM un poco más complejo de lo habitual — un sistema que ya existía y ya era una referencia de éxito antes de mi llegada. Me convertí en una pieza fundamental en la implementación de features completas, integrando autenticación vía LDAP/Active Directory, escribiendo stored procedures en SQL Server y construyendo componentes React reutilizables en TypeScript, siempre en contacto directo con el backend en Node.js y Java Spring Boot. Trabajé codo a codo con el equipo de QA en la corrección de bugs, bugfixes y hotfixes a medida que los tickets llegaban directamente desde producción — identificando queries N+1 que bloqueaban pantallas enteras y escribiendo pruebas unitarias para evitar regresiones. También di mis primeros pasos en desarrollo móvil con React Native. Todavía estaba al principio, pero ya conseguía demostrar al equipo y a la gestión mi potencial dentro de los proyectos y mi interés en resolver las tareas.",
+      "tags": [
+        "CRM Corporativo",
+        "LDAP/Active Directory",
+        "Stored Procedures",
+        "SQL Server",
+        "Componentes Reutilizables",
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Java Spring Boot",
+        "QA",
+        "Bugfix",
+        "Hotfix",
+        "Queries N+1",
+        "Pruebas Unitarias",
+        "React Native"
+      ]
+    },
+    {
+      "type": "work",
+      "period": "Mar 2021 — Sep 2021",
+      "title": "Desarrollador de Software Junior I",
+      "org": "Supera Inovação em Tecnologia · Remoto",
+      "desc": "Comencé en la empresa desde lo básico, trabajando en uno o dos proyectos a la vez y enfocado en tareas más simples: corrección de bugs visuales, ajustes en endpoints simples, CRUDs puntuales y pantallas específicas. Participaba en las daily meetings más como oyente, informando mi estado a los desarrolladores más experimentados. En algunos momentos del día hice pair programming con colegas con más tiempo en la empresa — así fue como aprendí las reglas de negocio del sistema y entendí, en la práctica, la rutina de un desarrollador.",
+      "tags": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Java Spring Boot",
+        "Corrección de Bugs",
+        "CRUDs",
+        "Pair Programming",
+        "Onboarding Técnico",
+        "Fullstack"
+      ]
+    },
+    {
+      "type": "education",
+      "period": "Nov 2020",
+      "title": "GoStack React",
+      "org": "Rocketseat",
+      "desc": "Introducción y profundización en React para aplicaciones profesionales, consolidando conceptos básicos y avanzados de la herramienta.",
+      "tags": ["React"]
+    },
+    {
+      "type": "education",
+      "period": "Jul 2020",
+      "title": "Técnico en Informática",
+      "org": "CEEP Pedro Boaretto Neto, Cascavel/PR",
+      "desc": "Formación técnica con introducción a la programación, infraestructura, redes, bases de datos y desarrollo front-end y back-end (APIs RESTful).",
+      "tags": ["Fundamentos"]
+    }
+  ],
+  "skillsSection": {
+    "eyebrow": "Stack Técnico",
+    "titlePlain": "Habilidades &",
+    "titleHighlight": "Tecnologías"
+  },
+  "skills": [
+    {
+      "label": "Frontend",
+      "items": [
+        "JavaScript / TypeScript",
+        "React / React Native",
+        "Next.js",
+        "Angular / PrimeNG / PrimeFaces",
+        "React Query / Chakra UI"
+      ]
+    },
+    {
+      "label": "Backend",
+      "items": [
+        "Java (Spring Boot, Quarkus)",
+        "Node.js (NestJS)",
+        "Groovy / Grails",
+        "Contratos REST API"
+      ]
+    },
+    {
+      "label": "Datos y Arquitectura",
+      "items": [
+        "MySQL / PostgreSQL / SQL Server",
+        "MongoDB / Redis",
+        "Modelado de Datos",
+        "Stored Procedures",
+        "Arquitectura de Software"
+      ]
+    },
+    {
+      "label": "Procesos y Prácticas",
+      "items": [
+        "Liderazgo Técnico",
+        "Ingeniería Inversa",
+        "Code Review",
+        "Scrum & GitFlow",
+        "Ceremonias Ágiles",
+        "Mentoría Técnica"
+      ]
+    }
+  ],
+  "contactSection": {
+    "eyebrow": "Contacto",
+    "titlePlain": "¿Conversamos",
+    "titleHighlight": "ya?",
+    "description": "Abajo encontrarás mis principales canales de contacto."
+  }
+}

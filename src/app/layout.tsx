@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import { getMessages } from "next-intl/server";
+import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { MotionConfig } from "motion/react";
 import { OfflineDetector } from "./_components/OfflineDetector";
@@ -13,10 +13,11 @@ const RootLayout = async ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const locale = await getLocale();
   const messages = await getMessages();
 
   return (
-    <html lang="pt-BR">
+    <html lang={locale}>
       <head>
         <meta name="theme-color" content="#DC2626" />
         <meta name="apple-mobile-web-app-capable" content="yes" />

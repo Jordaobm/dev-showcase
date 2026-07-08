@@ -1,0 +1,13 @@
+{
+  "name": "Forms & Fields",
+  "description": "Multi-step forms, drag and drop, advanced upload, text editor, field masks, custom fields, componentization.",
+  "longDescription": "Forms are usually the main source of information on a typical website. They're how a user signs up, logs in, fills in their data, completes an address, checks out an order on an e-commerce site, and so on. A good form needs to be easy for the user to fill out — every UX detail matters. This demo will show some of what a good form actually needs: different form models, field types and when to use each one, design patterns, masks, validation, helper text, accessibility, progress that survives a page refresh, file uploads, a text editor, and more.",
+  "tags": "Forms, React Hook Form, Zod, Drag and Drop, Text Editor, Masks",
+  "architecture": "Schema-driven forms with React Hook Form + Zod, File uploads, Form builder that parses JSON in real time to generate fields",
+  "technologies": "React Hook Form, Zod, TipTap, Dnd-kit, React-dropzone, Imask",
+  "concepts": "Schema-driven validation, File upload with progress and cancellation, Drag & drop with persistence, Serialization and state persistence",
+
+  "summary": "Summary",
+  "methodsTitle": "Methods used",
+  "howToUseLabel": "How to use"
+}

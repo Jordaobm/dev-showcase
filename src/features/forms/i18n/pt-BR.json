@@ -1,0 +1,13 @@
+{
+  "name": "Formulários & Campos",
+  "description": "Formulários multi-etapas, arrasta e solta, upload avançado, editor de textos, máscaras de campos, campos personalizados, componentização.",
+  "longDescription": "Formulários normalmente são a fonte de informação de um site convencional. É por meio deles que um usuário faz um cadastro, login, preenche seus dados, concluí um endereço, fecha um pedido de compras em um e-commerce e por ai vai. Um bom formulário precisa ser fácil de ser preenchido pelo usuário. Cada detalhe de UX importa. Esta demo vai demonstrar um pouco do que precisa ter em um bom formulário, modelos de formulários diferentes, tipos de campos e quando devemos utilizá-los, padrões de design, máscaras, validações, textos de ajuda, acessibilidade, progresso que sobrevive a um F5, uploads de arquivo, um editor de texto etc.",
+  "tags": "Formulário, React Hook Form, Zod, Arrastar e Soltar, Editor de Texto, Máscaras",
+  "architecture": "Formulários orientados a schema com React Hook Form + Zod, Upload de arquivos, Form builder que interpreta JSON em tempo real para gerar campos",
+  "technologies": "React Hook Form, Zod, TipTap, Dnd-kit, React-dropzone, Imask",
+  "concepts": "Validação orientada a schema, Upload de arquivos com progresso e cancelamento, Drag & drop com persistência, Serialização e persistência de estado",
+
+  "summary": "Sumário",
+  "methodsTitle": "Métodos utilizados",
+  "howToUseLabel": "Como utilizar?"
+}

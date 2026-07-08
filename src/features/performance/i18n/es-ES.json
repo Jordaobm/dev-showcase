@@ -1,0 +1,13 @@
+{
+  "name": "Performance Showcase",
+  "description": "Optimizaciones medibles: virtualización de listas, code splitting, memoización y Web Workers, con métricas visuales.",
+  "longDescription": "Muchas veces solo miramos el rendimiento después de que el problema ya está ocurriendo. Eso es muy común en el desarrollo de software, pero hay mucho que se puede evitar si se practica a diario y se ejecuta de la mejor manera posible. En esta demo vamos a poner números delante de cada optimización: cien mil filas renderizando sin trabarse mediante virtualización, code splitting reduciendo el bundle inicial, useMemo/useCallback usados para evitar el re-render del contenido, y una tarea pesada corriendo en un Web Worker sin bloquear el hilo principal. FPS, tiempo de carga de pantalla, cantidad de renders y tamaño del bundle quedan visibles todo el tiempo.",
+  "tags": "Performance, Virtualización, Code Splitting, Web Workers, Core Web Vitals",
+  "architecture": "Virtualización de listas grandes (windowing), Code splitting por ruta, Web Workers para tareas pesadas fuera del hilo principal, Métricas de FPS/render/bundle expuestas en la UI",
+  "technologies": "TanStack Virtual, next/dynamic, useMemo/useCallback, Web Workers, React DevTools Profiler API",
+  "concepts": "Virtualización de listas (windowing), División de bundle por ruta, Procesamiento fuera del hilo principal, Core Web Vitals (LCP | FID | CLS)",
+
+  "summary": "Resumen",
+  "methodsTitle": "Métodos utilizados",
+  "howToUseLabel": "¿Cómo utilizar?"
+}

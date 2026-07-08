@@ -1,0 +1,13 @@
+{
+  "name": "React Query Mastery",
+  "description": "Server-side pagination, infinite scroll, async cache, optimized refreshes, polling, and SSR — the advanced patterns of TanStack Query.",
+  "longDescription": "Async cache sounds simple, but it can play tricks on developers: a page that's slow to load, pagination that takes too long to come back, an infinite scroll that stutters, a dashboard that gets too heavy for the server to keep up with, and a refresh the user has to trigger manually just to see updated data. This demo will try to make each of these problems concrete, explaining the concept behind it and how it gets solved.",
+  "tags": "React Query, TanStack Query, Cache, SSR, Infinite Scroll, UI Optimization",
+  "architecture": "Client-side cache managed by TanStack Query with server-side prefetch and hydration (SSR) and selective invalidation by query key",
+  "technologies": "TanStack Query v5, Next.js SSR (prefetchQuery + HydrationBoundary), React Intersection Observer",
+  "concepts": "Cache invalidation, Optimized refreshes with rollback",
+
+  "summary": "Summary",
+  "methodsTitle": "Methods used",
+  "howToUseLabel": "How to use"
+}

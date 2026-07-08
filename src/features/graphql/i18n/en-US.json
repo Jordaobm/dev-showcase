@@ -1,0 +1,13 @@
+{
+  "name": "GraphQL",
+  "description": "Integration with a public GraphQL API demonstrating queries, mutations, fragments, and normalized caching.",
+  "longDescription": "GraphQL solves a specific problem you run into with conventional RESTful APIs: fetching too much or too little data per request. Who hasn't integrated with an API where the endpoint returned a ton of useless information that just made the request heavier for no reason? Or worse, the request didn't return a piece of data that turned out to be crucial for rendering the screen?! This demo will integrate with two identical APIs using different communication protocols. It will show, in practice, the difference between a GraphQL API and a RESTful API — the paradigm in action: queries with variables, fragments reused across screens, cursor-based pagination, and Apollo's normalized cache storing each entity once, not once per request.",
+  "tags": "GraphQL, Apollo Client, Normalized Cache, REST vs GraphQL",
+  "architecture": "Apollo Client consuming the GitHub GraphQL API v4, Normalized cache (InMemoryCache), Reusable fragments, Cursor-based pagination",
+  "technologies": "Apollo Client, GitHub GraphQL API v4, TypeScript codegen",
+  "concepts": "Fragments, Cursor-based pagination, InMemoryCache, REST vs GraphQL trade-offs",
+
+  "summary": "Summary",
+  "methodsTitle": "Methods used",
+  "howToUseLabel": "How to use"
+}

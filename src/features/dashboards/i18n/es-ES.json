@@ -1,0 +1,13 @@
+{
+  "name": "Dashboards",
+  "description": "Los dashboards son el corazón de un buen CRM, SaaS o aplicación de gestión. En esta demo encontrarás distintos tipos de visualizaciones para diferentes personas de tu empresa.",
+  "longDescription": "Un buen dashboard debe ser tan simple que un gestor encuentre la información que necesita en cuestión de segundos. Treinta gráficos compitiendo por la atención casi siempre comunican menos que un gráfico bien elegido o una tabla simple con los números que importan. Los datos necesitan jerarquía: secciones organizadas por prioridad, desde el resumen general hasta el detalle. Las visualizaciones usan Recharts y D3.js, los datos tabulares densos pasan por TanStack Table, React Query mantiene todo actualizado sin recargar la página, y Framer Motion anima las transiciones para guiar la mirada — nunca solo para decorar. Una buena UX de dashboard se reduce a una pregunta simple: ¿en cuántos segundos alguien entiende lo que está viendo?",
+  "tags": "CRM, SaaS, Dashboard, Performance, Recharts, D3.js, React Query, TanStack Table, Framer Motion",
+  "architecture": "Renderizado de visualizaciones interactivas con Recharts y D3.js, datos asíncronos gestionados con React Query (caché y polling) y tablas de datos con TanStack Table",
+  "technologies": "Recharts, D3.js, React Query, TanStack Table, Framer Motion",
+  "concepts": "Visualización de datos para la toma de decisiones, caché y polling de datos asíncronos, animación de interfaz, tablas de datos de alto rendimiento",
+
+  "summary": "Resumen",
+  "methodsTitle": "Métodos utilizados",
+  "howToUseLabel": "¿Cómo utilizar?"
+}

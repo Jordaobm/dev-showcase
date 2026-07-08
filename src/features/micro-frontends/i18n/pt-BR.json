@@ -1,0 +1,13 @@
+{
+  "name": "Arquitetura de Micro-frontends",
+  "description": "Um diagrama vivo do Feature-Sliced Design deste projeto, mais uma demo de Module Federation mostrando dois micro-apps independentes lado a lado.",
+  "longDescription": "Micro-frontends se referem a isolamento módulo por módulo e sobre como isso pode ser implantado, testado e evoluído sem depender do resto. O Dev Showcase por exemplo utiliza o conceito de Feature-Sliced Design, onde cada feature é um módulo completamente a parte do sistema real, possuindo sua propria arquitetura interna que não depende da arquitetura externa para funcionar. Completamente desacoplado do código externo. Esta demo vai tornar essa arquitetura visível — um diagrama interativo da estrutura de módulos — e vai mostrar Module Federation na prática: dois micro-apps compartilhando dependências sem acoplar o deploy de um ao do outro.",
+  "tags": "Arquitetura, Micro-frontends, Module Federation, Feature-Sliced Design",
+  "architecture": "Diagrama interativo da estrutura de Feature-Sliced Design do projeto com dois micro-apps carregados via Webpack 5 Module Federation compartilhando dependências",
+  "technologies": "Webpack 5 Module Federation, Feature-Sliced Design, Turborepo",
+  "concepts": "Funcionalidades Isoladas, Dependências compartilhadas entre micro-apps, Deploy independente",
+
+  "summary": "Sumário",
+  "methodsTitle": "Métodos utilizados",
+  "howToUseLabel": "Como utilizar?"
+}

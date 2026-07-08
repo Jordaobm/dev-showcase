@@ -9,6 +9,13 @@ import voiceInterface from "@/features/voice-interface/i18n/en-US.json";
 import offlineDataLayer from "@/features/offline-data-layer/i18n/en-US.json";
 import nativeIntegrations from "@/features/native-integrations/i18n/en-US.json";
 import deviceSensors from "@/features/device-sensors/i18n/en-US.json";
+import dashboards from "@/features/dashboards/i18n/en-US.json";
+import realtime from "@/features/realtime/i18n/en-US.json";
+import microFrontends from "@/features/micro-frontends/i18n/en-US.json";
+import reactQuery from "@/features/react-query/i18n/en-US.json";
+import performance from "@/features/performance/i18n/en-US.json";
+import forms from "@/features/forms/i18n/en-US.json";
+import graphql from "@/features/graphql/i18n/en-US.json";
 
 export default {
   shared,
@@ -22,4 +29,11 @@ export default {
   offlineDataLayer,
   nativeIntegrations,
   deviceSensors,
+  dashboards,
+  realtime,
+  microFrontends,
+  reactQuery,
+  performance,
+  forms,
+  graphql,
 };

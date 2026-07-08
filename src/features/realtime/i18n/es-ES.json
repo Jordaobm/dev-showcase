@@ -1,0 +1,13 @@
+{
+  "name": "Real-time & Comunicación",
+  "description": "Chat en tiempo real, feed de eventos en vivo y notificaciones in-app mediante WebSocket y Server-Sent Events.",
+  "longDescription": "WebSocket y Server-Sent Events resuelven el mismo problema — datos que llegan sin que el cliente los pida — pero de formas distintas. WebSocket abre un canal bidireccional de verdad, necesario cuando el cliente también necesita hablar — como en un chat. SSE es más simple y corre sobre HTTP puro: ideal para feeds de eventos y notificaciones que solo fluyen del servidor al cliente. Esta demo va a poner ambos enfoques lado a lado, incluyendo: ¿qué pasa cuando la conexión se cae?",
+  "tags": "Realtime, Chat, Notificaciones, WebSocket, Server-Sent Events, Ably, Pusher",
+  "architecture": "Canales de WebSocket (bidireccional) y Server-Sent Events (unidireccional) conviviendo en la misma feature",
+  "technologies": "WebSocket API, Ably/Pusher, Server-Sent Events, Next.js API Routes (streaming)",
+  "concepts": "Ciclo de vida del WebSocket, SSE vs WebSocket, Interfaz optimizada, Patrón broadcast",
+
+  "summary": "Resumen",
+  "methodsTitle": "Métodos utilizados",
+  "howToUseLabel": "¿Cómo utilizar?"
+}

@@ -1,0 +1,15 @@
+- heading "Tecnologias" [level=2]
+- list:
+  - listitem: Web Share API
+  - listitem: Clipboard API
+  - listitem: Screen Wake Lock API
+  - listitem: Fullscreen API
+- heading "Arquitetura" [level=2]
+- list:
+  - listitem: Integração direta com APIs nativas do navegador
+  - listitem: sem dependências externas
+- heading "Conceitos" [level=2]
+- list:
+  - listitem: Web Platform APIs
+  - listitem: integração com o SO via navegador
+  - listitem: UX native-like sem instalar um app

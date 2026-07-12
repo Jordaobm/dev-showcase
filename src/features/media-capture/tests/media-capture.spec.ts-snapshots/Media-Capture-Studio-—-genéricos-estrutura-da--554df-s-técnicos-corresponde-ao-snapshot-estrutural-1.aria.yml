@@ -1,0 +1,20 @@
+- heading "Tecnologias" [level=2]
+- list:
+  - listitem: MediaDevices API
+  - listitem: MediaRecorder API
+  - listitem: Blob
+  - listitem: URL.createObjectURL
+  - listitem: requestAnimationFrame
+- heading "Arquitetura" [level=2]
+- list:
+  - listitem: Captura de MediaStream via Browser APIs (getUserMedia/getDisplayMedia) + encoding client-side com MediaRecorder
+  - listitem: com negociação de codec e player customizado renderizado a partir do Blob gerado
+- heading "Conceitos" [level=2]
+- list:
+  - listitem: Permissões de mídia no browser
+  - listitem: negociação de codec (MediaRecorder.isTypeSupported)
+  - listitem: captura de stream em tempo real
+  - listitem: encoding client-side
+  - listitem: gerenciamento de Blob e Object URL
+  - listitem: player de mídia customizado
+  - listitem: download local sem upload a servidor

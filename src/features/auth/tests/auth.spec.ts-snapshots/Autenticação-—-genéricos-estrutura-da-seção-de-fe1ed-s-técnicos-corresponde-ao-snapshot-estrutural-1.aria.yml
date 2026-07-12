@@ -1,0 +1,26 @@
+- heading "Tecnologias" [level=2]
+- list:
+  - listitem: NextAuth.js
+  - listitem: jsonwebtoken
+  - listitem: otplib
+  - listitem: Resend
+  - listitem: WebAuthn API
+  - listitem: Next.js API Routes
+  - listitem: TypeScript
+- heading "Arquitetura" [level=2]
+- list:
+  - listitem: Next.js API Routes como backend
+  - listitem: access token de curta duração + refresh token em HttpOnly cookie com rotação automática
+  - listitem: OAuth Authorization Code Flow
+  - listitem: /TOTP via RFC \d+/
+  - listitem: WebAuthn/FIDO2 com chaves assimétricas
+- heading "Conceitos" [level=2]
+- list:
+  - listitem: Access + Refresh Token
+  - listitem: Token Rotation
+  - listitem: OAuth 2.0
+  - listitem: /TOTP \(RFC \d+\)/
+  - listitem: Magic Link
+  - listitem: WebAuthn/Passkeys (FIDO2)
+  - listitem: HttpOnly cookies vs localStorage
+  - listitem: Proteção CSRF

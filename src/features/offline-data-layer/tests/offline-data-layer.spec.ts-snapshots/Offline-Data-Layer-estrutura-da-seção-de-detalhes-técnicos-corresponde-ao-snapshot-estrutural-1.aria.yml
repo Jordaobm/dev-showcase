@@ -1,0 +1,19 @@
+- heading "Tecnologias" [level=2]
+- list:
+  - listitem: OPFS (Origin Private File System)
+  - listitem: wa-sqlite (WASM)
+  - listitem: Web Workers
+  - listitem: IndexedDB
+  - listitem: Storage API
+  - listitem: Background Sync API
+- heading "Arquitetura" [level=2]
+- list:
+  - listitem: Sandboxed file system (OPFS) com SQL real sobre WebAssembly executado em Web Worker + IndexedDB nativo + fila de Background Sync resolvida pelo Service Worker
+- heading "Conceitos" [level=2]
+- list:
+  - listitem: Sandboxed file system
+  - listitem: SQL sobre WebAssembly
+  - listitem: isolamento de worker thread
+  - listitem: mensageria assíncrona worker↔thread principal
+  - listitem: storage eviction/persistência
+  - listitem: fila de sincronização

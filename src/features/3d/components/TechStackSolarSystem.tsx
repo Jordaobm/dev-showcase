@@ -7,7 +7,7 @@ import {
   Stars,
 } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Box, Camera, Lightbulb, MousePointer2 } from "lucide-react";
+import { Box, Camera, Lightbulb, MousePointer2, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { renderHtmlText } from "@/features/shared/utils/renderHtmlText";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -833,10 +833,10 @@ export const TechStackSolarSystem = () => {
               <button
                 type="button"
                 onClick={() => setFocused(null)}
-                className="text-white/50 hover:text-white transition-colors cursor-pointer text-xs"
+                className="p-1.5 -m-1.5 rounded-full text-white/50 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
                 aria-label={t("demo3d.solarCloseLabel")}
               >
-                ✕
+                <X className="w-3.5 h-3.5" />
               </button>
             </div>
             <dl className="space-y-2 text-xs">

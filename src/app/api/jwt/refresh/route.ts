@@ -3,6 +3,7 @@ import {
   getUserById,
   saveRefreshToken,
 } from "@/lib/supabase/server";
+import { handleApiError } from "@/lib/apiError";
 import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -14,10 +15,7 @@ export const POST = async (request: NextRequest) => {
     const refreshToken = request.cookies.get("refresh_token")?.value;
 
     if (!refreshToken) {
-      return Response.json(
-        { error: "Refresh token ausente" },
-        { status: 401 },
-      );
+      return Response.json({ error: "refresh_token_missing" }, { status: 401 });
     }
 
     await findAndDeleteRefreshToken(refreshToken);
@@ -29,10 +27,7 @@ export const POST = async (request: NextRequest) => {
     const user = await getUserById(payload.id);
 
     if (!user) {
-      return Response.json(
-        { error: "Usuário não encontrado" },
-        { status: 401 },
-      );
+      return Response.json({ error: "user_not_found" }, { status: 401 });
     }
 
     const { password: _, ...safeUser } = user;
@@ -74,7 +69,6 @@ export const POST = async (request: NextRequest) => {
 
     return response;
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Unknown error";
-    return Response.json({ error: message }, { status: 401 });
+    return handleApiError(error, "jwt/refresh", 401);
   }
 };

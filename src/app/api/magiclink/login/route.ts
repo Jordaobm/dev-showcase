@@ -1,4 +1,5 @@
 import { getUserByToken, updateToken } from "@/lib/supabase/server";
+import { handleApiError } from "@/lib/apiError";
 import crypto from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -44,6 +45,6 @@ export const POST = async (request: NextRequest) => {
 
     return NextResponse.json({ ...updated }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error }, { status: 400 });
+    return handleApiError(error, "magiclink/login", 400);
   }
 };

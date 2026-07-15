@@ -132,6 +132,7 @@ export const FeaturedDemoLarge = ({
                 background: "rgba(255, 255, 255, 0.15)",
                 border: "1px solid rgba(255, 255, 255, 0.25)",
                 color: "white",
+                marginTop: "2rem",
               }}
             >
               {resolveText(t, demo.category)}

@@ -3,7 +3,7 @@
   "description": "Instalação nativa, cache multi-estratégia por tipo de recurso e detecção real de conectividade: os três pilares que sustentam este PWA.",
   "longDescription": "Instalação via beforeinstallprompt, Service Worker com três estratégias de cache diferentes por tipo de recurso (Network First para HTML, Cache First para imagens, Stale-While-Revalidate para JS/CSS, via Serwist), e um indicador de status online/offline que faz ping real em /api/health em vez de confiar apenas em navigator.onLine.",
   "tags": "PWA, Service Worker, Cache Strategies, Serwist, installable, offline-first",
-  "architecture": "Offline-first, Service Worker como proxy de rede, cache multi-estratégia via Serwist",
+  "architecture": "Offline-first, Service Worker como proxy de rede, Cache via Serwist",
   "technologies": "Web App Manifest, Service Worker, Serwist (sobre Workbox)",
   "concepts": "Progressive enhancement, offline-first, network proxy pattern, cache strategy por tipo de asset",
   "summary": "Sumário",

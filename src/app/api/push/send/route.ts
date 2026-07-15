@@ -1,5 +1,6 @@
 import webpush from "web-push";
 import { NextRequest, NextResponse } from "next/server";
+import { handleApiError } from "@/lib/apiError";
 
 webpush.setVapidDetails(
   process.env.VAPID_SUBJECT!,
@@ -8,12 +9,16 @@ webpush.setVapidDetails(
 );
 
 export const POST = async (request: NextRequest) => {
-  const { title, body, subscription } = await request.json();
+  try {
+    const { title, body, subscription } = await request.json();
 
-  await webpush.sendNotification(
-    subscription,
-    JSON.stringify({ title, body }),
-  );
+    await webpush.sendNotification(
+      subscription,
+      JSON.stringify({ title, body }),
+    );
 
-  return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    return handleApiError(error, "push/send", 400);
+  }
 };

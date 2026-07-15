@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { challengeStore, credentialStore, StoredCredential } from "../../store";
 import { base64urlToUint8Array } from "@/features/shared/utils/base64urlToUint8Array";
+import { handleApiError } from "@/lib/apiError";
 
 const PENDING_AUTH_KEY = "__pending_auth__";
 
@@ -32,118 +33,110 @@ const derToP1363 = (der: Uint8Array): Uint8Array<ArrayBuffer> => {
 };
 
 export const POST = async (request: NextRequest) => {
-  const { id, response } = await request.json();
+  try {
+    const { id, response } = await request.json();
 
-  if (!id || !response) {
-    return Response.json({ error: "dados incompletos" }, { status: 400 });
-  }
-
-  const clientData = JSON.parse(
-    Buffer.from(response.clientDataJSON, "base64url").toString("utf-8"),
-  );
-
-  if (clientData.type !== "webauthn.get") {
-    return Response.json(
-      { error: "tipo de operação inválido" },
-      { status: 400 },
-    );
-  }
-
-  const storedChallenge = challengeStore.get(PENDING_AUTH_KEY);
-
-  if (!storedChallenge) {
-    return Response.json(
-      { error: "nenhum challenge de autenticação pendente" },
-      { status: 400 },
-    );
-  }
-
-  if (clientData.challenge !== storedChallenge) {
-    return Response.json({ error: "challenge inválido" }, { status: 400 });
-  }
-
-  const { origin } = new URL(request.url);
-
-  if (clientData.origin !== origin) {
-    return Response.json({ error: "origin inválida" }, { status: 400 });
-  }
-
-  let storedCredential: StoredCredential | undefined;
-
-  for (const credentials of credentialStore.values()) {
-    const found = credentials.find((c) => c.id === id);
-    if (found) {
-      storedCredential = found;
-      break;
+    if (!id || !response) {
+      return Response.json({ error: "incomplete_data" }, { status: 400 });
     }
-  }
 
-  if (!storedCredential) {
-    return Response.json(
-      { error: "credencial não encontrada" },
-      { status: 400 },
+    const clientData = JSON.parse(
+      Buffer.from(response.clientDataJSON, "base64url").toString("utf-8"),
     );
+
+    if (clientData.type !== "webauthn.get") {
+      return Response.json({ error: "invalid_operation_type" }, { status: 400 });
+    }
+
+    const storedChallenge = challengeStore.get(PENDING_AUTH_KEY);
+
+    if (!storedChallenge) {
+      return Response.json({ error: "no_pending_auth_challenge" }, { status: 400 });
+    }
+
+    if (clientData.challenge !== storedChallenge) {
+      return Response.json({ error: "invalid_challenge" }, { status: 400 });
+    }
+
+    const { origin } = new URL(request.url);
+
+    if (clientData.origin !== origin) {
+      return Response.json({ error: "invalid_origin" }, { status: 400 });
+    }
+
+    let storedCredential: StoredCredential | undefined;
+
+    for (const credentials of credentialStore.values()) {
+      const found = credentials.find((c) => c.id === id);
+      if (found) {
+        storedCredential = found;
+        break;
+      }
+    }
+
+    if (!storedCredential) {
+      return Response.json({ error: "credential_not_found" }, { status: 400 });
+    }
+
+    let importAlgo:
+      | AlgorithmIdentifier
+      | EcKeyImportParams
+      | RsaHashedImportParams;
+    let verifyAlgo: AlgorithmIdentifier | EcdsaParams;
+
+    switch (storedCredential.publicKeyAlgorithm) {
+      case -7:
+        importAlgo = { name: "ECDSA", namedCurve: "P-256" };
+        verifyAlgo = { name: "ECDSA", hash: "SHA-256" };
+        break;
+      case -257:
+        importAlgo = { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" };
+        verifyAlgo = importAlgo;
+        break;
+      default:
+        return Response.json({ error: "unsupported_algorithm" }, { status: 400 });
+    }
+
+    const importedKey = await crypto.subtle.importKey(
+      "spki",
+      base64urlToUint8Array(storedCredential.publicKey).buffer,
+      importAlgo,
+      false,
+      ["verify"],
+    );
+
+    const authDataBytes = base64urlToUint8Array(response.authenticatorData);
+    const clientDataHash = await crypto.subtle.digest(
+      "SHA-256",
+      Buffer.from(response.clientDataJSON, "base64url"),
+    );
+    const signedData = new Uint8Array([
+      ...authDataBytes,
+      ...new Uint8Array(clientDataHash),
+    ]);
+
+    const rawSignature = base64urlToUint8Array(response.signature);
+    const signature =
+      storedCredential.publicKeyAlgorithm === -7
+        ? derToP1363(rawSignature)
+        : rawSignature;
+
+    const verified = await crypto.subtle.verify(
+      verifyAlgo,
+      importedKey,
+      signature,
+      signedData,
+    );
+
+    challengeStore.delete(PENDING_AUTH_KEY);
+
+    return Response.json({
+      verified,
+      credentialId: id,
+      username: storedCredential.username,
+      clientData,
+    });
+  } catch (error) {
+    return handleApiError(error, "credentials/auth/finish", 400);
   }
-
-  let importAlgo:
-    | AlgorithmIdentifier
-    | EcKeyImportParams
-    | RsaHashedImportParams;
-  let verifyAlgo: AlgorithmIdentifier | EcdsaParams;
-
-  switch (storedCredential.publicKeyAlgorithm) {
-    case -7:
-      importAlgo = { name: "ECDSA", namedCurve: "P-256" };
-      verifyAlgo = { name: "ECDSA", hash: "SHA-256" };
-      break;
-    case -257:
-      importAlgo = { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" };
-      verifyAlgo = importAlgo;
-      break;
-    default:
-      return Response.json(
-        { error: "algoritmo não suportado" },
-        { status: 400 },
-      );
-  }
-
-  const importedKey = await crypto.subtle.importKey(
-    "spki",
-    base64urlToUint8Array(storedCredential.publicKey).buffer,
-    importAlgo,
-    false,
-    ["verify"],
-  );
-
-  const authDataBytes = base64urlToUint8Array(response.authenticatorData);
-  const clientDataHash = await crypto.subtle.digest(
-    "SHA-256",
-    Buffer.from(response.clientDataJSON, "base64url"),
-  );
-  const signedData = new Uint8Array([
-    ...authDataBytes,
-    ...new Uint8Array(clientDataHash),
-  ]);
-
-  const rawSignature = base64urlToUint8Array(response.signature);
-  const signature =
-    storedCredential.publicKeyAlgorithm === -7
-      ? derToP1363(rawSignature)
-      : rawSignature;
-
-  const verified = await crypto.subtle.verify(
-    verifyAlgo,
-    importedKey,
-    signature,
-    signedData,
-  );
-
-  challengeStore.delete(PENDING_AUTH_KEY);
-
-  return Response.json({
-    verified,
-    credentialId: id,
-    username: storedCredential.username,
-    clientData,
-  });
 };

@@ -1,4 +1,5 @@
 import { getUser, saveRefreshToken } from "@/lib/supabase/server";
+import { handleApiError } from "@/lib/apiError";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
@@ -12,7 +13,7 @@ export const POST = async (request: NextRequest) => {
 
     if (!body.email || !body.password) {
       return Response.json(
-        { error: "Credenciais inválidas" },
+        { error: "invalid_credentials" },
         { status: 400 },
       );
     }
@@ -22,13 +23,13 @@ export const POST = async (request: NextRequest) => {
     const user = users[0];
 
     if (!users?.length || !user) {
-      return Response.json({ error: "Credenciais inválidas" }, { status: 400 });
+      return Response.json({ error: "invalid_credentials" }, { status: 400 });
     }
 
     const matchPassword = await bcrypt.compare(body.password, user.password);
 
     if (!matchPassword) {
-      throw new Error("Credenciais inválidas");
+      return Response.json({ error: "invalid_credentials" }, { status: 400 });
     }
 
     const { password: _, ...safeUser } = user;
@@ -70,7 +71,6 @@ export const POST = async (request: NextRequest) => {
 
     return response;
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Unknown error";
-    return Response.json({ error: message }, { status: 400 });
+    return handleApiError(error, "jwt/auth", 400);
   }
 };

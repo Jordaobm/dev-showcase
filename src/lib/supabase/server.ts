@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { PublicApiError } from "@/lib/apiError";
 
 const TABLE_AUTH_JWT_USERS = "auth-jwt-users";
 const TABLE_AUTH_JWT_REFRESH_TOKEN = "auth-jwt-refresh-token";
@@ -69,7 +70,7 @@ export const findAndDeleteRefreshToken = async (refreshToken: string) => {
     .select();
   if (error) throw new Error(error.message);
   if (!data || data.length === 0)
-    throw new Error("Refresh token inválido ou expirado");
+    throw new PublicApiError("refresh_token_invalid", 401);
 
   return data[0];
 };

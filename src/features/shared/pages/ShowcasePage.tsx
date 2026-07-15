@@ -31,7 +31,7 @@ export const ShowcasePage = ({ id }: Readonly<ShowcasePageProps>) => {
   const DemoComponent = demo.component;
 
   return (
-    <div className="min-h-screen showroom-environment">
+    <div className="min-h-screen showroom-environment px-6">
       <Navbar />
       <MobileNavbar />
 
@@ -59,7 +59,7 @@ export const ShowcasePage = ({ id }: Readonly<ShowcasePageProps>) => {
 
         <div className="absolute inset-0 -z-10" />
 
-        <div className="max-w-6xl mx-auto px-2">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -159,7 +159,7 @@ export const ShowcasePage = ({ id }: Readonly<ShowcasePageProps>) => {
                 </span>
               ))}
           </motion.div>
-          <section className="py-16 px-6 relative">
+          <section className="py-16 relative">
             <div
               className="absolute inset-0 -z-10"
               style={{
@@ -177,8 +177,8 @@ export const ShowcasePage = ({ id }: Readonly<ShowcasePageProps>) => {
                   transition={{ duration: 0.5 }}
                   className="p-8 rounded-3xl bg-white glass-reflection card-inner-glow"
                   style={{
-                    boxShadow: `0 4px 12px rgba(0,0,0,0.06), 0 12px 24px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.8)`,
-                    border: "1px solid rgba(255,255,255,0.5)",
+                    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)",
+                    border: "1px solid rgba(255, 255, 255, 0.5)",
                   }}
                 >
                   <h2
@@ -211,8 +211,8 @@ export const ShowcasePage = ({ id }: Readonly<ShowcasePageProps>) => {
                   transition={{ duration: 0.5, delay: 0.1 }}
                   className="p-8 rounded-3xl bg-white glass-reflection card-inner-glow"
                   style={{
-                    boxShadow: `0 4px 12px rgba(0,0,0,0.06), 0 12px 24px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.8)`,
-                    border: "1px solid rgba(255,255,255,0.5)",
+                    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)",
+                    border: "1px solid rgba(255, 255, 255, 0.5)",
                   }}
                 >
                   <h2
@@ -245,8 +245,8 @@ export const ShowcasePage = ({ id }: Readonly<ShowcasePageProps>) => {
                   transition={{ duration: 0.5, delay: 0.2 }}
                   className="p-8 rounded-3xl bg-white glass-reflection card-inner-glow"
                   style={{
-                    boxShadow: `0 4px 12px rgba(0,0,0,0.06), 0 12px 24px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.8)`,
-                    border: "1px solid rgba(255,255,255,0.5)",
+                    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)",
+                    border: "1px solid rgba(255, 255, 255, 0.5)",
                   }}
                 >
                   <h2 className="text-xl mb-6 font-semibold">
@@ -271,7 +271,7 @@ export const ShowcasePage = ({ id }: Readonly<ShowcasePageProps>) => {
               </div>
             </div>
           </section>
-          <section className="py-24 px-6">
+          <section className="py-24">
             <div className="max-w-6xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -318,7 +318,7 @@ export const ShowcasePage = ({ id }: Readonly<ShowcasePageProps>) => {
             </div>
           </section>
           {demo.status === "live" && (
-            <section className="pb-8 px-6">
+            <section className="pb-8">
               <div className="max-w-6xl mx-auto">
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -331,7 +331,7 @@ export const ShowcasePage = ({ id }: Readonly<ShowcasePageProps>) => {
                     href={`${SOCIAL_LINKS.githubRepo}/tree/main/src/features`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-medium transition-all hover:scale-105"
+                    className="flex items-center gap-2 py-3 rounded-2xl text-sm font-medium transition-all hover:scale-105"
                     style={{
                       background: "rgba(255, 255, 255, 0.8)",
                       border: "1px solid rgba(0, 0, 0, 0.08)",
@@ -345,7 +345,7 @@ export const ShowcasePage = ({ id }: Readonly<ShowcasePageProps>) => {
               </div>
             </section>
           )}
-          <section className="py-20 px-6">
+          <section className="py-20">
             <div className="max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 gap-8">
                 {prevDemo && (

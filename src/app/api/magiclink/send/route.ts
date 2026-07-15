@@ -32,7 +32,8 @@ export const POST = async (request: NextRequest) => {
     }
 
     return NextResponse.json({}, { status: 200 });
-  } catch {
+  } catch (error) {
+    console.error("[api:magiclink/send]", error);
     return NextResponse.json({}, { status: 200 });
   }
 };

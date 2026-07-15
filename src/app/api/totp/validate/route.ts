@@ -3,6 +3,7 @@ import {
   updateBackupCodes,
   updateLastUsedToken,
 } from "@/lib/supabase/server";
+import { handleApiError } from "@/lib/apiError";
 import { createHash } from "node:crypto";
 import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
@@ -72,6 +73,6 @@ export const POST = async (request: NextRequest) => {
 
     return NextResponse.json({}, { status: 400 });
   } catch (error) {
-    return NextResponse.json(error, { status: 400 });
+    return handleApiError(error, "totp/validate", 400);
   }
 };

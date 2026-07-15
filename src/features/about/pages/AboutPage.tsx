@@ -43,12 +43,11 @@ const PROJECTS_DEVELOPED = "23+";
 const SUSTAINED_PROJECTS = "6+";
 
 const CARD_SHADOW = `
-  0 1px 2px rgba(0, 0, 0, 0.02),
-  0 4px 8px rgba(0, 0, 0, 0.04),
-  0 12px 24px rgba(0, 0, 0, 0.06),
-  0 20px 40px rgba(0, 0, 0, 0.08),
-  inset 0 1px 0 rgba(255, 255, 255, 0.8)
+  0 2px 4px rgba(0, 0, 0, 0.03),
+  0 6px 12px rgba(0, 0, 0, 0.04),
+  inset 0 1px 0 rgba(255, 255, 255, 0.6)
 `;
+
 const CARD_BORDER = "1px solid rgba(255, 255, 255, 0.5)";
 const WORK_COLOR = "#dc2626";
 const EDUCATION_COLOR = "#4b5563";
@@ -231,322 +230,128 @@ export const AboutPage = () => {
       </div>
 
       <main>
-      <section className="relative max-w-6xl mx-auto px-6 pt-40 pb-20 overflow-hidden">
-        <div className="spotlight-beam" />
+        <section className="relative max-w-6xl mx-auto px-6 pt-40 pb-20 overflow-hidden">
+          <div className="spotlight-beam" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 backdrop-blur-sm"
-          style={{
-            background: "rgba(255, 255, 255, 0.7)",
-            border: "1px solid rgba(255, 255, 255, 0.4)",
-            boxShadow:
-              "0 4px 12px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9)",
-          }}
-        >
-          <Sparkles
-            className="w-4 h-4"
-            style={{ color: "var(--premium-red)" }}
-          />
-          <span className="text-sm font-medium">{t("about.hero.eyebrow")}</span>
-        </motion.div>
-
-        <motion.h1
-          data-testid="hero-heading"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-[32px] sm:text-[52px] lg:text-[64px] leading-tight font-semibold mb-6"
-        >
-          {t("about.hero.firstName")}{" "}
-          <span
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 backdrop-blur-sm"
             style={{
-              background: "linear-gradient(135deg, #DC2626, #B91C1C)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            {t("about.hero.lastName")}
-          </span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-[16px] sm:text-[20px] text-gray-600 leading-relaxed max-w-2xl mb-10"
-        >
-          {t("about.hero.manifesto")}
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-wrap items-center gap-3 mb-14"
-        >
-          <a
-            href="/Jordao_Beghetto_Massariol_CV.pdf"
-            download="Jordao_Beghetto_Massariol_CV.pdf"
-            data-testid="cv-download-link"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-white premium-button overflow-hidden"
-            style={{
-              background: "linear-gradient(135deg, #DC2626, #B91C1C)",
+              background: "rgba(255, 255, 255, 0.7)",
+              border: "1px solid rgba(255, 255, 255, 0.4)",
               boxShadow:
-                "0 4px 16px rgba(220, 38, 38, 0.3), 0 0 20px rgba(220, 38, 38, 0.15)",
+                "0 4px 12px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9)",
             }}
           >
-            <Download className="w-4 h-4" />
-            {t("about.hero.downloadResume")}
-          </a>
-          <a
-            href={SOCIAL_LINKS.emailHref}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-gray-700 backdrop-blur-sm hover:text-black transition-colors"
-            style={{
-              background: "rgba(255, 255, 255, 0.7)",
-              border: "1px solid rgba(0, 0, 0, 0.06)",
-              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)",
-            }}
-          >
-            <Mail className="w-4 h-4" style={{ color: "var(--premium-red)" }} />
-            {SOCIAL_LINKS.email}
-          </a>
-          <a
-            href={SOCIAL_LINKS.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-gray-700 backdrop-blur-sm hover:text-black transition-colors"
-            style={{
-              background: "rgba(255, 255, 255, 0.7)",
-              border: "1px solid rgba(0, 0, 0, 0.06)",
-              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)",
-            }}
-          >
-            <Users
+            <Sparkles
               className="w-4 h-4"
               style={{ color: "var(--premium-red)" }}
             />
-            {t("shared.social.linkedin")}
-          </a>
-          <a
-            href={SOCIAL_LINKS.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-gray-700 backdrop-blur-sm hover:text-black transition-colors"
-            style={{
-              background: "rgba(255, 255, 255, 0.7)",
-              border: "1px solid rgba(0, 0, 0, 0.06)",
-              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)",
-            }}
-          >
-            <GitBranch
-              className="w-4 h-4"
-              style={{ color: "var(--premium-red)" }}
-            />
-            {t("shared.social.github")}
-          </a>
-        </motion.div>
+            <span className="text-sm font-medium">
+              {t("about.hero.eyebrow")}
+            </span>
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8"
-        >
-          {stats.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="min-w-0 rounded-2xl p-4 sm:p-6 bg-white glass-reflection card-inner-glow"
-              style={{ boxShadow: CARD_SHADOW, border: CARD_BORDER }}
+          <motion.h1
+            data-testid="hero-heading"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-[32px] sm:text-[52px] lg:text-[64px] leading-tight font-semibold mb-6"
+          >
+            {t("about.hero.firstName")}{" "}
+            <span
+              style={{
+                background: "linear-gradient(135deg, #DC2626, #B91C1C)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
             >
-              <div
-                className="text-3xl sm:text-4xl font-semibold leading-none mb-2"
+              {t("about.hero.lastName")}
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-[16px] sm:text-[20px] text-gray-600 leading-relaxed max-w-2xl mb-10"
+          >
+            {t("about.hero.manifesto")}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-wrap items-center gap-3 mb-14"
+          >
+            <a
+              href="/Jordao_Beghetto_Massariol_CV.pdf"
+              download="Jordao_Beghetto_Massariol_CV.pdf"
+              data-testid="cv-download-link"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-white premium-button overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, #DC2626, #B91C1C)",
+                boxShadow:
+                  "0 4px 16px rgba(220, 38, 38, 0.3), 0 0 20px rgba(220, 38, 38, 0.15)",
+              }}
+            >
+              <Download className="w-4 h-4" />
+              {t("about.hero.downloadResume")}
+            </a>
+            <a
+              href={SOCIAL_LINKS.emailHref}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-gray-700 backdrop-blur-sm hover:text-black transition-colors"
+              style={{
+                background: "rgba(255, 255, 255, 0.7)",
+                border: "1px solid rgba(0, 0, 0, 0.06)",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)",
+              }}
+            >
+              <Mail
+                className="w-4 h-4"
                 style={{ color: "var(--premium-red)" }}
-              >
-                {s.n}
-              </div>
-              <div className="text-[13px] text-gray-500 leading-snug">
-                {s.label}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <div className="flex items-center gap-2 text-gray-400 text-sm">
-          <MapPin className="w-3.5 h-3.5 text-red-500" />
-          {t("about.hero.location")}
-        </div>
-      </section>
-
-      <section className="py-32 px-6 relative">
-        <div
-          className="absolute inset-0 -z-10"
-          style={{
-            background:
-              "linear-gradient(180deg, transparent 0%, rgba(248, 249, 250, 0.5) 100%)",
-          }}
-        />
-
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16 text-center"
-          >
-            <span
-              className="text-[12px] sm:text-sm font-semibold"
-              style={{ color: "var(--premium-red)" }}
-            >
-              {t("about.timelineSection.eyebrow")}
-            </span>
-            <h2 className="text-[22px] sm:text-6xl font-semibold mb-0 sm:mb-4">
-              {t("about.timelineSection.titlePlain")}{" "}
-              <span style={{ color: "var(--premium-red)" }}>
-                {t("about.timelineSection.titleHighlight")}
-              </span>
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-12 gap-y-16">
-            <div>
-              <h3
-                className="text-[12px] sm:text-sm font-semibold uppercase tracking-wide mb-8"
-                style={{ color: WORK_COLOR }}
-              >
-                {t("about.timelineSection.workLabel")}
-              </h3>
-              <TimelineList items={workItems} lineColor={WORK_COLOR} />
-            </div>
-
-            <div>
-              <h3
-                className="text-[12px] sm:text-sm font-semibold uppercase tracking-wide mb-8 xl:text-right"
-                style={{ color: EDUCATION_COLOR }}
-              >
-                {t("about.timelineSection.educationLabel")}
-              </h3>
-              <TimelineList
-                items={educationItems}
-                lineColor={EDUCATION_COLOR}
-                mirrored
               />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16 text-center"
-          >
-            <span
-              className="text-[12px] sm:text-sm font-semibold"
-              style={{ color: "var(--premium-red)" }}
+              {SOCIAL_LINKS.email}
+            </a>
+            <a
+              href={SOCIAL_LINKS.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-gray-700 backdrop-blur-sm hover:text-black transition-colors"
+              style={{
+                background: "rgba(255, 255, 255, 0.7)",
+                border: "1px solid rgba(0, 0, 0, 0.06)",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)",
+              }}
             >
-              {t("about.skillsSection.eyebrow")}
-            </span>
-            <h2 className="text-[22px] sm:text-6xl font-semibold mb-0 sm:mb-4">
-              {t("about.skillsSection.titlePlain")}{" "}
-              <span style={{ color: "var(--premium-red)" }}>
-                {t("about.skillsSection.titleHighlight")}
-              </span>
-            </h2>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {skills.map((cat, i) => {
-              const Icon = SKILL_ICONS[i % SKILL_ICONS.length];
-              return (
-                <motion.div
-                  key={cat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.05 }}
-                  className="rounded-3xl p-6 bg-white glass-reflection card-inner-glow"
-                  style={{ boxShadow: CARD_SHADOW, border: CARD_BORDER }}
-                  whileHover={{
-                    y: -6,
-                    scale: 1.02,
-                    borderColor: "var(--premium-red)",
-                    transition: { duration: 0.3, ease: "easeOut" },
-                  }}
-                >
-                  <div className="flex items-center gap-3 mb-5">
-                    <div
-                      className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
-                      style={{
-                        background: "linear-gradient(135deg, #F9FAFB, #F3F4F6)",
-                        boxShadow:
-                          "0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1)",
-                      }}
-                    >
-                      <Icon className="w-4 h-4 text-red-600" />
-                    </div>
-                    <span className="font-semibold text-sm">{cat.label}</span>
-                  </div>
-
-                  <ul className="flex flex-col gap-2.5">
-                    {cat.items.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-center gap-2 text-[13px] text-gray-600"
-                      >
-                        <ChevronRight className="w-3 h-3 text-red-400 shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-32 px-6 relative">
-        <div
-          className="absolute inset-0 -z-10"
-          style={{
-            background:
-              "linear-gradient(180deg, transparent 0%, rgba(248, 249, 250, 0.5) 100%)",
-          }}
-        />
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16 text-center"
-          >
-            <span
-              className="text-[12px] sm:text-sm font-semibold"
-              style={{ color: "var(--premium-red)" }}
+              <Users
+                className="w-4 h-4"
+                style={{ color: "var(--premium-red)" }}
+              />
+              {t("shared.social.linkedin")}
+            </a>
+            <a
+              href={SOCIAL_LINKS.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-gray-700 backdrop-blur-sm hover:text-black transition-colors"
+              style={{
+                background: "rgba(255, 255, 255, 0.7)",
+                border: "1px solid rgba(0, 0, 0, 0.06)",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)",
+              }}
             >
-              {t("about.contactSection.eyebrow")}
-            </span>
-            <h2 className="text-[22px] sm:text-6xl font-semibold mb-0 sm:mb-4">
-              {t("about.contactSection.titlePlain")}{" "}
-              <span style={{ color: "var(--premium-red)" }}>
-                {t("about.contactSection.titleHighlight")}
-              </span>
-            </h2>
+              <GitBranch
+                className="w-4 h-4"
+                style={{ color: "var(--premium-red)" }}
+              />
+              {t("shared.social.github")}
+            </a>
           </motion.div>
 
           <motion.div
@@ -554,43 +359,243 @@ export const AboutPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="max-w-xl mx-auto rounded-3xl p-10 bg-white glass-reflection card-inner-glow"
-            style={{ boxShadow: CARD_SHADOW, border: CARD_BORDER }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8"
           >
-            <p className="text-gray-600 text-sm leading-relaxed mb-8 text-left">
-              {t("about.contactSection.description")}
-            </p>
-
-            <div className="flex flex-col gap-4">
-              <a
-                href={SOCIAL_LINKS.emailHref}
-                className="flex items-center gap-3 text-sm text-gray-600 hover:text-black transition-colors py-1"
+            {stats.map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="min-w-0 rounded-2xl p-4 sm:p-6 bg-white glass-reflection card-inner-glow"
+                style={{ boxShadow: CARD_SHADOW, border: CARD_BORDER }}
               >
-                <Mail className="w-4 h-4 text-red-600 shrink-0" />
-                {SOCIAL_LINKS.email}
-              </a>
-              <a
-                href={SOCIAL_LINKS.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-sm text-gray-600 hover:text-black transition-colors py-1"
-              >
-                <Users className="w-4 h-4 text-red-600 shrink-0" />
-                {SOCIAL_LINKS.linkedin.replace(/^https?:\/\//, "")}
-              </a>
-              <a
-                href={SOCIAL_LINKS.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-sm text-gray-600 hover:text-black transition-colors py-1"
-              >
-                <GitBranch className="w-4 h-4 text-red-600 shrink-0" />
-                {SOCIAL_LINKS.github.replace(/^https?:\/\//, "")}
-              </a>
-            </div>
+                <div
+                  className="text-3xl sm:text-4xl font-semibold leading-none mb-2"
+                  style={{ color: "var(--premium-red)" }}
+                >
+                  {s.n}
+                </div>
+                <div className="text-[13px] text-gray-500 leading-snug">
+                  {s.label}
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
-        </div>
-      </section>
+
+          <div className="flex items-center gap-2 text-gray-400 text-sm">
+            <MapPin className="w-3.5 h-3.5 text-red-500" />
+            {t("about.hero.location")}
+          </div>
+        </section>
+
+        <section className="py-32 px-6 relative">
+          <div
+            className="absolute inset-0 -z-10"
+            style={{
+              background:
+                "linear-gradient(180deg, transparent 0%, rgba(248, 249, 250, 0.5) 100%)",
+            }}
+          />
+
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-16 text-center"
+            >
+              <span
+                className="text-[12px] sm:text-sm font-semibold"
+                style={{ color: "var(--premium-red)" }}
+              >
+                {t("about.timelineSection.eyebrow")}
+              </span>
+              <h2 className="text-[22px] sm:text-6xl font-semibold mb-0 sm:mb-4">
+                {t("about.timelineSection.titlePlain")}{" "}
+                <span style={{ color: "var(--premium-red)" }}>
+                  {t("about.timelineSection.titleHighlight")}
+                </span>
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-12 gap-y-16">
+              <div>
+                <h3
+                  className="text-[12px] sm:text-sm font-semibold uppercase tracking-wide mb-8"
+                  style={{ color: WORK_COLOR }}
+                >
+                  {t("about.timelineSection.workLabel")}
+                </h3>
+                <TimelineList items={workItems} lineColor={WORK_COLOR} />
+              </div>
+
+              <div>
+                <h3
+                  className="text-[12px] sm:text-sm font-semibold uppercase tracking-wide mb-8 xl:text-right"
+                  style={{ color: EDUCATION_COLOR }}
+                >
+                  {t("about.timelineSection.educationLabel")}
+                </h3>
+                <TimelineList
+                  items={educationItems}
+                  lineColor={EDUCATION_COLOR}
+                  mirrored
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-32 px-6">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-16 text-center"
+            >
+              <span
+                className="text-[12px] sm:text-sm font-semibold"
+                style={{ color: "var(--premium-red)" }}
+              >
+                {t("about.skillsSection.eyebrow")}
+              </span>
+              <h2 className="text-[22px] sm:text-6xl font-semibold mb-0 sm:mb-4">
+                {t("about.skillsSection.titlePlain")}{" "}
+                <span style={{ color: "var(--premium-red)" }}>
+                  {t("about.skillsSection.titleHighlight")}
+                </span>
+              </h2>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {skills.map((cat, i) => {
+                const Icon = SKILL_ICONS[i % SKILL_ICONS.length];
+                return (
+                  <motion.div
+                    key={cat.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.05 }}
+                    className="rounded-3xl p-6 bg-white glass-reflection card-inner-glow"
+                    style={{ boxShadow: CARD_SHADOW, border: CARD_BORDER }}
+                    whileHover={{
+                      y: -6,
+                      scale: 1.02,
+                      borderColor: "var(--premium-red)",
+                      transition: { duration: 0.3, ease: "easeOut" },
+                    }}
+                  >
+                    <div className="flex items-center gap-3 mb-5">
+                      <div
+                        className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, #F9FAFB, #F3F4F6)",
+                          boxShadow:
+                            "0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1)",
+                        }}
+                      >
+                        <Icon className="w-4 h-4 text-red-600" />
+                      </div>
+                      <span className="font-semibold text-sm">{cat.label}</span>
+                    </div>
+
+                    <ul className="flex flex-col gap-2.5">
+                      {cat.items.map((item) => (
+                        <li
+                          key={item}
+                          className="flex items-center gap-2 text-[13px] text-gray-600"
+                        >
+                          <ChevronRight className="w-3 h-3 text-red-400 shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-32 px-6 relative">
+          <div
+            className="absolute inset-0 -z-10"
+            style={{
+              background:
+                "linear-gradient(180deg, transparent 0%, rgba(248, 249, 250, 0.5) 100%)",
+            }}
+          />
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-16 text-center"
+            >
+              <span
+                className="text-[12px] sm:text-sm font-semibold"
+                style={{ color: "var(--premium-red)" }}
+              >
+                {t("about.contactSection.eyebrow")}
+              </span>
+              <h2 className="text-[22px] sm:text-6xl font-semibold mb-0 sm:mb-4">
+                {t("about.contactSection.titlePlain")}{" "}
+                <span style={{ color: "var(--premium-red)" }}>
+                  {t("about.contactSection.titleHighlight")}
+                </span>
+              </h2>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="max-w-xl mx-auto rounded-3xl p-10 bg-white glass-reflection card-inner-glow"
+              style={{ boxShadow: CARD_SHADOW, border: CARD_BORDER }}
+            >
+              <p className="text-gray-600 text-sm leading-relaxed mb-8 text-left">
+                {t("about.contactSection.description")}
+              </p>
+
+              <div className="flex flex-col gap-4">
+                <a
+                  href={SOCIAL_LINKS.emailHref}
+                  className="flex items-center gap-3 text-sm text-gray-600 hover:text-black transition-colors py-1"
+                >
+                  <Mail className="w-4 h-4 text-red-600 shrink-0" />
+                  {SOCIAL_LINKS.email}
+                </a>
+                <a
+                  href={SOCIAL_LINKS.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-sm text-gray-600 hover:text-black transition-colors py-1"
+                >
+                  <Users className="w-4 h-4 text-red-600 shrink-0" />
+                  {SOCIAL_LINKS.linkedin.replace(/^https?:\/\//, "")}
+                </a>
+                <a
+                  href={SOCIAL_LINKS.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-sm text-gray-600 hover:text-black transition-colors py-1"
+                >
+                  <GitBranch className="w-4 h-4 text-red-600 shrink-0" />
+                  {SOCIAL_LINKS.github.replace(/^https?:\/\//, "")}
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </section>
       </main>
 
       <Footer />

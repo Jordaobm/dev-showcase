@@ -1,4 +1,5 @@
 import { createUser } from "@/lib/supabase/server";
+import { handleApiError } from "@/lib/apiError";
 import bcrypt from "bcrypt";
 import { NextRequest } from "next/server";
 
@@ -10,17 +11,11 @@ export const POST = async (request: NextRequest) => {
     const body = await request.json();
 
     if (!body.email || !body.name || !body.password) {
-      return Response.json(
-        { error: "Campos obrigatórios ausentes" },
-        { status: 400 },
-      );
+      return Response.json({ error: "missing_fields" }, { status: 400 });
     }
 
     if (Buffer.byteLength(body.password, "utf8") > MAX_PASSWORD_BYTES) {
-      return Response.json(
-        { error: "Senha muito longa (máx. 72 caracteres)" },
-        { status: 400 },
-      );
+      return Response.json({ error: "password_too_long" }, { status: 400 });
     }
 
     const hashedPassword = await bcrypt.hash(body.password, SALT_ROUNDS);
@@ -34,11 +29,9 @@ export const POST = async (request: NextRequest) => {
     const { password: _, ...safeUser } = user;
     return Response.json({ user: safeUser });
   } catch (error) {
-    let message = error instanceof Error ? error.message : "Unknown error";
-    if (String(message).includes("duplicate key")) {
-      message =
-        "Infelizmente este e-mail já está registrado. Tente outro e-mail ou avance para o formulário de autenticação!";
+    if (error instanceof Error && error.message.includes("duplicate key")) {
+      return Response.json({ error: "email_taken" }, { status: 409 });
     }
-    return Response.json({ error: message }, { status: 400 });
+    return handleApiError(error, "jwt/register", 400);
   }
 };

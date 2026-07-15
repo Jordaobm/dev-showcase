@@ -54,6 +54,21 @@ type AuthSchema = ReturnType<typeof buildCredentialsSchema>;
 type RegisterErrors = Partial<Record<keyof z.infer<RegisterSchema>, string>>;
 type AuthErrors = Partial<Record<keyof z.infer<AuthSchema>, string>>;
 
+const resolveRegisterErrorMessage = (
+  code: string | undefined,
+  t: TranslateFn,
+) => {
+  if (code === "email_taken") return t("auth.jwtRegisterErrorEmailTaken");
+  return t("auth.jwtRegisterErrorGeneric");
+};
+
+const resolveAuthErrorMessage = (code: string | undefined, t: TranslateFn) => {
+  if (code === "invalid_credentials") {
+    return t("auth.jwtAuthErrorInvalidCredentials");
+  }
+  return t("auth.jwtAuthErrorGeneric");
+};
+
 const SessionExpiresCount = ({
   chunks,
   isExpiring,
@@ -299,7 +314,12 @@ export const JWTTokenSection = () => {
             {registerStatus === "error" && (
               <div className="mt-2 flex items-center gap-1.5 text-red-700 text-xs">
                 <XCircle className="w-3.5 h-3.5" />
-                <span>{errorRegister?.response?.data?.error}</span>
+                <span>
+                  {resolveRegisterErrorMessage(
+                    errorRegister?.response?.data?.error,
+                    t,
+                  )}
+                </span>
               </div>
             )}
           </div>
@@ -387,7 +407,9 @@ export const JWTTokenSection = () => {
             {authStatus === "error" && (
               <div className="mt-2 flex items-center gap-1.5 text-red-700 text-xs">
                 <XCircle className="w-3.5 h-3.5" />
-                <span>{errorAuth?.response?.data?.error}</span>
+                <span>
+                  {resolveAuthErrorMessage(errorAuth?.response?.data?.error, t)}
+                </span>
               </div>
             )}
           </div>

@@ -1,4 +1,5 @@
 import { deleteRefreshToken } from "@/lib/supabase/server";
+import { handleApiError } from "@/lib/apiError";
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (request: NextRequest) => {
@@ -6,10 +7,7 @@ export const POST = async (request: NextRequest) => {
     const refreshToken = request.cookies.get("refresh_token")?.value;
 
     if (!refreshToken) {
-      return Response.json(
-        { error: "Refresh token ausente" },
-        { status: 401 },
-      );
+      return Response.json({ error: "refresh_token_missing" }, { status: 401 });
     }
 
     await deleteRefreshToken(refreshToken);
@@ -20,7 +18,6 @@ export const POST = async (request: NextRequest) => {
 
     return response;
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Unknown error";
-    return Response.json({ error: message }, { status: 401 });
+    return handleApiError(error, "jwt/logout", 401);
   }
 };

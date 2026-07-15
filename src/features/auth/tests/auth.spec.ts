@@ -301,7 +301,7 @@ test.describe("Autenticação — JWT", () => {
     await page.route("**/api/jwt/auth", async (route) => {
       await route.fulfill({
         status: 400,
-        json: { error: "Credenciais inválidas" },
+        json: { error: "invalid_credentials" },
       });
     });
 
@@ -314,12 +314,47 @@ test.describe("Autenticação — JWT", () => {
     await page.getByRole("button", { name: "Autenticar e obter JWT" }).click();
 
     await expect(
-      page.getByText("Credenciais inválidas", { exact: true }),
+      page.getByText("E-mail ou senha inválidos.", { exact: true }),
     ).toBeVisible();
 
     await expect(
       page.getByRole("heading", { level: 3, name: "TOTP" }),
     ).toBeVisible();
+    expectCleanConsole(consoleErrors);
+  });
+
+  test("caso de erro: falha interna do backend nunca vaza texto cru para a interface", async ({
+    page,
+  }) => {
+    const consoleErrors: string[] = [];
+    page.on("console", (msg) => {
+      if (msg.type() === "error") consoleErrors.push(msg.text());
+    });
+    page.on("pageerror", (err) => consoleErrors.push(err.message));
+
+    await page.route("**/api/jwt/auth", async (route) => {
+      await route.fulfill({
+        status: 500,
+        json: { error: "internal_error" },
+      });
+    });
+
+    await page.goto("/showcase/auth");
+
+    await page
+      .getByLabel("E-mail para login")
+      .pressSequentially("ana@test.dev");
+    await page.getByLabel("Senha para login").pressSequentially("senha1!");
+    await page.getByRole("button", { name: "Autenticar e obter JWT" }).click();
+
+    await expect(
+      page.getByText(
+        "Ops, parece que algo não saiu como o planejado. Tente novamente mais tarde.",
+        { exact: true },
+      ),
+    ).toBeVisible();
+    await expect(page.getByText("internal_error")).not.toBeVisible();
+
     expectCleanConsole(consoleErrors);
   });
 });

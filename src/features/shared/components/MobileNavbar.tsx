@@ -131,6 +131,13 @@ export const MobileNavbar = () => {
               <LanguageSwitcher />
               <motion.button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label={
+                  isOpen
+                    ? t("shared.header.closeMenu")
+                    : t("shared.header.openMenu")
+                }
+                aria-expanded={isOpen}
+                aria-controls="mobile-nav-panel"
                 className="p-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
                 whileTap={{ scale: 0.95 }}
               >
@@ -148,6 +155,7 @@ export const MobileNavbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-nav-panel"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}

@@ -8,7 +8,9 @@
     "showcases": "Showcases",
     "categories": "Demos",
     "about": "Acerca de",
-    "exploreShowcase": "Explorar Showcase"
+    "exploreShowcase": "Explorar Showcase",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
   },
   "home": {
     "badgeFastText": "Portfolio Premium de Desarrollador",

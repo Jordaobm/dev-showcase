@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { ArrowRight, Star, Zap } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import type { DemoEntry } from "@/registry/types";
 import { useTranslations } from "next-intl";
@@ -115,11 +116,12 @@ export const FeaturedDemoSmall = ({
               transition={{ duration: 0.4 }}
             >
               {imageUrl ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
+                <Image
                   src={imageUrl}
-                  alt={demo.name}
-                  className="w-full h-full object-cover"
+                  alt={resolveText(t, demo.name)}
+                  fill
+                  sizes="(min-width: 1280px) 33vw, 100vw"
+                  className="object-cover"
                 />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center">

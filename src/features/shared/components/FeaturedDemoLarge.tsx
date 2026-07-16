@@ -4,6 +4,7 @@ import type { DemoEntry } from "@/registry/types";
 import { ChevronRight, Sparkles, Star, Zap } from "lucide-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import Link from "next/link";
 import { resolveText } from "@/features/shared/utils/resolveText";
 import { Button } from "./Button";
@@ -56,11 +57,12 @@ export const FeaturedDemoLarge = ({
         >
           <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
             {imageUrl ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
+              <Image
                 src={imageUrl}
-                alt={demo.name}
-                className="w-full h-full object-cover"
+                alt={resolveText(t, demo.name)}
+                fill
+                sizes="(min-width: 1280px) 66vw, 100vw"
+                className="object-cover"
               />
             ) : (
               <div

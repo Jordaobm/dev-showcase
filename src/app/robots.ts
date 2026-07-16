@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getSiteUrl } from "@/lib/site-url";
 
-const robots = async (): Promise<MetadataRoute.Robots> => {
-  const siteUrl = await getSiteUrl();
+const robots = (): MetadataRoute.Robots => {
+  const siteUrl = getSiteUrl();
 
   return {
     rules: {

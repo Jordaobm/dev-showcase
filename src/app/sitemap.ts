@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 import { registry } from "@/registry/index";
 import { getSiteUrl } from "@/lib/site-url";
 
-const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  const siteUrl = await getSiteUrl();
+const sitemap = (): MetadataRoute.Sitemap => {
+  const siteUrl = getSiteUrl();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: siteUrl, changeFrequency: "weekly", priority: 1 },

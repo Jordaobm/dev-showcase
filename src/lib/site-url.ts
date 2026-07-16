@@ -1,11 +1,12 @@
-import { headers } from "next/headers";
+export const getSiteUrl = (): string => {
+  const configuredUrl =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.NEXT_PUBLIC_SITE_URL;
 
-export const getSiteUrl = async (): Promise<string> => {
-  const headersList = await headers();
-  const host = headersList.get("host") ?? "localhost:3000";
-  const protocol =
-    headersList.get("x-forwarded-proto") ??
-    (host.includes("localhost") ? "http" : "https");
+  if (configuredUrl) {
+    return configuredUrl.startsWith("http")
+      ? configuredUrl
+      : `https://${configuredUrl}`;
+  }
 
-  return `${protocol}://${host}`;
+  return "http://localhost:3000";
 };

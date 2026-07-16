@@ -14,7 +14,7 @@ const SITE_DESCRIPTION =
   "Um showcase técnico onde cada implementação demonstra uma competência real de engenharia de software. Arquitetura, performance, segurança, PWAs, Browser APIs, renderização 3D e muito mais, reunidos em experiências interativas.";
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const siteUrl = await getSiteUrl();
+  const siteUrl = getSiteUrl();
 
   return {
     metadataBase: new URL(siteUrl),

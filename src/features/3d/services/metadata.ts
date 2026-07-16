@@ -1,6 +1,5 @@
 import type { DemoMetadata } from "@/registry/types";
 import backgroundImage from "../assets/background.webp";
-import { ThreeDDemo } from "../pages/Demo";
 
 export const metadata: DemoMetadata = {
   id: "demo3d",
@@ -14,7 +13,7 @@ export const metadata: DemoMetadata = {
   architecture: "demo3d.architecture",
   technologies: "demo3d.technologies",
   concepts: "demo3d.concepts",
-  component: ThreeDDemo,
+  component: () => import("../pages/Demo").then((m) => ({ default: m.ThreeDDemo })),
   i18nNamespace: "demo3d",
   imageUrl: backgroundImage.src,
 };

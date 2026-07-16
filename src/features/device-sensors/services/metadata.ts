@@ -1,6 +1,5 @@
 import type { DemoMetadata } from "@/registry/types";
 import backgroundImage from "../assets/background.webp";
-import { DeviceSensorsDemo } from "../pages/Demo";
 
 export const metadata: DemoMetadata = {
   id: "device-sensors",
@@ -14,7 +13,7 @@ export const metadata: DemoMetadata = {
   architecture: "deviceSensors.architecture",
   technologies: "deviceSensors.technologies",
   concepts: "deviceSensors.concepts",
-  component: DeviceSensorsDemo,
+  component: () => import("../pages/Demo").then((m) => ({ default: m.DeviceSensorsDemo })),
   i18nNamespace: "deviceSensors",
   imageUrl: backgroundImage.src,
 };

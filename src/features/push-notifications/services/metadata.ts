@@ -1,6 +1,5 @@
 import type { DemoMetadata } from "@/registry/types";
 import backgroundImage from "../assets/background.webp";
-import { PushNotificationsDemo } from "../pages/Demo";
 
 export const metadata: DemoMetadata = {
   id: "push-notifications",
@@ -14,7 +13,7 @@ export const metadata: DemoMetadata = {
   architecture: "pushNotifications.architecture",
   technologies: "pushNotifications.technologies",
   concepts: "pushNotifications.concepts",
-  component: PushNotificationsDemo,
+  component: () => import("../pages/Demo").then((m) => ({ default: m.PushNotificationsDemo })),
   i18nNamespace: "pushNotifications",
   imageUrl: backgroundImage.src,
 };

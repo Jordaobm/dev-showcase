@@ -2,7 +2,14 @@
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { DemoPageLayout } from "@/features/shared/components/DemoPageLayout";
-import { TechStackSolarSystem } from "../components/TechStackSolarSystem";
+
+const TechStackSolarSystem = dynamic(
+  () =>
+    import("../components/TechStackSolarSystem").then(
+      (mod) => mod.TechStackSolarSystem,
+    ),
+  { ssr: false },
+);
 
 const OrbitControlsSection = dynamic(
   () =>

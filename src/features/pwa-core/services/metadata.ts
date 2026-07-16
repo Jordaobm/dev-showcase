@@ -1,6 +1,5 @@
 import type { DemoMetadata } from "@/registry/types";
 import backgroundImage from "../assets/background.webp";
-import { PwaCoreDemo } from "../pages/Demo";
 
 export const metadata: DemoMetadata = {
   id: "pwa-core",
@@ -14,7 +13,7 @@ export const metadata: DemoMetadata = {
   architecture: "pwaCore.architecture",
   technologies: "pwaCore.technologies",
   concepts: "pwaCore.concepts",
-  component: PwaCoreDemo,
+  component: () => import("../pages/Demo").then((m) => ({ default: m.PwaCoreDemo })),
   i18nNamespace: "pwaCore",
   imageUrl: backgroundImage.src,
 };

@@ -1,6 +1,5 @@
 import type { DemoMetadata } from "@/registry/types";
 import backgroundImage from "../assets/background.webp";
-import { AuthDemo } from "../pages/Demo";
 
 export const metadata: DemoMetadata = {
   id: "auth",
@@ -14,7 +13,7 @@ export const metadata: DemoMetadata = {
   architecture: "auth.architecture",
   technologies: "auth.technologies",
   concepts: "auth.concepts",
-  component: AuthDemo,
+  component: () => import("../pages/Demo").then((m) => ({ default: m.AuthDemo })),
   i18nNamespace: "auth",
   imageUrl: backgroundImage.src,
 };

@@ -2,8 +2,10 @@
 
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowLeft, ArrowRight, Code2 } from "lucide-react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { useMemo } from "react";
 import { registry } from "@/registry/index";
 import { Navbar } from "@/features/shared/components/Navbar";
 import { MobileNavbar } from "@/features/shared/components/MobileNavbar";
@@ -28,7 +30,10 @@ export const ShowcasePage = ({ id }: Readonly<ShowcasePageProps>) => {
   const prevDemo = registry[currentIndex - 1];
   const nextDemo = registry[currentIndex + 1];
 
-  const DemoComponent = demo.component;
+  const DemoComponent = useMemo(
+    () => (demo.component ? dynamic(demo.component, { ssr: false }) : null),
+    [demo.component],
+  );
 
   return (
     <div className="min-h-screen showroom-environment px-6">

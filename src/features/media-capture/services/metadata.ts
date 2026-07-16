@@ -1,6 +1,5 @@
 import type { DemoMetadata } from "@/registry/types";
 import backgroundImage from "../assets/background.webp";
-import { MediaCaptureDemo } from "../pages/Demo";
 
 export const metadata: DemoMetadata = {
   id: "media-capture",
@@ -14,7 +13,7 @@ export const metadata: DemoMetadata = {
   architecture: "mediaCapture.architecture",
   technologies: "mediaCapture.technologies",
   concepts: "mediaCapture.concepts",
-  component: MediaCaptureDemo,
+  component: () => import("../pages/Demo").then((m) => ({ default: m.MediaCaptureDemo })),
   i18nNamespace: "mediaCapture",
   imageUrl: backgroundImage.src,
 };

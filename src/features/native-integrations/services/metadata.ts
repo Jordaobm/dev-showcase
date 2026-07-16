@@ -1,6 +1,5 @@
 import type { DemoMetadata } from "@/registry/types";
 import backgroundImage from "../assets/background.webp";
-import { NativeIntegrationsDemo } from "../pages/Demo";
 
 export const metadata: DemoMetadata = {
   id: "native-integrations",
@@ -14,7 +13,7 @@ export const metadata: DemoMetadata = {
   architecture: "nativeIntegrations.architecture",
   technologies: "nativeIntegrations.technologies",
   concepts: "nativeIntegrations.concepts",
-  component: NativeIntegrationsDemo,
+  component: () => import("../pages/Demo").then((m) => ({ default: m.NativeIntegrationsDemo })),
   i18nNamespace: "nativeIntegrations",
   imageUrl: backgroundImage.src,
 };

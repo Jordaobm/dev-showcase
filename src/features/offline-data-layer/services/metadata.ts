@@ -1,6 +1,5 @@
 import type { DemoMetadata } from "@/registry/types";
 import backgroundImage from "../assets/background.webp";
-import { OfflineDataLayerDemo } from "../pages/Demo";
 
 export const metadata: DemoMetadata = {
   id: "offline-data-layer",
@@ -14,7 +13,7 @@ export const metadata: DemoMetadata = {
   architecture: "offlineDataLayer.architecture",
   technologies: "offlineDataLayer.technologies",
   concepts: "offlineDataLayer.concepts",
-  component: OfflineDataLayerDemo,
+  component: () => import("../pages/Demo").then((m) => ({ default: m.OfflineDataLayerDemo })),
   i18nNamespace: "offlineDataLayer",
   imageUrl: backgroundImage.src,
 };

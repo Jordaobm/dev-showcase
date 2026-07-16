@@ -1,5 +1,7 @@
 import type { ComponentType } from "react";
 
+export type DemoComponentLoader = () => Promise<{ default: ComponentType }>;
+
 export interface DemoMetadata {
   id: string;
   name: string;
@@ -12,11 +14,11 @@ export interface DemoMetadata {
   technologies: string;
   architecture: string;
   concepts: string;
-  component?: ComponentType;
+  component?: DemoComponentLoader;
   i18nNamespace?: string;
   imageUrl?: string;
 }
 
 export interface DemoEntry extends DemoMetadata {
-  component?: ComponentType;
+  component?: DemoComponentLoader;
 }

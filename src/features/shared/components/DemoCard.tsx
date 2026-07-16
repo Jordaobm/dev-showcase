@@ -76,15 +76,6 @@ export const DemoCard = ({ demo, index }: Readonly<DemoCardProps>) => {
             }}
           />
 
-          <motion.div
-            className="absolute -inset-0.5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(220, 38, 38, 0.3), rgba(6, 182, 212, 0.15))",
-              filter: "blur(12px)",
-            }}
-          />
-
           <div className="relative z-10 h-full flex flex-col">
             <motion.div
               className="flex justify-center align-middle w-15 h-15 inline-flex p-4 rounded-2xl mb-5 transition-transform duration-300 group-hover:scale-110"

@@ -213,15 +213,7 @@ export const HomePage = () => {
               transition={{ duration: 1, delay: 0.4 }}
               className="hidden xl:block relative"
             >
-              <motion.div
-                className="relative rounded-3xl overflow-hidden floor-reflection"
-                animate={{ y: [0, -10, 0] }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
+              <div className="relative rounded-3xl overflow-hidden floor-reflection">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={backgroundImage.src}
@@ -238,20 +230,15 @@ export const HomePage = () => {
                       "linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%)",
                   }}
                 />
-              </motion.div>
+              </div>
 
-              <motion.div
+              <div
                 className="absolute -inset-4 rounded-3xl -z-10"
                 style={{
                   background:
                     "radial-gradient(ellipse, rgba(220, 38, 38, 0.3), transparent 70%)",
                   filter: "blur(40px)",
-                }}
-                animate={{ opacity: [0.5, 0.8, 0.5] }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
+                  opacity: 0.65,
                 }}
               />
             </motion.div>

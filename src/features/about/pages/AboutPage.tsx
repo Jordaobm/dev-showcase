@@ -214,7 +214,7 @@ export const AboutPage = () => {
       <MobileNavbar />
 
       <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-        <motion.div
+        <div
           className="ambient-orb"
           style={{
             width: "500px",
@@ -224,8 +224,6 @@ export const AboutPage = () => {
             top: "10%",
             right: "10%",
           }}
-          animate={{ x: [0, 30, 0], y: [0, 40, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 

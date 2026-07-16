@@ -13,7 +13,7 @@
     <a href="https://playwright.dev"><img src="https://img.shields.io/badge/tested_with-Playwright-2EAD33?logo=playwright&logoColor=white" alt="Tested with Playwright" /></a>
   </p>
   <p>
-    <img src="https://img.shields.io/badge/coverage-90.7%25-brightgreen" alt="Coverage: 90.7%" />
+    <img src="https://img.shields.io/badge/coverage-90.1%25-brightgreen" alt="Coverage: 90.1%" />
     <img src="https://img.shields.io/badge/sonarqube_security-A-brightgreen?logo=sonarqube&logoColor=white" alt="SonarQube Security: A" />
     <img src="https://img.shields.io/badge/sonarqube_reliability-A-brightgreen?logo=sonarqube&logoColor=white" alt="SonarQube Reliability: A" />
     <img src="https://img.shields.io/badge/sonarqube_maintainability-A-brightgreen?logo=sonarqube&logoColor=white" alt="SonarQube Maintainability: A" />

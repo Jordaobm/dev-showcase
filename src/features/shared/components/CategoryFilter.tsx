@@ -52,14 +52,11 @@ export const CategoryFilter = ({
           >
             {isSelected && (
               <>
-                <motion.div
+                <div
                   className="absolute inset-0 rounded-full"
-                  style={{ boxShadow: "0 0 40px rgba(220, 38, 38, 0.4)" }}
-                  animate={{ opacity: [0.4, 0.8, 0.4] }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
+                  style={{
+                    boxShadow: "0 0 40px rgba(220, 38, 38, 0.4)",
+                    opacity: 0.6,
                   }}
                 />
                 <div

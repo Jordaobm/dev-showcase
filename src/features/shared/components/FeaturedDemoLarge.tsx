@@ -107,16 +107,6 @@ export const FeaturedDemoLarge = ({
             </motion.div>
           </div>
 
-          <motion.div
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none"
-            style={{
-              background: `
-                radial-gradient(circle at 30% 20%, rgba(220, 38, 38, 0.25), transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(6, 182, 212, 0.18), transparent 50%)
-              `,
-            }}
-          />
-
           <div className="relative z-10 h-full flex flex-col justify-end p-10 sm:p-12">
             <div
               className="inline-block self-start px-4 py-2 rounded-full mb-6 text-sm font-medium backdrop-blur-sm"

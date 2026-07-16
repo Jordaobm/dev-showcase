@@ -84,14 +84,6 @@ export const FeaturedDemoSmall = ({
                 "radial-gradient(circle at 50% 0%, rgba(220, 38, 38, 0.1), transparent 60%)",
             }}
           />
-          <motion.div
-            className="absolute -inset-0.5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(220, 38, 38, 0.25), rgba(6, 182, 212, 0.12))",
-              filter: "blur(10px)",
-            }}
-          />
 
           <div className="mb-6 relative">
             <motion.div

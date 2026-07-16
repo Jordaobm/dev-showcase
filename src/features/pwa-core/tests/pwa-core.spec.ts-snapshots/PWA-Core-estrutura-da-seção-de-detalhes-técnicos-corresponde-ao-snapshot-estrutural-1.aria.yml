@@ -7,7 +7,7 @@
 - list:
   - listitem: Offline-first
   - listitem: Service Worker como proxy de rede
-  - listitem: cache multi-estratégia via Serwist
+  - listitem: Cache via Serwist
 - heading "Conceitos" [level=2]
 - list:
   - listitem: Progressive enhancement

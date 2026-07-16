@@ -104,7 +104,7 @@ export const MobileNavbar = () => {
               className="flex items-center gap-3 group cursor-pointer min-w-0"
             >
               <motion.div
-                className="p-2.5 rounded-xl transition-all duration-300 premium-button overflow-hidden shrink-0"
+                className="p-2.5 rounded-xl premium-button overflow-hidden shrink-0"
                 style={{
                   background: "linear-gradient(135deg, #DC2626, #B91C1C)",
                   boxShadow:
@@ -189,7 +189,7 @@ export const MobileNavbar = () => {
                     placeholder={t("shared.header.inputSearchPlaceholder")}
                     className="w-full pl-11 pr-4 py-2.5 rounded-full bg-gray-50 border-2 border-transparent
                              focus:outline-none focus:bg-white focus:border-[var(--premium-red)]
-                             transition-all duration-300 text-sm"
+                             transition-colors duration-300 text-sm"
                   />
                 </div>
 

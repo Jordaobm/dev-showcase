@@ -118,7 +118,7 @@ export const Navbar = () => {
             className="flex items-center gap-3 group flex-shrink-0 cursor-pointer"
           >
             <motion.div
-              className="p-2.5 rounded-xl transition-all duration-300 premium-button overflow-hidden"
+              className="p-2.5 rounded-xl premium-button overflow-hidden"
               style={{
                 background: "linear-gradient(135deg, #DC2626, #B91C1C)",
                 boxShadow:
@@ -154,7 +154,7 @@ export const Navbar = () => {
                 }}
                 onFocus={() => setIsSearchOpen(true)}
                 placeholder={t("shared.header.inputSearchPlaceholder")}
-                className="w-full pl-11 pr-12 py-2.5 rounded-full bg-white/60 border-2 border-white/40 focus:outline-none focus:bg-white focus:border-[var(--premium-red)] transition-all duration-300 backdrop-blur-sm text-sm"
+                className="w-full pl-11 pr-12 py-2.5 rounded-full bg-white/60 border-2 border-white/40 focus:outline-none focus:bg-white focus:border-[var(--premium-red)] transition-colors duration-300 backdrop-blur-sm text-sm"
                 style={{
                   boxShadow:
                     "0 2px 8px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8)",

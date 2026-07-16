@@ -30,7 +30,7 @@ export const FeaturedDemoLarge = ({
     >
       <Link href={`/showcase/${demo.id}`} className="block h-full">
         <motion.div
-          className="relative overflow-hidden rounded-[32px] cursor-pointer h-full min-h-[520px]"
+          className="relative overflow-hidden rounded-[32px] cursor-pointer h-full min-h-[520px] border border-white/60 transition-colors duration-300 hover:border-[var(--premium-red)]"
           style={{
             boxShadow: `
               0 2px 4px rgba(0, 0, 0, 0.03),
@@ -38,20 +38,10 @@ export const FeaturedDemoLarge = ({
               0 20px 40px rgba(0, 0, 0, 0.09),
               0 32px 64px rgba(0, 0, 0, 0.12)
             `,
-            border: "1px solid rgba(255, 255, 255, 0.6)",
           }}
           whileHover={{
             y: -16,
             scale: 1.01,
-            borderColor: "var(--premium-red)",
-            borderWidth: "2px",
-            boxShadow: `
-              0 2px 4px rgba(0, 0, 0, 0.03),
-              0 8px 16px rgba(0, 0, 0, 0.06),
-              0 20px 40px rgba(0, 0, 0, 0.09),
-              0 32px 64px rgba(0, 0, 0, 0.12),
-              0 0 12px rgba(220, 38, 38, 0.15)
-            `,
             transition: { duration: 0.5, ease: "easeOut" },
           }}
         >

@@ -484,12 +484,6 @@ export const AboutPage = () => {
                     transition={{ duration: 0.4, delay: i * 0.05 }}
                     className="rounded-3xl p-6 bg-white glass-reflection card-inner-glow"
                     style={{ boxShadow: CARD_SHADOW, border: CARD_BORDER }}
-                    whileHover={{
-                      y: -6,
-                      scale: 1.02,
-                      borderColor: "var(--premium-red)",
-                      transition: { duration: 0.3, ease: "easeOut" },
-                    }}
                   >
                     <div className="flex items-center gap-3 mb-5">
                       <div

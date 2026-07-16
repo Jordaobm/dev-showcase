@@ -47,9 +47,6 @@ export const CategoryFilter = ({
             whileHover={{
               scale: 1.05,
               y: -2,
-              boxShadow: isSelected
-                ? "0 12px 32px rgba(220, 38, 38, 0.4), 0 0 40px rgba(220, 38, 38, 0.25)"
-                : "0 8px 20px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 1)",
             }}
             whileTap={{ scale: 0.98 }}
           >

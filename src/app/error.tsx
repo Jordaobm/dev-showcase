@@ -7,6 +7,9 @@ import { AlertTriangle } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/features/shared/components/Button";
 
+export const GLOBAL_ERROR_DIAGNOSTIC_MESSAGE =
+  "Diagnóstico: erro forçado intencionalmente para testar o global-error boundary.";
+
 const ErrorPage = ({
   error,
   reset,
@@ -19,6 +22,10 @@ const ErrorPage = ({
   useEffect(() => {
     console.error(error);
   }, [error]);
+
+  if (error.message === GLOBAL_ERROR_DIAGNOSTIC_MESSAGE) {
+    throw error;
+  }
 
   return (
     <div className="showroom-environment min-h-screen flex items-center justify-center p-6">

@@ -23,7 +23,11 @@ test.describe("3D & Animações Avançadas", () => {
     await expect(
       page.getByRole("heading", { name: "Sistema Solar Interativo" }),
     ).toBeVisible();
-    await expect(page.getByText("Como interagir com a cena")).toBeVisible();
+    await expect(
+      page
+        .locator("#tech-stack-solar-system")
+        .getByText("Como interagir com a cena"),
+    ).toBeVisible();
 
     await expect(
       page.locator("#tech-stack-solar-system canvas"),

@@ -100,8 +100,8 @@ export const HomePage = () => {
           <div className="grid xl:grid-cols-2 gap-16 items-center">
             <div className="relative z-10">
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ y: 30 }}
+                animate={{ y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 backdrop-blur-sm"
                 style={{
@@ -122,8 +122,8 @@ export const HomePage = () => {
 
               <motion.h1
                 data-testid="hero-heading"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ y: 30 }}
+                animate={{ y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-[32px] sm:text-[52px] leading-tight mb-6 font-semibold text-white xl:text-foreground"
               >
@@ -142,8 +142,8 @@ export const HomePage = () => {
               </motion.h1>
 
               <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ y: 30 }}
+                animate={{ y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="text-[16px] sm:text-[22px] text-xl text-white/80 xl:text-gray-600 mb-6 leading-relaxed max-w-xl"
               >
@@ -151,8 +151,8 @@ export const HomePage = () => {
               </motion.h2>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ y: 20 }}
+                animate={{ y: 0 }}
                 transition={{ duration: 0.8, delay: 0.45 }}
                 className="flex-wrap sm:flex-nowrap flex items-center gap-6 mb-10"
               >
@@ -176,8 +176,8 @@ export const HomePage = () => {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ y: 30 }}
+                animate={{ y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="flex-col sm:flex-row flex items-center gap-4"
               >
@@ -208,8 +208,8 @@ export const HomePage = () => {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ x: 50 }}
+              animate={{ x: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
               className="hidden xl:block relative"
             >

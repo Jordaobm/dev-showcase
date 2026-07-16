@@ -15,6 +15,9 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   productionBrowserSourceMaps: true,
   allowedDevOrigins: ["192.168.1.172"],
+  experimental: {
+    inlineCss: true,
+  },
   images: {
     remotePatterns: [
       {

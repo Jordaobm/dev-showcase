@@ -24,7 +24,7 @@ export const DemoCard = ({ demo, index }: Readonly<DemoCardProps>) => {
     >
       <Link href={`/showcase/${demo.id}`} data-testid="demo-card">
         <motion.div
-          className="group relative overflow-hidden rounded-3xl bg-white p-8 cursor-pointer h-full glass-reflection card-inner-glow"
+          className="group relative overflow-hidden rounded-3xl bg-white p-8 cursor-pointer h-full glass-reflection card-inner-glow border border-white/50 transition-colors duration-300 hover:border-[var(--premium-red)]"
           style={{
             boxShadow: `
               0 1px 2px rgba(0, 0, 0, 0.02),
@@ -33,21 +33,10 @@ export const DemoCard = ({ demo, index }: Readonly<DemoCardProps>) => {
               0 20px 40px rgba(0, 0, 0, 0.08),
               inset 0 1px 0 rgba(255, 255, 255, 0.8)
             `,
-            border: "1px solid rgba(255, 255, 255, 0.5)",
           }}
           whileHover={{
             y: -12,
             scale: 1.02,
-            borderColor: "var(--premium-red)",
-            borderWidth: "2px",
-            boxShadow: `
-              0 1px 2px rgba(0, 0, 0, 0.02),
-              0 4px 8px rgba(0, 0, 0, 0.04),
-              0 12px 24px rgba(0, 0, 0, 0.06),
-              0 20px 40px rgba(0, 0, 0, 0.08),
-              inset 0 1px 0 rgba(255, 255, 255, 0.8),
-              0 0 10px rgba(220, 38, 38, 0.12)
-            `,
             transition: { duration: 0.4, ease: "easeOut" },
           }}
         >
@@ -98,7 +87,7 @@ export const DemoCard = ({ demo, index }: Readonly<DemoCardProps>) => {
 
           <div className="relative z-10 h-full flex flex-col">
             <motion.div
-              className="flex justify-center align-middle w-15 h-15 inline-flex p-4 rounded-2xl mb-5 transition-all duration-300 group-hover:scale-110"
+              className="flex justify-center align-middle w-15 h-15 inline-flex p-4 rounded-2xl mb-5 transition-transform duration-300 group-hover:scale-110"
               style={{
                 background: "linear-gradient(135deg, #F9FAFB, #F3F4F6)",
                 boxShadow:

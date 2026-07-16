@@ -35,7 +35,7 @@ export const FeaturedDemoSmall = ({
     >
       <Link href={`/showcase/${demo.id}`} className="block h-full">
         <motion.div
-          className="relative overflow-hidden rounded-3xl bg-white p-8 cursor-pointer h-full flex flex-col glass-reflection card-inner-glow"
+          className="relative overflow-hidden rounded-3xl bg-white p-8 cursor-pointer h-full flex flex-col glass-reflection card-inner-glow border border-white/50 transition-colors duration-300 hover:border-[var(--premium-red)]"
           style={{
             boxShadow: `
               0 1px 2px rgba(0, 0, 0, 0.02),
@@ -44,21 +44,10 @@ export const FeaturedDemoSmall = ({
               0 20px 40px rgba(0, 0, 0, 0.08),
               inset 0 1px 0 rgba(255, 255, 255, 0.8)
             `,
-            border: "1px solid rgba(255, 255, 255, 0.5)",
           }}
           whileHover={{
             y: -10,
             scale: 1.02,
-            borderColor: "var(--premium-red)",
-            borderWidth: "2px",
-            boxShadow: `
-              0 1px 2px rgba(0, 0, 0, 0.02),
-              0 4px 8px rgba(0, 0, 0, 0.04),
-              0 12px 24px rgba(0, 0, 0, 0.06),
-              0 20px 40px rgba(0, 0, 0, 0.08),
-              inset 0 1px 0 rgba(255, 255, 255, 0.8),
-              0 0 10px rgba(220, 38, 38, 0.12)
-            `,
             transition: { duration: 0.4, ease: "easeOut" },
           }}
         >

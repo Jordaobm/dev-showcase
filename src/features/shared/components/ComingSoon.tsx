@@ -60,7 +60,7 @@ export const ComingSoon = ({ demoName }: Readonly<ComingSoonProps>) => {
           href={SOCIAL_LINKS.githubRepo}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-6 py-3 rounded-2xl font-medium text-sm transition-all hover:scale-105"
+          className="flex items-center gap-2 px-6 py-3 rounded-2xl font-medium text-sm transition-transform hover:scale-105"
           style={{
             background: "rgba(255, 255, 255, 0.8)",
             border: "1px solid rgba(0, 0, 0, 0.08)",

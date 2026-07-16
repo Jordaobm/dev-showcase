@@ -25,7 +25,12 @@ declare global {
 }
 
 const OFFLINE_FALLBACK = "/offline";
-const OFFLINE_PAGES = [OFFLINE_FALLBACK, "/", "/showcase/offline-data-layer"];
+const OFFLINE_PAGES = [
+  OFFLINE_FALLBACK,
+  "/",
+  "/sobre",
+  "/showcase/offline-data-layer",
+];
 
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,

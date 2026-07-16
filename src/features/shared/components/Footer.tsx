@@ -84,7 +84,7 @@ export const Footer = () => {
               className="flex items-center gap-3 group flex-shrink-0 cursor-pointer"
             >
               <motion.div
-                className="p-2.5 rounded-xl transition-all duration-300 premium-button overflow-hidden"
+                className="p-2.5 rounded-xl premium-button overflow-hidden"
                 style={{
                   background: "linear-gradient(135deg, #DC2626, #B91C1C)",
                   boxShadow:

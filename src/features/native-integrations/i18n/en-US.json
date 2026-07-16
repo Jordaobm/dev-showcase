@@ -26,6 +26,9 @@
   "webShareSharedButton": "Content shared!",
   "webShareUnsupportedMessage": "The Web Share API isn't supported on this browser or platform.",
   "webShareDataTitle": "Data that will be shared",
+  "webShareDataTitleTitle": "Title",
+  "webShareDataText": "Text",
+  "webShareDataURL": "URL",
   "webShareMethod1": "<b>navigator.canShare(data)</b> — checks whether the data can be shared before invoking the share sheet",
   "webShareMethod2": "<b>navigator.share(data)</b> — opens the operating system's native share sheet",
 

@@ -322,34 +322,6 @@ export const ShowcasePage = ({ id }: Readonly<ShowcasePageProps>) => {
               )}
             </div>
           </section>
-          {demo.status === "live" && (
-            <section className="pb-8">
-              <div className="max-w-6xl mx-auto">
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
-                  className="flex items-center justify-center"
-                >
-                  <a
-                    href={`${SOCIAL_LINKS.githubRepo}/tree/main/src/features`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 py-3 rounded-2xl text-sm font-medium transition-transform hover:scale-105"
-                    style={{
-                      background: "rgba(255, 255, 255, 0.8)",
-                      border: "1px solid rgba(0, 0, 0, 0.08)",
-                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.06)",
-                    }}
-                  >
-                    <Code2 className="w-4 h-4 text-gray-500" />
-                    {t("shared.components.sourceCode")}
-                  </a>
-                </motion.div>
-              </div>
-            </section>
-          )}
           <section className="py-20">
             <div className="max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 gap-8">

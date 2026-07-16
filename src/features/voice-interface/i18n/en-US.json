@@ -1,10 +1,10 @@
 {
   "name": "Voice Interface",
-  "description": "Real-time voice dictation and text-to-speech playback, straight from the browser — no external AI API involved.",
-  "longDescription": "Combines SpeechRecognition (voice → text, with live transcription) and SpeechSynthesis (text → voice, with system voice selection) in the same demo — the two halves of a complete voice interface, using only native Web APIs, no external AI model. Live transcription handles a real Chrome-on-Android quirk: it resets the result index on every event and resends the entire transcript, so results are stored by index and overwritten to avoid duplicated text. The recognition language and the default synthesis voice follow the site's active locale (pt-BR, en-US, or es-ES).",
+  "description": "Real-time voice dictation and text-to-speech playback, straight from the browser — no external API involved. We use your device's native APIs.",
+  "longDescription": "Combines SpeechRecognition (voice → text, with live transcription) and SpeechSynthesis (text → voice, with system voice selection) in the same demo — the two halves of a complete voice interface, using only native Web APIs, no external API involved. The recognition language and the default synthesis voice follow the site's active locale (pt-BR, en-US, or es-ES).",
   "tags": "Speech Recognition, Text-to-Speech, Speech Synthesis, Accessibility, Voice",
-  "architecture": "Web Speech API (SpeechRecognition + SpeechSynthesis) running entirely on the client, with the recognition language and synthesis voice synced to the site's active locale",
-  "technologies": "Web Speech API (SpeechRecognition + SpeechSynthesis)",
+  "architecture": "Web Speech API, SpeechRecognition, SpeechSynthesis, Runs entirely on the client, Language synced to the site's active locale",
+  "technologies": "Web Speech API, SpeechRecognition, SpeechSynthesis",
   "concepts": "Real-time transcription, interim/final result deduplication, speech synthesis queue, asynchronous voice loading, voice-based accessibility",
 
   "summary": "Summary",

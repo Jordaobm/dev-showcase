@@ -37,7 +37,7 @@ export const FlowStepsGrid = ({ columns }: Readonly<FlowStepsGridProps>) => {
               {column.steps.map((step, i) => (
                 <div
                   key={step}
-                  className={`flex gap-3 p-2 border rounded-lg text-xs ${classes.item}`}
+                  className={`flex items-center gap-3 p-2 border rounded-lg text-xs ${classes.item}`}
                 >
                   <span
                     className={`w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] font-bold shrink-0 ${classes.badge}`}

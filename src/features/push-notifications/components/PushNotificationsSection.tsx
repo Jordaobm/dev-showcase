@@ -63,9 +63,11 @@ export const PushNotificationsSection = () => {
       </div>
 
       <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded text-sm text-amber-900">
-        <p className="leading-relaxed">
-          {t.rich("pushNotifications.demoWarning", renderHtmlText)}
-        </p>
+        <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded text-sm text-amber-900">
+          <p className="leading-relaxed">
+            {t.rich("pushNotifications.demoWarning", renderHtmlText)}
+          </p>
+        </div>
 
         <p className="mt-4 font-bold">{t("pushNotifications.howToUseLabel")}</p>
 
@@ -130,28 +132,28 @@ export const PushNotificationsSection = () => {
               ? t("pushNotifications.subscribingButton")
               : t("pushNotifications.subscribeButton")}
           </Button>
-        </div>
 
-        {subscribeError && (
-          <p className="mt-4 text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
-            {t("pushNotifications.subscribeErrorMessage")}
-          </p>
-        )}
+          {subscribeError && (
+            <p className="mt-4 text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
+              {t("pushNotifications.subscribeErrorMessage")}
+            </p>
+          )}
 
-        <p className="mt-4">{t("pushNotifications.sendIntro")}</p>
+          <p className="mt-4">{t("pushNotifications.sendIntro")}</p>
 
-        <div className="mt-4">
-          <Button
-            type="primary"
-            onClick={sendTestNotification}
-            disabled={!subscription || isSending}
-            className="w-full sm:w-auto"
-          >
-            <Send className="w-5 h-5" />
-            {isSending
-              ? t("pushNotifications.sendingButton")
-              : t("pushNotifications.sendButton")}
-          </Button>
+          <div className="mt-4">
+            <Button
+              type="primary"
+              onClick={sendTestNotification}
+              disabled={!subscription || isSending}
+              className="w-full sm:w-auto"
+            >
+              <Send className="w-5 h-5" />
+              {isSending
+                ? t("pushNotifications.sendingButton")
+                : t("pushNotifications.sendButton")}
+            </Button>
+          </div>
         </div>
 
         {sendError && (

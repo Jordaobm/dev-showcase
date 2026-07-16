@@ -1,11 +1,11 @@
 {
-  "name": "Voice Interface",
-  "description": "Ditado por voz em tempo real e leitura de texto em voz alta, direto no navegador — sem nenhuma API externa de IA.",
-  "longDescription": "Combina SpeechRecognition (voz → texto, com transcrição ao vivo) e SpeechSynthesis (texto → voz, com seleção de vozes do sistema) na mesma demo — as duas metades de uma interface por voz completa, usando apenas Web APIs nativas, sem nenhum modelo de IA externo. A transcrição em tempo real lida com uma particularidade real do Chrome no Android, que reseta o índice de resultados a cada evento e reenvia a transcrição inteira: os resultados são guardados por índice e sobrescritos, evitando texto duplicado. O idioma de reconhecimento e a voz padrão de síntese acompanham o idioma ativo do site (pt-BR, en-US ou es-ES).",
+  "name": "Interface de Voz",
+  "description": "Ditado por voz em tempo real e leitura de texto em voz alta, direto no navegador — sem nenhuma API externa. Usamos as API's nativas do seu dispositivo.",
+  "longDescription": "Combina SpeechRecognition (voz → texto, com transcrição ao vivo) e SpeechSynthesis (texto → voz, com seleção de vozes do sistema) na mesma demo — as duas metades de uma interface por voz completa, usando apenas Web APIs nativas, sem nenhuma API externa. O idioma de reconhecimento e a voz padrão de síntese acompanham o idioma ativo do site (pt-BR, en-US ou es-ES).",
   "tags": "Speech Recognition, Text-to-Speech, Speech Synthesis, Acessibilidade, Voz",
-  "architecture": "Web Speech API (SpeechRecognition + SpeechSynthesis) rodando inteiramente no client, com idioma de reconhecimento e voz de síntese sincronizados ao idioma ativo do site",
-  "technologies": "Web Speech API (SpeechRecognition + SpeechSynthesis)",
-  "concepts": "Transcrição em tempo real, deduplicação de resultados parciais/finais, fila de síntese de voz, carregamento assíncrono de vozes, acessibilidade por voz",
+  "architecture": "Web Speech API, SpeechRecognition, SpeechSynthesis, Executado inteiramente no client, Idioma sincronizados ao idioma ativo do site",
+  "technologies": "Web Speech API, SpeechRecognition, SpeechSynthesis",
+  "concepts": "Transcrição em tempo real, Deduplicação de resultados parciais/finais, Fila de síntese de voz, Carregamento assíncrono de vozes, Acessibilidade por voz",
 
   "summary": "Sumário",
   "methodsTitle": "Métodos utilizados",

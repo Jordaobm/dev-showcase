@@ -1,11 +1,11 @@
 {
-  "name": "Media Capture Studio",
+  "name": "Camera, Screen & Audio APIs",
   "description": "Camera, screen recording, and audio recording straight from the browser — capture, encoding, and a custom player, no plugins and no upload.",
-  "longDescription": "Three media capture demos that share the same technical foundation: camera and microphone access via getUserMedia, screen sharing via getDisplayMedia, and recording of every stream with the MediaRecorder API — including automatic codec negotiation (VP9 → VP8 → plain WebM) through MediaRecorder.isTypeSupported. Each recording becomes a local Blob, played back in an audio/video player built from scratch instead of relying on the browser's native controls: play/pause, a requestAnimationFrame-driven progress bar, and click-to-seek. Everything runs in the browser — no media byte ever leaves the user's device.",
-  "tags": "getUserMedia, getDisplayMedia, MediaRecorder, Camera API, Screen Recording, Audio Recording, Blob, Codec Negotiation",
-  "architecture": "MediaStream capture via browser APIs (getUserMedia/getDisplayMedia) with client-side encoding through MediaRecorder, including codec negotiation and a custom player rendered from the resulting Blob",
-  "technologies": "MediaDevices API, MediaRecorder API, Blob, URL.createObjectURL, requestAnimationFrame",
-  "concepts": "Browser media permissions, codec negotiation (MediaRecorder.isTypeSupported), real-time stream capture, client-side encoding, Blob and Object URL lifecycle, custom media player, local download with no server upload",
+  "longDescription": "Media capture demos that share the same technical foundation: camera and microphone access, screen sharing, and recording of every stream with the MediaRecorder API — with automatic codec negotiation (VP9 → VP8 → plain WebM). Each recording becomes a local Blob, played back in an audio/video player with a progress bar. Everything runs in the browser — no media byte ever leaves the user's device.",
+  "tags": "Camera, Screen, Audio, Recording, Blob, Codec Negotiation",
+  "architecture": "MediaStream capture via Browser APIs, Client-side encoding with MediaRecorder, CODEC, Custom player",
+  "technologies": "MediaDevices API, MediaRecorder API, Blob, URL.createObjectURL",
+  "concepts": "Browser media permissions, CODEC negotiation, Real-time stream capture, Client-side encoding, Blob management, Object URL, Custom media player, Download with no server upload",
 
   "summary": "Summary",
   "methodsTitle": "Methods used",
@@ -14,12 +14,12 @@
   "mediaPauseButtonLabel": "Pause",
   "mediaSeekBarLabel": "Playback progress bar",
 
-  "featureCameraLabel": "Camera (getUserMedia)",
-  "featureScreenLabel": "Screen Recording (MediaRecorder)",
-  "featureAudioLabel": "Audio Recording (MediaRecorder)",
+  "featureCameraLabel": "Camera API",
+  "featureScreenLabel": "Screen API",
+  "featureAudioLabel": "Audio API",
 
   "cameraSectionTitle": "Camera API",
-  "cameraDesc1": "The <b>Camera API</b> is used to access the device's camera directly from the browser.",
+  "cameraDesc1": "The <b>MediaRecorder API</b> is used to access the device's camera directly from the browser.",
   "cameraDesc2": "In practice, it lets web applications display the camera's live video feed inside the app.",
   "cameraCanDoIntro": "With it, applications can:",
   "cameraCanDoItem1": "open the device's camera;",
@@ -57,7 +57,7 @@
   "cameraMethod9": "<b>URL.createObjectURL(blob)</b> — generates a temporary URL to play back or download the recorded video",
   "cameraMethod10": "<b>stream.getTracks()[0].onended</b> — detects when the user stops the capture from the browser itself",
 
-  "screenSectionTitle": "MediaRecorder API — Screen Recording",
+  "screenSectionTitle": "Screen API",
   "screenDesc1": "The <b>MediaRecorder API</b> can also record video directly from the browser — in this case, capturing the device's screen instead of the camera.",
   "screenDesc2": "In practice, it lets web applications capture video in real time without installing any external software.",
   "screenCanDoIntro": "With it, applications can:",
@@ -90,7 +90,7 @@
   "screenMethod9": "<b>URL.createObjectURL(blob)</b> — generates a temporary URL to play back or download the recorded video",
   "screenMethod10": "<b>stream.getTracks()[0].onended</b> — detects when the user stops sharing from the browser itself",
 
-  "audioSectionTitle": "MediaRecorder API — Audio Recording",
+  "audioSectionTitle": "Audio API",
   "audioDesc1": "The <b>MediaRecorder API</b> is the same browser API used to record video — here applied to capturing audio from the device's microphone.",
   "audioDesc2": "Combined with the microphone, it lets you create audio recordings directly in the browser, with no external software installed.",
   "audioCanDoIntro": "In practice, web applications can:",

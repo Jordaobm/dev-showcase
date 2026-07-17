@@ -1,10 +1,10 @@
 {
-  "name": "Voice Interface",
-  "description": "Dictado por voz en tiempo real y lectura de texto en voz alta, directo desde el navegador — sin ninguna API externa de IA.",
-  "longDescription": "Combina SpeechRecognition (voz → texto, con transcripción en vivo) y SpeechSynthesis (texto → voz, con selección de voces del sistema) en la misma demo — las dos mitades de una interfaz de voz completa, usando solo Web APIs nativas, sin ningún modelo de IA externo. La transcripción en tiempo real resuelve una particularidad real de Chrome en Android, que reinicia el índice de resultados en cada evento y reenvía la transcripción completa: los resultados se guardan por índice y se sobrescriben, evitando texto duplicado. El idioma de reconocimiento y la voz predeterminada de síntesis siguen el idioma activo del sitio (pt-BR, en-US o es-ES).",
+  "name": "Interfaz de Voz",
+  "description": "Dictado por voz en tiempo real y lectura de texto en voz alta, directo desde el navegador — sin ninguna API externa. Usamos las APIs nativas de tu dispositivo.",
+  "longDescription": "Combina SpeechRecognition (voz → texto, con transcripción en vivo) y SpeechSynthesis (texto → voz, con selección de voces del sistema) en la misma demo — las dos mitades de una interfaz de voz completa, usando solo Web APIs nativas, sin ninguna API externa. El idioma de reconocimiento y la voz predeterminada de síntesis siguen el idioma activo del sitio (pt-BR, en-US o es-ES).",
   "tags": "Speech Recognition, Text-to-Speech, Speech Synthesis, Accesibilidad, Voz",
-  "architecture": "Web Speech API (SpeechRecognition + SpeechSynthesis) ejecutándose por completo en el cliente, con el idioma de reconocimiento y la voz de síntesis sincronizados con el idioma activo del sitio",
-  "technologies": "Web Speech API (SpeechRecognition + SpeechSynthesis)",
+  "architecture": "Web Speech API, SpeechRecognition, SpeechSynthesis, Ejecutado por completo en el cliente, Idioma sincronizado con el idioma activo del sitio",
+  "technologies": "Web Speech API, SpeechRecognition, SpeechSynthesis",
   "concepts": "Transcripción en tiempo real, deduplicación de resultados parciales/finales, cola de síntesis de voz, carga asíncrona de voces, accesibilidad por voz",
 
   "summary": "Resumen",

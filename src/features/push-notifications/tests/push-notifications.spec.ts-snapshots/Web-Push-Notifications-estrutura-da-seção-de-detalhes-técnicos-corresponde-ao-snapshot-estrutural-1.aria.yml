@@ -3,17 +3,16 @@
   - listitem: Push API
   - listitem: Notifications API
   - listitem: Service Worker
-  - listitem: web-push (VAPID)
-  - listitem: Next.js API Routes
+  - listitem: Assinatura VAPID
 - heading "Arquitetura" [level=2]
 - list:
-  - listitem: Push API + Notifications API sobre Service Worker
-  - listitem: com assinatura VAPID (chave pública no client
-  - listitem: par completo no servidor via web-push) e entrega assíncrona pelo evento push do Service Worker
+  - listitem: Push API + Notifications API
+  - listitem: Service Worker
+  - listitem: Assinatura VAPID
 - heading "Conceitos" [level=2]
 - list:
   - listitem: Push subscription
-  - listitem: entrega em background via Service Worker
-  - listitem: ciclo de vida de permissão do navegador
-  - listitem: assinatura VAPID
+  - listitem: Entrega em background via Service Worker
+  - listitem: Ciclo de vida de permissão do navegador
+  - listitem: Assinatura VAPID
   - listitem: Web Push Protocol

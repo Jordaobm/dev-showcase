@@ -15,19 +15,25 @@ test.describe("Offline Data Layer", () => {
     await page.goto("/showcase/offline-data-layer");
 
     await expect(
-      page.getByRole("heading", { level: 1, name: "Offline Data Layer" }),
+      page.getByRole("heading", {
+        level: 1,
+        name: "Dados Offline + Sincronização",
+      }),
     ).toBeVisible();
     await expect(
       page.getByRole("heading", {
         level: 3,
-        name: "Web Workers + OPFS + Background Sync",
+        name: "Web Workers + OPFS + Sincronização em Segundo Plano",
       }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { level: 3, name: "IndexedDB + Background Sync" }),
+      page.getByRole("heading", {
+        level: 3,
+        name: "IndexedDB + Sincronização em Segundo Plano",
+      }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { level: 3, name: "Storage API" }),
+      page.getByRole("heading", { level: 3, name: "API de Armazenamento" }),
     ).toBeVisible();
 
     expect(consoleErrors).toEqual([]);
@@ -472,7 +478,7 @@ test.describe("Offline Data Layer", () => {
     ).toBeDisabled();
     await expect(
       section.getByText(
-        "Storage API não suportada neste navegador — não é possível verificar cota ou solicitar armazenamento persistente.",
+        "API de Armazenamento não suportada neste navegador — não é possível verificar cota ou solicitar armazenamento persistente.",
       ),
     ).toBeVisible();
     expect(consoleErrors).toEqual([]);

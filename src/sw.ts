@@ -15,6 +15,7 @@ import {
   RETRY_REQUESTS,
   SYNC_COMPLETED,
 } from "./features/offline-data-layer/types/INote";
+import { routing } from "./i18n/routing";
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -25,12 +26,30 @@ declare global {
 }
 
 const OFFLINE_FALLBACK = "/offline";
+const BASE_OFFLINE_PAGES = [OFFLINE_FALLBACK, "/", "/sobre", "/showcase/offline-data-layer"];
+
+const NON_DEFAULT_LOCALES = routing.locales.filter(
+  (locale) => locale !== routing.defaultLocale,
+);
+
+const localizePath = (path: string, locale: string) =>
+  path === "/" ? `/${locale}` : `/${locale}${path}`;
+
 const OFFLINE_PAGES = [
-  OFFLINE_FALLBACK,
-  "/",
-  "/sobre",
-  "/showcase/offline-data-layer",
+  ...BASE_OFFLINE_PAGES,
+  ...NON_DEFAULT_LOCALES.flatMap((locale) =>
+    BASE_OFFLINE_PAGES.map((path) => localizePath(path, locale)),
+  ),
 ];
+
+const getOfflineFallbackFor = (pathname: string) => {
+  const matchedLocale = NON_DEFAULT_LOCALES.find((locale) =>
+    pathname.startsWith(`/${locale}`),
+  );
+  return matchedLocale
+    ? localizePath(OFFLINE_FALLBACK, matchedLocale)
+    : OFFLINE_FALLBACK;
+};
 
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
@@ -60,7 +79,8 @@ const serwist = new Serwist({
           const cached = await cache.match(context.request);
           if (cached) return cached;
 
-          const offline = await caches.match(OFFLINE_FALLBACK);
+          const { pathname } = new URL(context.request.url);
+          const offline = await caches.match(getOfflineFallbackFor(pathname));
           if (offline) return offline;
 
           return Response.error();

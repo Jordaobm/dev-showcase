@@ -7,15 +7,31 @@ import { ClipboardAPISection } from "../components/ClipboardAPISection";
 import { ScreenWakeLockAPISection } from "../components/ScreenWakeLockAPISection";
 import { FullScreenAPISection } from "../components/FullScreenAPISection";
 
-const FEATURES = [
-  { label: "Web Share API", id: "pwa-webshare-api", done: true },
-  { label: "Clipboard API", id: "pwa-clipboard-api", done: true },
-  { label: "Screen Wake Lock", id: "pwa-screen-wake-lock-api", done: true },
-  { label: "Full Screen API", id: "pwa-full-screen-api", done: true },
-] as { label: string; id: string | null; done: boolean }[];
-
 export const NativeIntegrationsDemo = () => {
   const t = useTranslations();
+
+  const FEATURES = [
+    {
+      label: t("nativeIntegrations.webShareSectionTitle"),
+      id: "pwa-webshare-api",
+      done: true,
+    },
+    {
+      label: t("nativeIntegrations.clipboardSectionTitle"),
+      id: "pwa-clipboard-api",
+      done: true,
+    },
+    {
+      label: t("nativeIntegrations.wakeLockSectionTitle"),
+      id: "pwa-screen-wake-lock-api",
+      done: true,
+    },
+    {
+      label: t("nativeIntegrations.fullScreenSectionTitle"),
+      id: "pwa-full-screen-api",
+      done: true,
+    },
+  ] as { label: string; id: string | null; done: boolean }[];
 
   return (
     <DemoPageLayout

@@ -183,25 +183,22 @@ test.describe("Home", () => {
     await expect(page.locator("#featured")).toBeInViewport();
   });
 
-  test("idioma persistido em cookie (NEXT_LOCALE) é lido no carregamento da página", async ({
+  test("idioma na URL (/en-US) persiste após reload da página", async ({
     page,
-    context,
   }) => {
-    await context.addCookies([
-      {
-        name: "NEXT_LOCALE",
-        value: "en-US",
-        url: "http://localhost:3000",
-      },
-    ]);
-
-    await page.goto("/");
+    await page.goto("/en-US");
 
     const languageButton = page.getByRole("button", {
       name: "Change language",
     });
     await expect(languageButton).toBeVisible();
     await expect(languageButton).toContainText("English");
+    await expect(page.locator("html")).toHaveAttribute("lang", "en-US");
+
+    await page.reload();
+
+    await expect(languageButton).toContainText("English");
+    await expect(page.locator("html")).toHaveAttribute("lang", "en-US");
   });
 
   test("troca de idioma altera a copy, o <html lang>, sem chave de i18n crua", async ({

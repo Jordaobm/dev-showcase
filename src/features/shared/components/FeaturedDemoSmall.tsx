@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import { ArrowRight, Star, Zap } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { DemoEntry } from "@/registry/types";
 import { useTranslations } from "next-intl";
 import { resolveText } from "@/features/shared/utils/resolveText";

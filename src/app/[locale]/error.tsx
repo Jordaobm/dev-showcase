@@ -1,14 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { motion } from "motion/react";
 import { AlertTriangle } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/features/shared/components/Button";
-
-export const GLOBAL_ERROR_DIAGNOSTIC_MESSAGE =
-  "Diagnóstico: erro forçado intencionalmente para testar o global-error boundary.";
+import { GLOBAL_ERROR_DIAGNOSTIC_MESSAGE } from "./errorDiagnosticMessage";
 
 const ErrorPage = ({
   error,

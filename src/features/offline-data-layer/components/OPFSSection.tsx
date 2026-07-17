@@ -3,7 +3,7 @@
 import { Button } from "@/features/shared/components/Button";
 import { renderHtmlText } from "@/features/shared/utils/renderHtmlText";
 import { Plus } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useOPFS } from "../hooks/useOPFS";

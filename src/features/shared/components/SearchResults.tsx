@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import type { DemoEntry } from "@/registry/types";
 import { resolveText } from "@/features/shared/utils/resolveText";

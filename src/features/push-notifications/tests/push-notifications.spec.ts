@@ -90,14 +90,12 @@ test.describe("Web Push Notifications", () => {
     await page.goto("/showcase/push-notifications");
 
     await expect(
-      page.getByRole("heading", { level: 1, name: "Web Push Notifications" }),
+      page.getByRole("heading", { level: 1, name: "API de Notificações" }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", {
-        level: 3,
-        name: "Push Notifications",
-        exact: true,
-      }),
+      page
+        .locator("#pwa-notifications")
+        .getByRole("heading", { level: 3, name: "API de Notificações" }),
     ).toBeVisible();
     await expect(
       page.getByRole("button", { name: "Habilitar Notificações" }),
@@ -407,7 +405,7 @@ test.describe("Web Push Notifications", () => {
   }) => {
     await page.goto("/showcase/push-notifications");
 
-    await page.getByRole("link", { name: /Voice Interface/ }).click();
+    await page.getByRole("link", { name: /Interface de Voz/ }).click();
 
     await expect(page).toHaveURL("/showcase/voice-interface");
   });

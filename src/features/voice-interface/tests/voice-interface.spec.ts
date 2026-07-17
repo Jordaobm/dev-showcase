@@ -93,7 +93,7 @@ test.describe("Voice Interface", () => {
     await page.goto("/showcase/voice-interface");
 
     await expect(
-      page.getByRole("heading", { level: 1, name: "Voice Interface" }),
+      page.getByRole("heading", { level: 1, name: "Interface de Voz" }),
     ).toBeVisible();
     await expect(
       page.getByRole("heading", {
@@ -380,7 +380,7 @@ test.describe("Voice Interface", () => {
   }) => {
     await page.goto("/showcase/voice-interface");
 
-    await page.getByRole("link", { name: /Offline Data Layer/ }).click();
+    await page.getByRole("link", { name: /Dados Offline \+ Sincronização/ }).click();
 
     await expect(page).toHaveURL("/showcase/offline-data-layer");
   });

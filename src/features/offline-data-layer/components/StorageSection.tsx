@@ -65,7 +65,9 @@ export const StorageSection = () => {
         <p>{t("offlineDataLayer.storageTechIntro")}</p>
         <br />
         <ul className="space-y-2 list-disc list-inside">
-          <li>{t.rich("offlineDataLayer.storageTechIndexedDB", renderHtmlText)}</li>
+          <li>
+            {t.rich("offlineDataLayer.storageTechIndexedDB", renderHtmlText)}
+          </li>
           <li>{t.rich("offlineDataLayer.storageTechCache", renderHtmlText)}</li>
           <li>{t.rich("offlineDataLayer.storageTechOPFS", renderHtmlText)}</li>
         </ul>
@@ -76,7 +78,9 @@ export const StorageSection = () => {
         <br />
         <p>{t.rich("offlineDataLayer.storagePersistDesc", renderHtmlText)}</p>
         <br />
-        <p>{t.rich("offlineDataLayer.storageBrowserDiffDesc", renderHtmlText)}</p>
+        <p>
+          {t.rich("offlineDataLayer.storageBrowserDiffDesc", renderHtmlText)}
+        </p>
       </div>
 
       <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded text-sm text-amber-900">
@@ -110,11 +114,13 @@ export const StorageSection = () => {
             </p>
           )}
 
-          {isSupported && permissionStorage.requested && !permissionStorage.status && (
-            <p className="text-sm text-amber-600">
-              {t("offlineDataLayer.storageDeniedMessage")}
-            </p>
-          )}
+          {isSupported &&
+            permissionStorage.requested &&
+            !permissionStorage.status && (
+              <p className="text-sm text-amber-600 mt-2">
+                {t("offlineDataLayer.storageDeniedMessage")}
+              </p>
+            )}
         </div>
       </div>
 

@@ -2,9 +2,8 @@
 
 import { Button } from "@/features/shared/components/Button";
 import { renderHtmlText } from "@/features/shared/utils/renderHtmlText";
-import { detectBrowserLocale, getCookieLocale } from "@/i18n/useLocale";
 import { Info, Mic, MicOff, Trash, Volume2 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
 export const SpeechRecognitionAPISection = () => {
@@ -21,7 +20,7 @@ export const SpeechRecognitionAPISection = () => {
   const recognition = useRef<SpeechRecognition | null>(null);
   const finalResultsByIndex = useRef<Map<number, string>>(new Map());
 
-  const activeLocale = getCookieLocale() ?? detectBrowserLocale();
+  const activeLocale = useLocale();
 
   useEffect(() => {
     type SpeechRecognitionWindow = Window &
@@ -30,7 +29,8 @@ export const SpeechRecognitionAPISection = () => {
         webkitSpeechRecognition?: typeof SpeechRecognition;
       };
     const win = window as SpeechRecognitionWindow;
-    const SpeechRecognitionCtor = win.SpeechRecognition || win.webkitSpeechRecognition;
+    const SpeechRecognitionCtor =
+      win.SpeechRecognition || win.webkitSpeechRecognition;
 
     if (!SpeechRecognitionCtor) {
       setIsSupported(false);
@@ -187,14 +187,16 @@ export const SpeechRecognitionAPISection = () => {
       </div>
 
       <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded text-sm text-amber-900">
-        <div className="flex items-start gap-2">
-          <Info className="mt-1 shrink-0" />
-          <p className="text-sm leading-relaxed">
-            {t.rich("voiceInterface.warningText", renderHtmlText)}
-          </p>
+        <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded text-sm text-amber-900">
+          <div className="flex items-start gap-2">
+            <Info className="mt-1 shrink-0" />
+            <p className="text-sm leading-relaxed">
+              {t.rich("voiceInterface.warningText", renderHtmlText)}
+            </p>
+          </div>
         </div>
 
-        <p className="mt-2 font-bold">{t("voiceInterface.howToUseLabel")}</p>
+        <p className="mt-4 font-bold">{t("voiceInterface.howToUseLabel")}</p>
         <p className="mt-2">{t("voiceInterface.howToUseText")}</p>
 
         <div className="mt-4">

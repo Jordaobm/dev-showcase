@@ -1,22 +1,44 @@
 import type { MetadataRoute } from "next";
 import { registry } from "@/registry/index";
 import { getSiteUrl } from "@/lib/site-url";
+import { getPathname } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 
-const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  const siteUrl = await getSiteUrl();
+interface RouteConfig {
+  href: string;
+  changeFrequency: NonNullable<MetadataRoute.Sitemap[number]["changeFrequency"]>;
+  priority: number;
+}
 
-  const staticRoutes: MetadataRoute.Sitemap = [
-    { url: siteUrl, changeFrequency: "weekly", priority: 1 },
-    { url: `${siteUrl}/sobre`, changeFrequency: "monthly", priority: 0.8 },
+const buildUrl = (siteUrl: string, href: string, locale: string) =>
+  `${siteUrl}${getPathname({ href, locale })}`;
+
+const buildLanguageAlternates = (siteUrl: string, href: string) =>
+  Object.fromEntries(
+    routing.locales.map((locale) => [locale, buildUrl(siteUrl, href, locale)]),
+  );
+
+const sitemap = (): MetadataRoute.Sitemap => {
+  const siteUrl = getSiteUrl();
+
+  const routes: RouteConfig[] = [
+    { href: "/", changeFrequency: "weekly", priority: 1 },
+    { href: "/sobre", changeFrequency: "monthly", priority: 0.8 },
+    ...registry.map((demo) => ({
+      href: `/showcase/${demo.id}`,
+      changeFrequency: "monthly" as const,
+      priority: demo.status === "live" ? 0.7 : 0.4,
+    })),
   ];
 
-  const showcaseRoutes: MetadataRoute.Sitemap = registry.map((demo) => ({
-    url: `${siteUrl}/showcase/${demo.id}`,
-    changeFrequency: "monthly",
-    priority: demo.status === "live" ? 0.7 : 0.4,
-  }));
-
-  return [...staticRoutes, ...showcaseRoutes];
+  return routes.flatMap(({ href, changeFrequency, priority }) =>
+    routing.locales.map((locale) => ({
+      url: buildUrl(siteUrl, href, locale),
+      changeFrequency,
+      priority,
+      alternates: { languages: buildLanguageAlternates(siteUrl, href) },
+    })),
+  );
 };
 
 export default sitemap;

@@ -205,12 +205,16 @@ export const OAuthSection = () => {
           <p className="font-semibold text-gray-600 mb-3">
             {t("auth.oauthVersionCompareTitle")}
           </p>
-          <p className="mb-3 text-gray-500">{t("auth.oauthVersionCompareIntro")}</p>
+          <p className="mb-3 text-gray-500">
+            {t("auth.oauthVersionCompareIntro")}
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="p-4 border border-gray-200 rounded-lg bg-gray-50">
               <p className="font-semibold text-gray-700 mb-2 text-xs">
                 {t("auth.oauthV1Title")}{" "}
-                <span className="font-normal text-gray-400">{t("auth.oauthV1Era")}</span>
+                <span className="font-normal text-gray-400">
+                  {t("auth.oauthV1Era")}
+                </span>
               </p>
               <ul className="space-y-2 text-xs text-gray-600">
                 <li className="flex gap-2">
@@ -235,7 +239,9 @@ export const OAuthSection = () => {
             <div className="p-4 border border-blue-200 rounded-lg bg-blue-50">
               <p className="font-semibold text-blue-700 mb-2 text-xs">
                 {t("auth.oauthV2Title")}{" "}
-                <span className="font-normal text-blue-400">{t("auth.oauthV2Era")}</span>
+                <span className="font-normal text-blue-400">
+                  {t("auth.oauthV2Era")}
+                </span>
               </p>
               <ul className="space-y-2 text-xs text-blue-800">
                 <li className="flex gap-2">
@@ -260,21 +266,29 @@ export const OAuthSection = () => {
 
           <br />
 
-          <p className="font-semibold text-gray-600 mb-3">{t("auth.oauthWhyRetiredTitle")}</p>
+          <p className="font-semibold text-gray-600 mb-3">
+            {t("auth.oauthWhyRetiredTitle")}
+          </p>
 
           <p className="text-gray-600 mb-3">{t("auth.oauthWhyRetiredDesc")}</p>
         </div>
 
         <div>
-          <p className="font-semibold text-gray-600 mb-3">{t("auth.oauthCredentialsTitle")}</p>
-          <p className="mb-3 text-gray-500">{t("auth.oauthCredentialsIntro")}</p>
+          <p className="font-semibold text-gray-600 mb-3">
+            {t("auth.oauthCredentialsTitle")}
+          </p>
+          <p className="mb-3 text-gray-500">
+            {t("auth.oauthCredentialsIntro")}
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="p-3 border border-gray-200 rounded-lg bg-gray-50">
               <div className="flex items-center gap-2 mb-1">
                 <code className="text-xs font-bold text-purple-600 bg-purple-50 px-1.5 py-0.5 rounded">
                   CLIENT_ID
                 </code>
-                <span className="text-xs text-gray-400">{t("auth.oauthGeneratedByGoogle")}</span>
+                <span className="text-xs text-gray-400">
+                  {t("auth.oauthGeneratedByGoogle")}
+                </span>
               </div>
               <p className="text-xs text-gray-600">
                 {t.rich("auth.oauthClientIdDesc", oauthRichText)}
@@ -286,7 +300,9 @@ export const OAuthSection = () => {
                 <code className="text-xs font-bold text-red-600 bg-red-100 px-1.5 py-0.5 rounded">
                   CLIENT_SECRET
                 </code>
-                <span className="text-xs text-gray-400">{t("auth.oauthGeneratedByGoogle")}</span>
+                <span className="text-xs text-gray-400">
+                  {t("auth.oauthGeneratedByGoogle")}
+                </span>
               </div>
               <p className="text-xs text-gray-600">
                 {t.rich("auth.oauthClientSecretDesc", oauthRichText)}
@@ -298,7 +314,9 @@ export const OAuthSection = () => {
                 <code className="text-xs font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
                   REDIRECT_URI
                 </code>
-                <span className="text-xs text-gray-400">{t("auth.oauthRedirectUriOwner")}</span>
+                <span className="text-xs text-gray-400">
+                  {t("auth.oauthRedirectUriOwner")}
+                </span>
               </div>
               <p className="text-xs text-gray-600">
                 {t.rich("auth.oauthRedirectUriDesc", oauthRichText)}
@@ -310,7 +328,9 @@ export const OAuthSection = () => {
                 <code className="text-xs font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
                   code
                 </code>
-                <span className="text-xs text-gray-400">{t("auth.oauthGeneratedByGoogle")}</span>
+                <span className="text-xs text-gray-400">
+                  {t("auth.oauthGeneratedByGoogle")}
+                </span>
               </div>
               <p className="text-xs text-gray-600">
                 {t.rich("auth.oauthCodeDesc", oauthRichText)}
@@ -322,7 +342,9 @@ export const OAuthSection = () => {
                 <code className="text-xs font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded">
                   access_token
                 </code>
-                <span className="text-xs text-gray-400">{t("auth.oauthGeneratedByGoogle")}</span>
+                <span className="text-xs text-gray-400">
+                  {t("auth.oauthGeneratedByGoogle")}
+                </span>
               </div>
               <p className="text-xs text-gray-600">
                 {t.rich("auth.oauthAccessTokenDesc", oauthRichText)}
@@ -334,7 +356,9 @@ export const OAuthSection = () => {
                 <code className="text-xs font-bold text-red-600 bg-red-100 px-1.5 py-0.5 rounded">
                   refresh_token
                 </code>
-                <span className="text-xs text-gray-400">{t("auth.oauthGeneratedByGoogle")}</span>
+                <span className="text-xs text-gray-400">
+                  {t("auth.oauthGeneratedByGoogle")}
+                </span>
               </div>
               <p className="text-xs text-gray-600">
                 {t.rich("auth.oauthRefreshTokenDesc", oauthRichText)}
@@ -344,7 +368,9 @@ export const OAuthSection = () => {
         </div>
 
         <div>
-          <p className="font-semibold text-gray-600 mb-3">{t("auth.oauthFlowTitle")}</p>
+          <p className="font-semibold text-gray-600 mb-3">
+            {t("auth.oauthFlowTitle")}
+          </p>
           <div className="space-y-2">
             {[
               {
@@ -406,7 +432,7 @@ export const OAuthSection = () => {
             ].map((step, i) => (
               <div
                 key={step.id}
-                className={`flex gap-3 p-3 border rounded-lg ${step.color}`}
+                className={`flex items-center gap-3 p-3 border rounded-lg ${step.color}`}
               >
                 <div className="flex flex-col items-center gap-1 shrink-0">
                   <span
@@ -424,7 +450,9 @@ export const OAuthSection = () => {
           </div>
         </div>
 
-        <p className="font-semibold text-gray-600 mb-3">{t("auth.oauthServerExchangeTitle")}</p>
+        <p className="font-semibold text-gray-600 mb-3">
+          {t("auth.oauthServerExchangeTitle")}
+        </p>
 
         <p className="text-gray-600 mb-3">
           {t.rich("auth.oauthServerExchangeDesc", renderHtmlText)}
@@ -446,8 +474,12 @@ export const OAuthSection = () => {
 
         <div className="mt-4 flex flex-col md:flex-row gap-6">
           <div className="flex-1">
-            <p className="font-semibold text-amber-800">{t("auth.oauthStep1Title")}</p>
-            <p className="mt-1 text-xs text-amber-700">{t("auth.oauthStep1Desc")}</p>
+            <p className="font-semibold text-amber-800">
+              {t("auth.oauthStep1Title")}
+            </p>
+            <p className="mt-1 text-xs text-amber-700">
+              {t("auth.oauthStep1Desc")}
+            </p>
 
             <div className="mt-3 flex flex-col gap-2">
               <Button
@@ -477,12 +509,18 @@ export const OAuthSection = () => {
         <div className="p-4 border rounded-lg bg-gray-50">
           <div className="flex items-center gap-2 mb-1">
             <Server className="w-4 h-4 text-gray-400" />
-            <p className="text-sm font-semibold text-gray-700">{t("auth.commonCredentialsLabel")}</p>
+            <p className="text-sm font-semibold text-gray-700">
+              {t("auth.commonCredentialsLabel")}
+            </p>
           </div>
-          <p className="text-xs text-gray-400 mb-3">{t("auth.commonCredentialsHint")}</p>
+          <p className="text-xs text-gray-400 mb-3">
+            {t("auth.commonCredentialsHint")}
+          </p>
 
           {!userDisplay ? (
-            <p className="text-xs text-gray-400 italic">{t("auth.commonLoginToSeeCredentials")}</p>
+            <p className="text-xs text-gray-400 italic">
+              {t("auth.commonLoginToSeeCredentials")}
+            </p>
           ) : (
             <ul className="space-y-2">
               <li className="flex justify-between gap-2 p-2 bg-white border rounded text-xs">
@@ -523,12 +561,18 @@ export const OAuthSection = () => {
         <div className="p-4 border rounded-lg bg-gray-50">
           <div className="flex items-center gap-2 mb-1">
             <ShieldCheck className="w-4 h-4 text-gray-400" />
-            <p className="text-sm font-semibold text-gray-700">{t("auth.oauthIdTokenPanelTitle")}</p>
+            <p className="text-sm font-semibold text-gray-700">
+              {t("auth.oauthIdTokenPanelTitle")}
+            </p>
           </div>
-          <p className="text-xs text-gray-400 mb-3">{t("auth.oauthIdTokenPanelHint")}</p>
+          <p className="text-xs text-gray-400 mb-3">
+            {t("auth.oauthIdTokenPanelHint")}
+          </p>
 
           {!decoded ? (
-            <p className="text-xs text-gray-400 italic">{t("auth.commonLoginToSeeDecodedToken")}</p>
+            <p className="text-xs text-gray-400 italic">
+              {t("auth.commonLoginToSeeDecodedToken")}
+            </p>
           ) : (
             <div className="space-y-3">
               <div>
@@ -543,9 +587,15 @@ export const OAuthSection = () => {
                   <span className="text-green-500">{decoded.parts[2]}</span>
                 </div>
                 <div className="flex gap-3 mt-1 text-[9px] font-semibold">
-                  <span className="text-red-400">■ {t("auth.commonHeaderLabel").toUpperCase()}</span>
-                  <span className="text-blue-400">■ {t("auth.commonPayloadLabel").toUpperCase()}</span>
-                  <span className="text-green-400">■ {t("auth.commonSignatureLabel").toUpperCase()}</span>
+                  <span className="text-red-400">
+                    ■ {t("auth.commonHeaderLabel").toUpperCase()}
+                  </span>
+                  <span className="text-blue-400">
+                    ■ {t("auth.commonPayloadLabel").toUpperCase()}
+                  </span>
+                  <span className="text-green-400">
+                    ■ {t("auth.commonSignatureLabel").toUpperCase()}
+                  </span>
                 </div>
               </div>
 
@@ -591,8 +641,12 @@ export const OAuthSection = () => {
             <div className="flex items-center gap-2">
               <Loader2 className="w-4 h-4 animate-spin shrink-0" />
               <div>
-                <p className="font-bold">{t("auth.oauthSessionRefreshingTitle")}</p>
-                <p className="text-xs mt-0.5 opacity-80">{t("auth.oauthSessionRefreshingDesc")}</p>
+                <p className="font-bold">
+                  {t("auth.oauthSessionRefreshingTitle")}
+                </p>
+                <p className="text-xs mt-0.5 opacity-80">
+                  {t("auth.oauthSessionRefreshingDesc")}
+                </p>
               </div>
             </div>
           )}
@@ -601,8 +655,12 @@ export const OAuthSection = () => {
             <div className="flex items-center gap-2">
               <ShieldAlert className="w-4 h-4 shrink-0" />
               <div>
-                <p className="font-bold">{t("auth.oauthSessionExpiredTitle")}</p>
-                <p className="text-xs mt-0.5 opacity-80">{t("auth.oauthSessionExpiredDesc")}</p>
+                <p className="font-bold">
+                  {t("auth.oauthSessionExpiredTitle")}
+                </p>
+                <p className="text-xs mt-0.5 opacity-80">
+                  {t("auth.oauthSessionExpiredDesc")}
+                </p>
               </div>
             </div>
           )}
@@ -639,49 +697,84 @@ export const OAuthSection = () => {
                 </p>
 
                 <div className="mt-3 space-y-1.5">
-                  <p className="font-semibold">{t("auth.oauthHowSessionWorksTitle")}</p>
+                  <p className="font-semibold">
+                    {t("auth.oauthHowSessionWorksTitle")}
+                  </p>
                   <div className="grid grid-cols-1 gap-1.5">
                     <div className="flex gap-2 p-2 bg-white/50 rounded">
-                      <span className="shrink-0 font-bold text-amber-600">🔑</span>
-                      <div>
-                        <p className="font-medium">{t("auth.oauthSessionIdTokenTitle")}</p>
-                        <p className="opacity-75">
-                          {t.rich("auth.oauthSessionIdTokenDesc", renderHtmlText)}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex gap-2 p-2 bg-white/50 rounded">
-                      <span className="shrink-0 font-bold text-amber-600">🍪</span>
-                      <div>
-                        <p className="font-medium">{t("auth.oauthSessionCookieTitle")}</p>
-                        <p className="opacity-75">
-                          {t.rich("auth.oauthSessionCookieDesc", renderHtmlText)}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex gap-2 p-2 bg-white/50 rounded">
-                      <span className="shrink-0 font-bold text-amber-600">🔄</span>
-                      <div>
-                        <p className="font-medium">{t("auth.oauthSessionRefreshTitle")}</p>
-                        <p className="opacity-75">
-                          {t.rich("auth.oauthSessionRefreshDesc", renderHtmlText)}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex gap-2 p-2 bg-white/50 rounded">
-                      <span className="shrink-0 font-bold text-amber-600">🌐</span>
-                      <div>
-                        <p className="font-medium">{t("auth.oauthSessionRestoreTitle")}</p>
-                        <p className="opacity-75">{t("auth.oauthSessionRestoreDesc")}</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-2 p-2 bg-white/50 rounded">
-                      <span className="shrink-0 font-bold text-amber-600">⚡</span>
+                      <span className="shrink-0 font-bold text-amber-600">
+                        🔑
+                      </span>
                       <div>
                         <p className="font-medium">
-                          {t("auth.oauthSessionCountdownTitle", { seconds: timeLeft })}
+                          {t("auth.oauthSessionIdTokenTitle")}
                         </p>
-                        <p className="opacity-75">{t("auth.oauthSessionCountdownDesc")}</p>
+                        <p className="opacity-75">
+                          {t.rich(
+                            "auth.oauthSessionIdTokenDesc",
+                            renderHtmlText,
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 p-2 bg-white/50 rounded">
+                      <span className="shrink-0 font-bold text-amber-600">
+                        🍪
+                      </span>
+                      <div>
+                        <p className="font-medium">
+                          {t("auth.oauthSessionCookieTitle")}
+                        </p>
+                        <p className="opacity-75">
+                          {t.rich(
+                            "auth.oauthSessionCookieDesc",
+                            renderHtmlText,
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 p-2 bg-white/50 rounded">
+                      <span className="shrink-0 font-bold text-amber-600">
+                        🔄
+                      </span>
+                      <div>
+                        <p className="font-medium">
+                          {t("auth.oauthSessionRefreshTitle")}
+                        </p>
+                        <p className="opacity-75">
+                          {t.rich(
+                            "auth.oauthSessionRefreshDesc",
+                            renderHtmlText,
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 p-2 bg-white/50 rounded">
+                      <span className="shrink-0 font-bold text-amber-600">
+                        🌐
+                      </span>
+                      <div>
+                        <p className="font-medium">
+                          {t("auth.oauthSessionRestoreTitle")}
+                        </p>
+                        <p className="opacity-75">
+                          {t("auth.oauthSessionRestoreDesc")}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 p-2 bg-white/50 rounded">
+                      <span className="shrink-0 font-bold text-amber-600">
+                        ⚡
+                      </span>
+                      <div>
+                        <p className="font-medium">
+                          {t("auth.oauthSessionCountdownTitle", {
+                            seconds: timeLeft,
+                          })}
+                        </p>
+                        <p className="opacity-75">
+                          {t("auth.oauthSessionCountdownDesc")}
+                        </p>
                       </div>
                     </div>
                   </div>

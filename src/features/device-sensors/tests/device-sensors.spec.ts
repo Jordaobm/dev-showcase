@@ -21,22 +21,25 @@ test.describe("Sensores e Hardware do Dispositivo", () => {
       }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { level: 3, name: "Network Information API" }),
+      page.getByRole("heading", {
+        level: 3,
+        name: "Informações de Conectividade API",
+      }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { level: 3, name: "Battery Status API" }),
+      page.getByRole("heading", { level: 3, name: "Nível de Bateria API" }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { level: 3, name: "Vibration API" }),
+      page.getByRole("heading", { level: 3, name: "API de Vibração" }),
     ).toBeVisible();
     await expect(
-      page.getByRole("button", { name: /Network Information API/ }),
+      page.getByRole("button", { name: /Informações de Conectividade API/ }),
     ).toBeVisible();
     await expect(
-      page.getByRole("button", { name: /Battery Status API/ }),
+      page.getByRole("button", { name: /Nível de Bateria API/ }),
     ).toBeVisible();
     await expect(
-      page.getByRole("button", { name: /Vibration API/ }),
+      page.getByRole("button", { name: /API de Vibração/ }),
     ).toBeVisible();
 
     expect(consoleErrors).toEqual([]);
@@ -207,7 +210,7 @@ test.describe("Sensores e Hardware do Dispositivo", () => {
       page
         .locator("#pwa-network-information-api")
         .getByText(
-          "Network Information API não suportada neste navegador (só o Chromium a implementa; Firefox e Safari não a oferecem).",
+          "Informações de Conectividade API não suportada neste navegador (só o Chromium a implementa; Firefox e Safari não a oferecem).",
         ),
     ).toBeVisible();
     expect(consoleErrors).toEqual([]);
@@ -263,12 +266,12 @@ test.describe("Sensores e Hardware do Dispositivo", () => {
       page
         .locator("#pwa-battery-status-api")
         .getByText(
-          "Battery Status API não suportada neste navegador (removida no Firefox e nunca implementada no Safari, por questões de privacidade e fingerprinting).",
+          "Nível de Bateria API não suportada neste navegador (removida no Firefox e nunca implementada no Safari, por questões de privacidade e fingerprinting).",
         ),
     ).toBeVisible();
 
     await expect(
-      page.getByRole("heading", { level: 3, name: "Vibration API" }),
+      page.getByRole("heading", { level: 3, name: "API de Vibração" }),
     ).toBeVisible();
     expect(consoleErrors).toEqual([]);
   });

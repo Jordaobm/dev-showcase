@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Inter } from "next/font/google";
-import { getLocale, getMessages } from "next-intl/server";
-import { NextIntlClientProvider } from "next-intl";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { MotionConfig } from "motion/react";
-import { OfflineDetector } from "./_components/OfflineDetector";
-import "./globals.css";
+import { OfflineDetector } from "../_components/OfflineDetector";
+import "../globals.css";
 import { ReactQueryProvider } from "@/features/shared/providers/ReactQueryProvider";
 import { getSiteUrl } from "@/lib/site-url";
+import { routing } from "@/i18n/routing";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +16,7 @@ const SITE_DESCRIPTION =
   "Um showcase técnico onde cada implementação demonstra uma competência real de engenharia de software. Arquitetura, performance, segurança, PWAs, Browser APIs, renderização 3D e muito mais, reunidos em experiências interativas.";
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const siteUrl = await getSiteUrl();
+  const siteUrl = getSiteUrl();
 
   return {
     metadataBase: new URL(siteUrl),
@@ -37,12 +39,21 @@ export const generateMetadata = async (): Promise<Metadata> => {
   };
 };
 
+export const generateStaticParams = () => {
+  return routing.locales.map((locale) => ({ locale }));
+};
+
 const RootLayout = async ({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) => {
-  const locale = await getLocale();
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) notFound();
+  setRequestLocale(locale);
+
   const messages = await getMessages();
 
   return (

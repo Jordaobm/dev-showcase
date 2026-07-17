@@ -103,19 +103,24 @@ export const WebShareAPISection = () => {
               <li className="flex items-start gap-2">
                 <Type size={15} className="mt-0.5 shrink-0 text-gray-400" />
                 <span>
-                  <strong>title:</strong> {shareData.title}
+                  <strong>
+                    {t("nativeIntegrations.webShareDataTitleTitle")}:
+                  </strong>{" "}
+                  {shareData.title}
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <FileText size={15} className="mt-0.5 shrink-0 text-gray-400" />
                 <span>
-                  <strong>text:</strong> {shareData.text || "—"}
+                  <strong>{t("nativeIntegrations.webShareDataText")}</strong>:{" "}
+                  {shareData.text || "—"}
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <Link size={15} className="mt-0.5 shrink-0 text-gray-400" />
                 <span className="break-all">
-                  <strong>url:</strong> {shareData.url || "—"}
+                  <strong>{t("nativeIntegrations.webShareDataURL")}</strong>:{" "}
+                  {shareData.url || "—"}
                 </span>
               </li>
             </ul>
@@ -128,8 +133,12 @@ export const WebShareAPISection = () => {
           {t("nativeIntegrations.methodsTitle")}
         </p>
         <ul className="space-y-2 text-sm text-gray-700">
-          <li>{t.rich("nativeIntegrations.webShareMethod1", renderHtmlText)}</li>
-          <li>{t.rich("nativeIntegrations.webShareMethod2", renderHtmlText)}</li>
+          <li>
+            {t.rich("nativeIntegrations.webShareMethod1", renderHtmlText)}
+          </li>
+          <li>
+            {t.rich("nativeIntegrations.webShareMethod2", renderHtmlText)}
+          </li>
         </ul>
       </div>
     </div>

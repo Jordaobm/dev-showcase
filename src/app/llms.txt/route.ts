@@ -48,8 +48,8 @@ ${demoLines}
 `;
 };
 
-export const GET = async () => {
-  const siteUrl = await getSiteUrl();
+export const GET = () => {
+  const siteUrl = getSiteUrl();
 
   return new Response(buildLlmsTxt(siteUrl), {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

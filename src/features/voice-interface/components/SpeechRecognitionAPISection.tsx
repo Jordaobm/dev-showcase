@@ -2,9 +2,8 @@
 
 import { Button } from "@/features/shared/components/Button";
 import { renderHtmlText } from "@/features/shared/utils/renderHtmlText";
-import { detectBrowserLocale, getCookieLocale } from "@/i18n/useLocale";
 import { Info, Mic, MicOff, Trash, Volume2 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
 export const SpeechRecognitionAPISection = () => {
@@ -21,7 +20,7 @@ export const SpeechRecognitionAPISection = () => {
   const recognition = useRef<SpeechRecognition | null>(null);
   const finalResultsByIndex = useRef<Map<number, string>>(new Map());
 
-  const activeLocale = getCookieLocale() ?? detectBrowserLocale();
+  const activeLocale = useLocale();
 
   useEffect(() => {
     type SpeechRecognitionWindow = Window &

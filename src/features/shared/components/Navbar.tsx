@@ -2,11 +2,10 @@
 
 import { ChevronRight, Code2, Search } from "lucide-react";
 import { motion } from "motion/react";
-import Link from "next/link";
 import { Button } from "./Button";
 import { SearchResults } from "./SearchResults";
 import { useTranslations } from "next-intl";
-import { useRouter, usePathname } from "next/navigation";
+import { Link, useRouter, usePathname } from "@/i18n/navigation";
 import { useEffect, useRef, useState } from "react";
 import type { MouseEvent as ReactMouseEvent } from "react";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
@@ -42,8 +41,7 @@ export const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const isHomePage =
-    pathname === "/" || pathname.endsWith("/pt-BR") || pathname.endsWith("/en");
+  const isHomePage = pathname === "/";
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });

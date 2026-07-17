@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowLeft, ArrowRight, Code2 } from "lucide-react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { registry } from "@/registry/index";
 import { Navbar } from "@/features/shared/components/Navbar";

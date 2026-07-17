@@ -1,6 +1,6 @@
 import { MotionStyle } from "motion";
 import { motion } from "motion/react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { MouseEvent as ReactMouseEvent, ReactNode } from "react";
 
 interface ButtonProps {

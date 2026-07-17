@@ -1,8 +1,7 @@
 "use client";
 
-import { useRouter, usePathname } from "next/navigation";
 import { motion } from "motion/react";
-import Link from "next/link";
+import { Link, useRouter, usePathname } from "@/i18n/navigation";
 import type { MouseEvent as ReactMouseEvent } from "react";
 import {
   Code2,
@@ -22,8 +21,7 @@ export const Footer = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const isHomePage =
-    pathname === "/" || pathname.endsWith("/pt-BR") || pathname.endsWith("/en");
+  const isHomePage = pathname === "/";
 
   const scrollToTop = () => {
     if (isHomePage) {

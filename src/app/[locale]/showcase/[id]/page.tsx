@@ -1,19 +1,24 @@
-import { redirect } from "next/navigation";
+import { redirect } from "@/i18n/navigation";
 import { ShowcasePage } from "@/features/shared/pages/ShowcasePage";
 import { registry } from "@/registry/index";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { resolveText } from "@/features/shared/utils/resolveText";
+import { routing } from "@/i18n/routing";
 
-export const generateStaticParams = async () => {
-  return registry.map((demo) => ({ id: demo.id }));
+export const generateStaticParams = () => {
+  return routing.locales.flatMap((locale) =>
+    registry.map((demo) => ({ locale, id: demo.id })),
+  );
 };
 
 export const generateMetadata = async ({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ locale: string; id: string }>;
 }) => {
-  const { id } = await params;
+  const { locale, id } = await params;
+  setRequestLocale(locale);
+
   const demo = registry.find((d) => d.id === id);
   if (!demo) return {};
 
@@ -37,10 +42,12 @@ export const generateMetadata = async ({
 const Page = async ({
   params,
 }: Readonly<{
-  params: Promise<{ id: string }>;
+  params: Promise<{ locale: string; id: string }>;
 }>) => {
-  const { id } = await params;
-  if (!registry.some((d) => d.id === id)) redirect("/");
+  const { locale, id } = await params;
+  setRequestLocale(locale);
+
+  if (!registry.some((d) => d.id === id)) redirect({ href: "/", locale });
   return <ShowcasePage id={id} />;
 };
 

@@ -1,11 +1,11 @@
 "use client";
 
-import type { Locale } from "@/i18n/config";
-import { SUPPORTED_LOCALES } from "@/i18n/config";
-import { useLocale } from "@/i18n/useLocale";
+import type { Locale } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
+import { useRouter, usePathname } from "@/i18n/navigation";
 import { Globe } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import { useState } from "react";
 
 const LANGUAGE_NAMES: Record<Locale, string> = {
   "pt-BR": "shared.languages.pt-BR",
@@ -14,18 +14,15 @@ const LANGUAGE_NAMES: Record<Locale, string> = {
 };
 
 export const LanguageSwitcher = () => {
-  const { locale, changeLocale } = useLocale();
+  const locale = useLocale() as Locale;
+  const router = useRouter();
+  const pathname = usePathname();
   const t = useTranslations();
   const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted || !locale) {
-    return null;
-  }
+  const changeLocale = (nextLocale: Locale) => {
+    router.replace(pathname, { locale: nextLocale });
+  };
 
   const getLanguageName = (lang: Locale) => {
     const key = LANGUAGE_NAMES[lang] as string;
@@ -45,7 +42,7 @@ export const LanguageSwitcher = () => {
 
       {isOpen && (
         <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-          {(SUPPORTED_LOCALES as readonly Locale[]).map((lang) => (
+          {routing.locales.map((lang) => (
             <button
               key={lang}
               onClick={() => {

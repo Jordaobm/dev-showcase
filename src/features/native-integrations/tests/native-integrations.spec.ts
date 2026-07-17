@@ -24,16 +24,22 @@ test.describe("Integrações Nativas do Navegador", () => {
       page.getByRole("button", { name: "Compartilhar este conteúdo" }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { level: 3, name: "Web Share API" }),
+      page.getByRole("heading", {
+        level: 3,
+        name: "API de Compartilhamento WEB",
+      }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { level: 3, name: "Clipboard API" }),
+      page.getByRole("heading", {
+        level: 3,
+        name: "API de Copiar/Colar Texto",
+      }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { level: 3, name: "Screen Wake Lock API" }),
+      page.getByRole("heading", { level: 3, name: "API de Bloqueio de Tela" }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { level: 3, name: "Fullscreen API" }),
+      page.getByRole("heading", { level: 3, name: "API de Tela Cheia" }),
     ).toBeVisible();
 
     expect(consoleErrors).toEqual([]);
@@ -190,11 +196,11 @@ test.describe("Integrações Nativas do Navegador", () => {
       );
     }).toPass({ timeout: 10_000 });
 
-    await page.getByRole("button", { name: "Copiar" }).click();
+    await page.getByRole("button", { name: "Copiar", exact: true }).click();
 
     await expect(page.getByRole("button", { name: "Copiado!" })).toBeVisible();
 
-    await page.getByRole("button", { name: "Colar" }).click();
+    await page.getByRole("button", { name: "Colar", exact: true }).click();
 
     if (browserName === "webkit") {
       await expect(
@@ -244,7 +250,7 @@ test.describe("Integrações Nativas do Navegador", () => {
     ).toBeVisible();
 
     await expect(
-      page.getByRole("heading", { level: 3, name: "Fullscreen API" }),
+      page.getByRole("heading", { level: 3, name: "API de Tela Cheia" }),
     ).toBeVisible();
     expect(consoleErrors).toEqual([]);
   });
@@ -271,7 +277,7 @@ test.describe("Integrações Nativas do Navegador", () => {
     await expect(button).toBeDisabled();
     await expect(
       page.getByText(
-        "Fullscreen API não é suportada neste navegador (é o caso do Safari no iPhone, por exemplo).",
+        "API de Tela Cheia não é suportada neste navegador (é o caso do Safari no iPhone, por exemplo).",
       ),
     ).toBeVisible();
     expect(consoleErrors).toEqual([]);
@@ -297,7 +303,7 @@ test.describe("Integrações Nativas do Navegador", () => {
         .getByRole("button", { name: "Sair da tela cheia" })
         .or(
           page.getByText(
-            "Fullscreen API não é suportada neste navegador (é o caso do Safari no iPhone, por exemplo).",
+            "API de Tela Cheia não é suportada neste navegador (é o caso do Safari no iPhone, por exemplo).",
           ),
         ),
     ).toBeVisible();

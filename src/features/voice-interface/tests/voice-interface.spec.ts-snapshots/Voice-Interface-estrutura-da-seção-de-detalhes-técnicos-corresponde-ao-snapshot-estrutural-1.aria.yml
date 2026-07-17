@@ -1,14 +1,19 @@
 - heading "Tecnologias" [level=2]
 - list:
-  - listitem: Web Speech API (SpeechRecognition + SpeechSynthesis)
+  - listitem: Web Speech API
+  - listitem: SpeechRecognition
+  - listitem: SpeechSynthesis
 - heading "Arquitetura" [level=2]
 - list:
-  - listitem: Web Speech API (SpeechRecognition + SpeechSynthesis) rodando inteiramente no client
-  - listitem: com idioma de reconhecimento e voz de síntese sincronizados ao idioma ativo do site
+  - listitem: Web Speech API
+  - listitem: SpeechRecognition
+  - listitem: SpeechSynthesis
+  - listitem: Executado inteiramente no client
+  - listitem: Idioma sincronizados ao idioma ativo do site
 - heading "Conceitos" [level=2]
 - list:
   - listitem: Transcrição em tempo real
-  - listitem: deduplicação de resultados parciais/finais
-  - listitem: fila de síntese de voz
-  - listitem: carregamento assíncrono de vozes
-  - listitem: acessibilidade por voz
+  - listitem: Deduplicação de resultados parciais/finais
+  - listitem: Fila de síntese de voz
+  - listitem: Carregamento assíncrono de vozes
+  - listitem: Acessibilidade por voz

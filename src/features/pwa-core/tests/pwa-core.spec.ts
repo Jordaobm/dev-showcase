@@ -17,11 +17,11 @@ test.describe("PWA Core", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: "PWA Install & Cache Engine",
+        name: "PWA & Cache Inteligente",
       }),
     ).toBeVisible();
     await expect(
-      page.getByRole("button", { name: /PWA Completo/ }),
+      page.getByRole("button", { name: /PWA — Progressive Web App/ }),
     ).toBeVisible();
     await expect(
       page.getByRole("heading", {

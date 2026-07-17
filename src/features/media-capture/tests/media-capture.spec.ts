@@ -99,22 +99,19 @@ test.describe("Media Capture Studio — genéricos", () => {
     await page.goto("/showcase/media-capture");
 
     await expect(
-      page.getByRole("heading", { level: 1, name: "Media Capture Studio" }),
-    ).toBeVisible();
-    await expect(
-      page.getByRole("heading", { level: 3, name: "Camera API" }),
-    ).toBeVisible();
-    await expect(
       page.getByRole("heading", {
-        level: 3,
-        name: "MediaRecorder API — Gravação de Tela",
+        level: 1,
+        name: "API's de Câmera, Tela & Audio",
       }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", {
-        level: 3,
-        name: "MediaRecorder API — Gravação de Áudio",
-      }),
+      page.getByRole("heading", { level: 3, name: "Câmera API" }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", { level: 3, name: "Tela API" }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", { level: 3, name: "Áudio API" }),
     ).toBeVisible();
 
     expect(consoleErrors).toEqual([]);
@@ -243,7 +240,7 @@ test.describe("Media Capture Studio — genéricos", () => {
     await page.goto("/showcase/media-capture");
 
     await expect(
-      page.getByRole("link", { name: /Web Push Notifications/ }),
+      page.getByRole("link", { name: /API de Notificações/ }),
     ).toHaveAttribute("href", "/showcase/push-notifications");
   });
 });

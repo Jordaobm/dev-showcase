@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowLeft, ArrowRight, Code2 } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
@@ -10,7 +10,6 @@ import { Navbar } from "@/features/shared/components/Navbar";
 import { MobileNavbar } from "@/features/shared/components/MobileNavbar";
 import { Footer } from "@/features/shared/components/Footer";
 import { ComingSoon } from "@/features/shared/components/ComingSoon";
-import { SOCIAL_LINKS } from "@/lib/social-links";
 import { resolveText } from "@/features/shared/utils/resolveText";
 
 const DEMO_COMPONENTS = Object.fromEntries(

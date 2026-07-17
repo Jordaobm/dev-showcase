@@ -111,5 +111,13 @@
     "hardware": "Hardware",
     "dashboards": "Dashboards",
     "performance": "Performance"
+  },
+  "time": {
+    "days": "{count, plural, one {# dia} other {# dias}}",
+    "hours": "{count, plural, one {# hora} other {# horas}}",
+    "minutes": "{count, plural, one {# minuto} other {# minutos}}",
+    "seconds": "{count, plural, one {# segundo} other {# segundos}}",
+    "and": "e",
+    "notMeasured": "Não mensurado"
   }
 }

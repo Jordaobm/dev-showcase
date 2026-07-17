@@ -1,5 +1,6 @@
 "use client";
 
+import { formatSeconds } from "@/features/shared/utils/formatSeconds";
 import { renderHtmlText } from "@/features/shared/utils/renderHtmlText";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
@@ -110,13 +111,15 @@ export const BatteryStatusAPISection = () => {
 
             <li>
               <strong>{t("deviceSensors.batteryChargingTimeLabel")}</strong>
-              <span className="ml-1 font-medium">{info?.chargingTime}s</span>
+              <span className="ml-1 font-medium">
+                {formatSeconds(info?.chargingTime, t)}
+              </span>
             </li>
 
             <li>
               <strong>{t("deviceSensors.batteryDischargingTimeLabel")}</strong>
               <span className="ml-1 font-medium">
-                {info?.dischargingTime}s
+                {formatSeconds(info?.dischargingTime, t)}
               </span>
             </li>
           </ul>

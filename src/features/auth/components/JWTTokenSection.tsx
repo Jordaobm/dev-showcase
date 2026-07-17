@@ -483,7 +483,7 @@ export const JWTTokenSection = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-2 text-[10px]">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-[10px]">
                 <div>
                   <p className="font-bold text-red-500 mb-1 uppercase tracking-wide">
                     {t("auth.commonHeaderLabel")}

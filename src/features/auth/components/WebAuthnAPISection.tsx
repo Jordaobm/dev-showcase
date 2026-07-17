@@ -40,8 +40,7 @@ interface LastOperation {
 export const WebAuthnAPISection = () => {
   const t = useTranslations();
   const [username, setUsername] = useState("");
-  const [registerStatus, setRegisterStatus] =
-    useState<OperationStatus>("idle");
+  const [registerStatus, setRegisterStatus] = useState<OperationStatus>("idle");
   const [authStatus, setAuthStatus] = useState<OperationStatus>("idle");
   const [credentials, setCredentials] = useState<IResponseFinish[]>([]);
   const [lastOperation, setLastOperation] = useState<LastOperation | null>(
@@ -214,51 +213,37 @@ export const WebAuthnAPISection = () => {
 
       <div className="mt-4 space-y-6">
         <div className="border-l-2 border-red-200 pl-4">
-          <p className="font-semibold text-gray-800">
-            {t("auth.webAuthnQ1")}
-          </p>
+          <p className="font-semibold text-gray-800">{t("auth.webAuthnQ1")}</p>
           <p className="mt-2 text-gray-600">
             {t.rich("auth.webAuthnA1", renderHtmlText)}
           </p>
         </div>
         <div className="border-l-2 border-red-200 pl-4">
-          <p className="font-semibold text-gray-800">
-            {t("auth.webAuthnQ2")}
-          </p>
+          <p className="font-semibold text-gray-800">{t("auth.webAuthnQ2")}</p>
           <p className="mt-2 text-gray-600">{t("auth.webAuthnA2")}</p>
         </div>
         <div className="border-l-2 border-red-200 pl-4">
-          <p className="font-semibold text-gray-800">
-            {t("auth.webAuthnQ3")}
-          </p>
+          <p className="font-semibold text-gray-800">{t("auth.webAuthnQ3")}</p>
           <p className="mt-2 text-gray-600">{t("auth.webAuthnA3")}</p>
         </div>
         <div className="border-l-2 border-red-200 pl-4">
-          <p className="font-semibold text-gray-800">
-            {t("auth.webAuthnQ4")}
-          </p>
+          <p className="font-semibold text-gray-800">{t("auth.webAuthnQ4")}</p>
           <p className="mt-2 text-gray-600">
             {t.rich("auth.webAuthnA4", renderHtmlText)}
           </p>
         </div>
         <div className="border-l-2 border-red-200 pl-4">
-          <p className="font-semibold text-gray-800">
-            {t("auth.webAuthnQ5")}
-          </p>
+          <p className="font-semibold text-gray-800">{t("auth.webAuthnQ5")}</p>
           <p className="mt-2 text-gray-600">{t("auth.webAuthnA5")}</p>
         </div>
         <div className="border-l-2 border-red-200 pl-4">
-          <p className="font-semibold text-gray-800">
-            {t("auth.webAuthnQ6")}
-          </p>
+          <p className="font-semibold text-gray-800">{t("auth.webAuthnQ6")}</p>
           <p className="mt-2 text-gray-600">
             {t.rich("auth.webAuthnA6", renderHtmlText)}
           </p>
         </div>
         <div className="border-l-2 border-red-200 pl-4">
-          <p className="font-semibold text-gray-800">
-            {t("auth.webAuthnQ7")}
-          </p>
+          <p className="font-semibold text-gray-800">{t("auth.webAuthnQ7")}</p>
           <p className="mt-2 text-gray-600">
             {t.rich("auth.webAuthnA7", renderHtmlText)}
           </p>
@@ -409,7 +394,7 @@ export const WebAuthnAPISection = () => {
                   <KeyRound className="w-3.5 h-3.5 text-gray-400 mt-0.5 shrink-0" />
                   <div className="min-w-0">
                     <p className="font-medium text-gray-700">
-                      {cred.clientData.challenge}
+                      {cred.clientData.challenge.slice(0, 28)}...
                     </p>
                     <p className="text-gray-400 font-mono truncate">
                       id: {cred.credentialId.slice(0, 28)}…
@@ -440,9 +425,7 @@ export const WebAuthnAPISection = () => {
       </div>
 
       <div className="mt-4 p-4 border rounded-lg">
-        <p className="text-sm text-gray-600 mb-3">
-          {t("auth.methodsTitle")}
-        </p>
+        <p className="text-sm text-gray-600 mb-3">{t("auth.methodsTitle")}</p>
         <ul className="space-y-2 text-sm text-gray-700">
           <li>{t.rich("auth.webAuthnMethod1", renderHtmlText)}</li>
           <li>{t.rich("auth.webAuthnMethod2", renderHtmlText)}</li>

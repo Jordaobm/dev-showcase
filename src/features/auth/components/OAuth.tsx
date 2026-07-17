@@ -523,7 +523,7 @@ export const OAuthSection = () => {
             </p>
           ) : (
             <ul className="space-y-2">
-              <li className="flex justify-between gap-2 p-2 bg-white border rounded text-xs">
+              <li className="flex flex-col-reverse items-center gap-2 p-2 bg-white border rounded text-xs md:flex-row md:items-stretch md:justify-between">
                 <div className="flex items-start gap-2 p-2 bg-white  rounded text-xs">
                   <KeyRound className="w-3.5 h-3.5 text-gray-400 mt-0.5 shrink-0" />
                   <div className="min-w-0 space-y-1">
@@ -539,16 +539,16 @@ export const OAuthSection = () => {
                 </div>
                 {session?.user?.image ? (
                   <Image
-                    width={52}
-                    height={52}
+                    width={100}
+                    height={100}
                     src={session.user.image}
                     alt={session.user.name ?? t("auth.commonNameLabel")}
-                    className="rounded-full shrink-0"
+                    className="rounded-full shrink-0 w-25 h-25 mt-2 md:w-13 md:h-13 md:mt-0"
                   />
                 ) : (
                   <div
                     aria-hidden="true"
-                    className="w-[52px] h-[52px] rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-sm font-semibold shrink-0"
+                    className="w-25 h-25 md:w-13 md:h-13 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-sm font-semibold shrink-0"
                   >
                     {(session?.user?.name ?? "?").charAt(0).toUpperCase()}
                   </div>
@@ -599,7 +599,7 @@ export const OAuthSection = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-2 text-[10px]">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-[10px]">
                 <div>
                   <p className="font-bold text-red-500 mb-1 uppercase tracking-wide">
                     {t("auth.commonHeaderLabel")}

@@ -17,7 +17,7 @@ import performance from "@/features/performance/i18n/en-US.json";
 import forms from "@/features/forms/i18n/en-US.json";
 import graphql from "@/features/graphql/i18n/en-US.json";
 
-export default {
+const messages = {
   shared,
   auth,
   demo3d,
@@ -37,3 +37,5 @@ export default {
   forms,
   graphql,
 };
+
+export default messages;

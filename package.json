@@ -12,6 +12,11 @@
     "test:ui": "playwright test --ui",
     "test:update-snapshots": "playwright test --update-snapshots",
     "test:coverage": "playwright test --project=chromium",
+    "test:coverage:check": "node scripts/check-coverage-threshold.mjs",
+    "verify:architecture": "node scripts/verify-architecture.mjs",
+    "check": "npm run lint && tsc --noEmit && npm run verify:architecture && rm -rf .next && npm test && npm run test:coverage:check",
+    "check:log": "npm run check > log.txt 2>&1",
+    "check:feature": "node scripts/check-feature.mjs",
     "sonar:up": "docker compose -f docker-compose.sonar.yml up -d sonarqube sonar-db",
     "sonar:scan": "docker compose --env-file .env.local -f docker-compose.sonar.yml --profile scan run --rm sonar-scanner",
     "sonar:down": "docker compose -f docker-compose.sonar.yml down",
@@ -56,6 +61,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
     "@playwright/test": "^1.61.1",
     "@remotion/eslint-plugin": "^4.0.460",
     "@swc/core": "^1.15.43",

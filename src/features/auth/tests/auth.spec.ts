@@ -1,5 +1,6 @@
 import { test, expect } from "@/testing/playwright-fixtures";
 import type { Page } from "@playwright/test";
+import { runAxeCheck } from "@/testing/a11y";
 
 const BREAKPOINTS = [375, 430, 768, 1024, 1280];
 
@@ -135,6 +136,11 @@ test.describe("Autenticação — genéricos", () => {
 
     const h1Count = await page.locator("h1").count();
     expect(h1Count).toBe(1);
+  });
+
+  test("sem violações de acessibilidade (axe)", async ({ page }) => {
+    await page.goto("/showcase/auth");
+    expect(await runAxeCheck(page)).toEqual([]);
   });
 
   test("sem scroll horizontal nos breakpoints de referência", async ({

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
@@ -50,7 +51,7 @@ const RootNotFound = () => {
           >
             O endereço acessado não existe ou foi movido.
           </p>
-          <a
+          <Link
             href="/"
             style={{
               display: "inline-block",
@@ -65,7 +66,7 @@ const RootNotFound = () => {
             }}
           >
             Voltar para o início
-          </a>
+          </Link>
         </div>
       </body>
     </html>

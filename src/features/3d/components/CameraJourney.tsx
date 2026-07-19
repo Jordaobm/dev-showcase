@@ -283,7 +283,7 @@ const TechItem = ({
             style={{ pointerEvents: "none" }}
           >
             <div className="flex flex-col items-center gap-1 w-56 px-4 py-3 rounded-xl bg-black/70 border border-white/10 backdrop-blur-sm text-center">
-              <Icon size={32} color={color} />
+              <Icon size={32} color={color} aria-hidden="true" />
               <p className="text-white text-sm font-semibold mt-1">{name}</p>
               <p className="text-white/60 text-xs leading-relaxed">{desc}</p>
             </div>

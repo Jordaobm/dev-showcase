@@ -1,5 +1,6 @@
 import { test, expect } from "@/testing/playwright-fixtures";
 import type { Page } from "@playwright/test";
+import { runAxeCheck } from "@/testing/a11y";
 
 const BREAKPOINTS = [375, 430, 768, 1024, 1280];
 
@@ -157,6 +158,11 @@ test.describe("Media Capture Studio — genéricos", () => {
     expect(h1Count).toBe(1);
   });
 
+  test("sem violações de acessibilidade (axe)", async ({ page }) => {
+    await page.goto("/showcase/media-capture");
+    expect(await runAxeCheck(page)).toEqual([]);
+  });
+
   test("sem scroll horizontal nos breakpoints de referência", async ({
     page,
   }) => {
@@ -309,6 +315,11 @@ test.describe("Media Capture Studio — Camera API", () => {
           value: {},
         });
       }
+
+      Object.defineProperty(navigator.mediaDevices, "getUserMedia", {
+        configurable: true,
+        value: async () => new MediaStream(),
+      });
 
       Object.defineProperty(navigator.mediaDevices, "getDisplayMedia", {
         configurable: true,

@@ -65,11 +65,12 @@ export const HomePage = () => {
         <div className="light-beam" style={{ left: "80%" }} />
       </div>
 
-      <motion.section
-        ref={heroRef}
-        className="relative pt-40 pb-32 overflow-hidden"
-        style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
-      >
+      <main>
+        <motion.section
+          ref={heroRef}
+          className="relative pt-40 pb-32 overflow-hidden"
+          style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
+        >
         <div className="spotlight-beam" />
 
         <div
@@ -378,6 +379,7 @@ export const HomePage = () => {
           )}
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

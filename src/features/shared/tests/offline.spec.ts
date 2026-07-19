@@ -1,4 +1,5 @@
 import { test, expect } from "@/testing/playwright-fixtures";
+import { runAxeCheck } from "@/testing/a11y";
 
 test.describe("Offline fallback page", () => {
   test("carrega sem erro de console e mostra o status de conexão", async ({
@@ -21,5 +22,10 @@ test.describe("Offline fallback page", () => {
     await expect(page.getByRole("button", { name: "Home" })).toBeVisible();
 
     expect(consoleErrors).toEqual([]);
+  });
+
+  test("sem violações de acessibilidade (axe)", async ({ page }) => {
+    await page.goto("/offline");
+    expect(await runAxeCheck(page)).toEqual([]);
   });
 });

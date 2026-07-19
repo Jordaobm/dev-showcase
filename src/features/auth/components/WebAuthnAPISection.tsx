@@ -12,7 +12,8 @@ import {
   XCircle,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useClientSnapshot } from "@/features/shared/hooks/useClientSnapshot";
 import {
   finishAuth,
   finishRegister,
@@ -46,15 +47,10 @@ export const WebAuthnAPISection = () => {
   const [lastOperation, setLastOperation] = useState<LastOperation | null>(
     null,
   );
-  const [isSupported, setIsSupported] = useState(true);
-
-  useEffect(() => {
-    setIsSupported(
-      typeof window !== "undefined" &&
-        !!window.PublicKeyCredential &&
-        !!navigator.credentials,
-    );
-  }, []);
+  const isSupported = useClientSnapshot(
+    () => !!window.PublicKeyCredential && !!navigator.credentials,
+    true,
+  );
 
   const { mutateAsync: mutateInitRegister } = useMutation<
     AxiosResponse,

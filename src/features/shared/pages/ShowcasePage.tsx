@@ -55,6 +55,7 @@ export const ShowcasePage = ({ id }: Readonly<ShowcasePageProps>) => {
         />
       </div>
 
+      <main>
       <motion.section
         className="relative pt-32 pb-24 overflow-hidden"
         style={{ y: heroY, opacity: heroOpacity }}
@@ -382,6 +383,7 @@ export const ShowcasePage = ({ id }: Readonly<ShowcasePageProps>) => {
           </section>
         </div>
       </motion.section>
+      </main>
 
       <Footer />
     </div>

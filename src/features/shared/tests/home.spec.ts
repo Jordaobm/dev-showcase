@@ -1,4 +1,5 @@
-import { test, expect } from "@/testing/playwright-fixtures";
+import { test, expect, openMobileMenu } from "@/testing/playwright-fixtures";
+import { runAxeCheck } from "@/testing/a11y";
 
 const BREAKPOINTS = [375, 430, 768, 1024, 1280];
 
@@ -64,6 +65,11 @@ test.describe("Home", () => {
     expect(h1Count).toBeGreaterThanOrEqual(1);
   });
 
+  test("sem violações de acessibilidade (axe)", async ({ page }) => {
+    await page.goto("/");
+    expect(await runAxeCheck(page)).toEqual([]);
+  });
+
   test("sem scroll horizontal nos breakpoints de referência", async ({
     page,
   }) => {
@@ -83,10 +89,36 @@ test.describe("Home", () => {
 
   test("estrutura da seção hero corresponde ao snapshot estrutural", async ({
     page,
+    isMobile,
   }) => {
     await page.goto("/");
 
-    await expect(page.locator("section").first()).toMatchAriaSnapshot();
+    const mobileSnapshot = `
+      - img "Banner Dev Showcase"
+      - text: Premium Developer Portfolio
+      - heading "Engenharia para explorar." [level=1]
+      - heading "Um showcase técnico onde cada implementação demonstra uma competência real de engenharia de software. Arquitetura, performance, segurança, PWAs, Browser APIs, renderização 3D e muito mais, reunidos em experiências interativas." [level=2]
+      - text: /9 ao vivo \\d+ total de demos 7 em breve/
+      - button "Explorar o Showcase"
+      - link "Conheça o Autor":
+        - /url: /sobre
+      - text: Role para explorar
+    `;
+    const desktopSnapshot = `
+      - text: Premium Developer Portfolio
+      - heading "Engenharia para explorar." [level=1]
+      - heading "Um showcase técnico onde cada implementação demonstra uma competência real de engenharia de software. Arquitetura, performance, segurança, PWAs, Browser APIs, renderização 3D e muito mais, reunidos em experiências interativas." [level=2]
+      - text: /9 ao vivo \\d+ total de demos 7 em breve/
+      - button "Explorar o Showcase"
+      - link "Conheça o Autor":
+        - /url: /sobre
+      - img "Banner Dev Showcase"
+      - text: Role para explorar
+    `;
+
+    await expect(page.locator("section").first()).toMatchAriaSnapshot(
+      isMobile ? mobileSnapshot : desktopSnapshot,
+    );
   });
 
   test("navegação por teclado alcança o CTA principal do hero e Enter ativa", async ({
@@ -100,7 +132,9 @@ test.describe("Home", () => {
     let reached = false;
     for (let i = 0; i < 25; i++) {
       await page.keyboard.press("Tab");
-      if (await meetAuthorLink.evaluate((el) => el === document.activeElement)) {
+      if (
+        await meetAuthorLink.evaluate((el) => el === document.activeElement)
+      ) {
         reached = true;
         break;
       }
@@ -134,8 +168,10 @@ test.describe("Home", () => {
 
   test("busca encontra uma demo existente e reporta vazio quando não há match", async ({
     page,
+    isMobile,
   }) => {
     await page.goto("/");
+    if (isMobile) await openMobileMenu(page);
 
     const searchInput = page.getByPlaceholder(
       "Buscar por nome ou tecnologia...",
@@ -144,7 +180,10 @@ test.describe("Home", () => {
     await searchInput.click();
     await searchInput.fill("pwa");
     await expect(
-      page.getByTestId("search-results").getByTestId("search-result-item").first(),
+      page
+        .getByTestId("search-results")
+        .getByTestId("search-result-item")
+        .first(),
     ).toContainText(/PWA/i);
 
     await searchInput.fill("zzz-termo-que-nao-existe");
@@ -153,8 +192,10 @@ test.describe("Home", () => {
 
   test("busca: clicar num resultado navega para a demo e fecha a busca (closeSearch)", async ({
     page,
+    isMobile,
   }) => {
     await page.goto("/");
+    if (isMobile) await openMobileMenu(page);
 
     const searchInput = page.getByPlaceholder(
       "Buscar por nome ou tecnologia...",
@@ -174,8 +215,10 @@ test.describe("Home", () => {
 
   test("navbar: clicar em 'Showcases' na Home rola até a seção sem navegar", async ({
     page,
+    isMobile,
   }) => {
     await page.goto("/");
+    if (isMobile) await openMobileMenu(page);
 
     await page.getByRole("link", { name: "Link Showcases" }).click();
 
@@ -207,9 +250,7 @@ test.describe("Home", () => {
     await page.goto("/");
 
     await expect(page.locator("html")).toHaveAttribute("lang", "pt-BR");
-    await expect(page.getByTestId("hero-heading")).toContainText(
-      "Engenharia",
-    );
+    await expect(page.getByTestId("hero-heading")).toContainText("Engenharia");
 
     await page.getByRole("button", { name: "Mudar idioma" }).click();
     await page.getByRole("button", { name: "English" }).click();

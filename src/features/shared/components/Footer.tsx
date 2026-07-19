@@ -111,10 +111,13 @@ export const Footer = () => {
           </div>
 
           <div className="flex flex-col items-center xl:items-start text-center xl:text-left">
-            <h4 className="font-bold text-sm mb-4">
+            <h2 className="font-bold text-sm mb-4">
               {t("shared.footer.quickLinks")}
-            </h4>
-            <nav className="space-y-2.5">
+            </h2>
+            <nav
+              className="space-y-2.5"
+              aria-label={t("shared.footer.quickLinks")}
+            >
               <Link
                 href="/#featured"
                 onClick={(e) => handleSectionNavClick(e, "featured")}
@@ -142,10 +145,13 @@ export const Footer = () => {
           </div>
 
           <div className="flex flex-col items-center xl:items-start text-center xl:text-left">
-            <h4 className="font-bold text-sm mb-4">
+            <h2 className="font-bold text-sm mb-4">
               {t("shared.footer.builtWith")}
-            </h4>
-            <nav className="space-y-2.5">
+            </h2>
+            <nav
+              className="space-y-2.5"
+              aria-label={t("shared.footer.builtWith")}
+            >
               <div className="text-sm text-gray-600 flex items-center justify-center xl:justify-start gap-2">
                 <Code2 className="w-4 h-4 text-gray-400" />
                 {t("shared.technologies.react")}
@@ -166,10 +172,13 @@ export const Footer = () => {
           </div>
 
           <div className="flex flex-col items-center xl:items-start text-center xl:text-left">
-            <h4 className="font-bold text-sm mb-4">
+            <h2 className="font-bold text-sm mb-4">
               {t("shared.footer.letsConnect")}
-            </h4>
-            <nav className="space-y-2.5">
+            </h2>
+            <nav
+              className="space-y-2.5"
+              aria-label={t("shared.footer.letsConnect")}
+            >
               <a
                 href={SOCIAL_LINKS.github}
                 target="_blank"

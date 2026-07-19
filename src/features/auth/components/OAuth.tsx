@@ -148,7 +148,7 @@ export const OAuthSection = () => {
         intervalRef.current = null;
       }
     };
-  }, [expiry]);
+  }, [expiry, update]);
 
   const handleAuthenticate = async () => {
     try {

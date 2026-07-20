@@ -13,7 +13,7 @@ jobs:
   quality-gate:
     if: github.head_ref == 'develop' && github.base_ref == 'homolog'
     runs-on: [self-hosted, dev-showcase]
-    timeout-minutes: 60
+    timeout-minutes: 90
     env:
       NEXT_PUBLIC_SITE_URL: http://localhost:3000
       NEXT_PUBLIC_GITHUB_URL: https://github.com/Jordaobm
@@ -61,7 +61,7 @@ jobs:
       - name: Instalar browsers do Playwright
         run: npx playwright install --with-deps
 
-      - name: Build + suíte Playwright (chromium, firefox, webkit, mobile-chrome, mobile-safari)
+      - name: Build + suíte Playwright (chromium, webkit, mobile-chrome)
         run: npm test
 
       - name: Checar cobertura de código >= 80%

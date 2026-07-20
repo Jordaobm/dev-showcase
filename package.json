@@ -20,6 +20,9 @@
     "sonar:up": "docker compose -f docker-compose.sonar.yml up -d sonarqube sonar-db",
     "sonar:scan": "docker compose --env-file .env.local -f docker-compose.sonar.yml --profile scan run --rm sonar-scanner",
     "sonar:down": "docker compose -f docker-compose.sonar.yml down",
+    "runner:up": "docker compose --env-file .env.local -f docker-compose.github-runner.yml up -d",
+    "runner:down": "docker compose -f docker-compose.github-runner.yml down",
+    "runner:logs": "docker compose -f docker-compose.github-runner.yml logs -f github-runner",
     "metrics:export": "node scripts/export-metrics.mjs"
   },
   "dependencies": {

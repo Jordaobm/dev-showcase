@@ -21,8 +21,8 @@ jobs:
       NEXT_PUBLIC_LINKEDIN_URL: https://linkedin.com/in/placeholder
       NEXT_PUBLIC_CONTACT_EMAIL: ci@example.com
       NEXT_PUBLIC_MDN_URL: https://developer.mozilla.org/
-      NEXT_PUBLIC_VAPID_PUBLIC_KEY: ci-placeholder-vapid-public-key
-      VAPID_PRIVATE_KEY: ci-placeholder-vapid-private-key
+      NEXT_PUBLIC_VAPID_PUBLIC_KEY: BDVyLx4Qhh_wnboJfAIkqwrvEoOkeOp93k8jMW6TscM41c9Ja0pbjFabf55y6AAmWeLb92lLd0QpJR1bsQngfCY
+      VAPID_PRIVATE_KEY: UjQNFJBrsOU5pCUR4TbSzCaGRfppc6AL73Rt_Y2oTEk
       VAPID_SUBJECT: mailto:ci@example.com
       NEXT_PUBLIC_SUPABASE_URL: https://ci-placeholder.supabase.co
       NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ci-placeholder-publishable-key

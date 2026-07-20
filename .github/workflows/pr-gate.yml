@@ -4,7 +4,6 @@ on:
   pull_request:
     branches:
       - homolog
-      - main
 
 concurrency:
   group: pr-gate-${{ github.event.pull_request.number }}
@@ -12,6 +11,7 @@ concurrency:
 
 jobs:
   quality-gate:
+    if: github.head_ref == 'develop' && github.base_ref == 'homolog'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
@@ -47,7 +47,7 @@ jobs:
           cache: npm
 
       - name: Instalar dependências
-        run: npm ci
+        run: npm install
 
       - name: Lint (ESLint)
         run: npm run lint

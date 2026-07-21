@@ -1,6 +1,6 @@
 services:
   github-runner:
-    image: myoung34/github-runner:ubuntu-noble
+    image: myoung34/github-runner:latest
     restart: unless-stopped
     environment:
       REPO_URL: https://github.com/Jordaobm/dev-showcase

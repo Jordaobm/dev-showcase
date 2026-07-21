@@ -1,4 +1,5 @@
 import { test, expect } from "@/testing/playwright-fixtures";
+import { runAxeCheck } from "@/testing/a11y";
 
 test.describe("3D & Animações Avançadas", () => {
   test("carrega sem erro de console e renderiza os elementos principais", async ({
@@ -29,12 +30,21 @@ test.describe("3D & Animações Avançadas", () => {
         .getByText("Como interagir com a cena"),
     ).toBeVisible();
 
-    await expect(
-      page.locator("#tech-stack-solar-system canvas"),
-    ).toBeVisible({ timeout: 15_000 });
+    await expect(page.locator("#tech-stack-solar-system canvas")).toBeVisible({
+      timeout: 15_000,
+    });
 
     await page.waitForTimeout(3000);
 
     expect(consoleErrors).toEqual([]);
+  });
+
+  test("sem violações de acessibilidade (axe)", async ({ page }) => {
+    await page.goto("/showcase/demo3d");
+    await expect(page.locator("#tech-stack-solar-system canvas")).toBeVisible({
+      timeout: 15_000,
+    });
+
+    expect(await runAxeCheck(page)).toEqual([]);
   });
 });

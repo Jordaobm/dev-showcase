@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useClientSnapshot } from "@/features/shared/hooks/useClientSnapshot";
 
 const urlBase64ToUint8Array = (
   base64String: string,
@@ -30,24 +31,24 @@ export const usePushSubscription = (): UsePushSubscriptionReturn => {
   const [subscription, setSubscription] = useState<PushSubscription | null>(
     null,
   );
-  const [isSupported, setIsSupported] = useState(true);
+  const isSupported = useClientSnapshot(
+    () =>
+      navigator.serviceWorker !== undefined &&
+      window.PushManager !== undefined,
+    true,
+  );
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [subscribeError, setSubscribeError] = useState(false);
   const [sendError, setSendError] = useState(false);
 
   useEffect(() => {
-    const supported =
-      typeof window !== "undefined" &&
-      navigator.serviceWorker !== undefined &&
-      window.PushManager !== undefined;
-    setIsSupported(supported);
-    if (!supported) return;
+    if (!isSupported) return;
 
     navigator.serviceWorker.ready.then((registration) => {
       registration.pushManager.getSubscription().then(setSubscription);
     });
-  }, []);
+  }, [isSupported]);
 
   const subscribe = async () => {
     setIsSubscribing(true);

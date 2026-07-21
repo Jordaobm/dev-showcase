@@ -5,11 +5,24 @@ import { renderHtmlText } from "@/features/shared/utils/renderHtmlText";
 import { Info, Mic, MicOff, Trash, Volume2 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
+import { useClientSnapshot } from "@/features/shared/hooks/useClientSnapshot";
+
+type SpeechRecognitionWindow = Window &
+  typeof globalThis & {
+    SpeechRecognition?: typeof SpeechRecognition;
+    webkitSpeechRecognition?: typeof SpeechRecognition;
+  };
 
 export const SpeechRecognitionAPISection = () => {
   const t = useTranslations();
-  const [isSupported, setIsSupported] = useState(true);
-  const [ttsSupported, setTtsSupported] = useState(true);
+  const isSupported = useClientSnapshot(() => {
+    const win = window as SpeechRecognitionWindow;
+    return !!(win.SpeechRecognition || win.webkitSpeechRecognition);
+  }, true);
+  const ttsSupported = useClientSnapshot(
+    () => window.speechSynthesis !== undefined,
+    true,
+  );
   const [micOn, setMicOn] = useState(false);
   const [micError, setMicError] = useState(false);
   const [speaking, setSpeaking] = useState(false);
@@ -23,19 +36,12 @@ export const SpeechRecognitionAPISection = () => {
   const activeLocale = useLocale();
 
   useEffect(() => {
-    type SpeechRecognitionWindow = Window &
-      typeof globalThis & {
-        SpeechRecognition?: typeof SpeechRecognition;
-        webkitSpeechRecognition?: typeof SpeechRecognition;
-      };
+    if (!isSupported) return;
+
     const win = window as SpeechRecognitionWindow;
     const SpeechRecognitionCtor =
       win.SpeechRecognition || win.webkitSpeechRecognition;
-
-    if (!SpeechRecognitionCtor) {
-      setIsSupported(false);
-      return;
-    }
+    if (!SpeechRecognitionCtor) return;
 
     const instance: SpeechRecognition = new SpeechRecognitionCtor();
     instance.continuous = true;
@@ -74,13 +80,10 @@ export const SpeechRecognitionAPISection = () => {
     };
 
     recognition.current = instance;
-  }, [activeLocale]);
+  }, [isSupported, activeLocale]);
 
   useEffect(() => {
-    if (window.speechSynthesis === undefined) {
-      setTtsSupported(false);
-      return;
-    }
+    if (!ttsSupported) return;
 
     const loadVoices = () => {
       const available = window.speechSynthesis.getVoices();
@@ -109,7 +112,7 @@ export const SpeechRecognitionAPISection = () => {
     window.speechSynthesis.addEventListener("voiceschanged", loadVoices);
     return () =>
       window.speechSynthesis.removeEventListener("voiceschanged", loadVoices);
-  }, [activeLocale]);
+  }, [ttsSupported, activeLocale]);
 
   const toggleRecording = () => {
     if (!recognition.current) return;

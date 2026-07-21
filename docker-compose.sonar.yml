@@ -27,9 +27,6 @@ services:
     networks:
       - sonarnet
 
-  # Não fica de pé sozinho: `profiles: [scan]` tira ele do `docker compose up`
-  # padrão. Só roda via `docker compose --profile scan run --rm sonar-scanner`,
-  # depois que o build + `npm run test:coverage` já geraram o lcov.info.
   sonar-scanner:
     image: sonarsource/sonar-scanner-cli:latest
     profiles: ["scan"]

@@ -1,8 +1,13 @@
 import { test as base } from "@playwright/test";
+import type { Page } from "@playwright/test";
 
 export { expect } from "@playwright/test";
 import { CoverageReport } from "monocart-coverage-reports";
 import { coverageOptions } from "./coverage-options";
+
+export const openMobileMenu = async (page: Page) => {
+  await page.getByRole("button", { name: "Abrir menu" }).click();
+};
 
 const mcr = new CoverageReport(coverageOptions);
 

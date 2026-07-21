@@ -4,21 +4,24 @@ import { formatSeconds } from "@/features/shared/utils/formatSeconds";
 import { renderHtmlText } from "@/features/shared/utils/renderHtmlText";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
+import { useClientSnapshot } from "@/features/shared/hooks/useClientSnapshot";
 
 export const BatteryStatusAPISection = () => {
   const t = useTranslations();
   const [info, setInfo] = useState<Partial<BatteryManager>>();
-  const [isSupported, setIsSupported] = useState(true);
+  const supportsGetBattery = useClientSnapshot(
+    () => typeof navigator.getBattery === "function",
+    true,
+  );
+  const [getBatteryFailed, setGetBatteryFailed] = useState(false);
+  const isSupported = supportsGetBattery && !getBatteryFailed;
   const batteryRef = useRef<BatteryManager | null>(null);
   const updateRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
-    let mounted = true;
+    if (!supportsGetBattery) return;
 
-    if (typeof navigator.getBattery !== "function") {
-      setIsSupported(false);
-      return;
-    }
+    let mounted = true;
 
     navigator
       .getBattery()
@@ -45,7 +48,7 @@ export const BatteryStatusAPISection = () => {
         battery.addEventListener("dischargingtimechange", update);
       })
       .catch(() => {
-        if (mounted) setIsSupported(false);
+        if (mounted) setGetBatteryFailed(true);
       });
 
     return () => {
@@ -58,7 +61,7 @@ export const BatteryStatusAPISection = () => {
       battery.removeEventListener("chargingtimechange", update);
       battery.removeEventListener("dischargingtimechange", update);
     };
-  }, []);
+  }, [supportsGetBattery]);
 
   return (
     <div id="pwa-battery-status-api" className="mt-12">

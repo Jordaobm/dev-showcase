@@ -1,0 +1,83 @@
+name: PR Quality Gate
+
+on:
+  pull_request:
+    branches:
+      - homolog
+
+concurrency:
+  group: pr-gate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  quality-gate:
+    if: github.head_ref == 'develop' && github.base_ref == 'homolog'
+    runs-on: [self-hosted, dev-showcase]
+    timeout-minutes: 90
+    env:
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+      NEXT_PUBLIC_GITHUB_URL: https://github.com/Jordaobm
+      NEXT_PUBLIC_GITHUB_REPO_URL: https://github.com/Jordaobm/dev-showcase
+      NEXT_PUBLIC_LINKEDIN_URL: https://linkedin.com/in/placeholder
+      NEXT_PUBLIC_CONTACT_EMAIL: ci@example.com
+      NEXT_PUBLIC_MDN_URL: https://developer.mozilla.org/
+      NEXT_PUBLIC_VAPID_PUBLIC_KEY: BDVyLx4Qhh_wnboJfAIkqwrvEoOkeOp93k8jMW6TscM41c9Ja0pbjFabf55y6AAmWeLb92lLd0QpJR1bsQngfCY
+      VAPID_PRIVATE_KEY: UjQNFJBrsOU5pCUR4TbSzCaGRfppc6AL73Rt_Y2oTEk
+      VAPID_SUBJECT: mailto:ci@example.com
+      NEXT_PUBLIC_SUPABASE_URL: https://ci-placeholder.supabase.co
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ci-placeholder-publishable-key
+      SUPABASE_SERVICE_ROLE_KEY: ci-placeholder-service-role-key
+      JWT_SECRET: ci-placeholder-jwt-secret
+      JWT_REFRESH_SECRET: ci-placeholder-jwt-refresh-secret
+      NEXTAUTH_URL: http://localhost:3000
+      NEXTAUTH_SECRET: ci-placeholder-nextauth-secret
+      GOOGLE_CLIENT_ID: ci-placeholder-google-client-id
+      GOOGLE_CLIENT_SECRET: ci-placeholder-google-client-secret
+      GOOGLE_OAUTH_TOKEN_URL: https://oauth2.googleapis.com/token
+      SMTP_GOOGLE: ci-placeholder-smtp-password
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Lint (ESLint)
+        run: npm run lint
+
+      - name: Typecheck (tsc)
+        run: npx tsc --noEmit
+
+      - name: Verificar arquitetura (Feature-Sliced Design + contrato DemoMetadata + paridade i18n)
+        run: npm run verify:architecture
+
+      - name: Instalar browsers do Playwright
+        run: npx playwright install --with-deps
+
+      - name: Build + suíte Playwright (chromium, webkit, mobile-chrome)
+        run: npm test
+
+      - name: Checar cobertura de código >= 80%
+        run: npm run test:coverage:check
+
+      - name: Publicar relatório do Playwright
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14
+
+      - name: Publicar relatório de cobertura
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/playwright/
+          retention-days: 14

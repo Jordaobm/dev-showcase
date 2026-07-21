@@ -11,8 +11,9 @@ import {
   ScreenShareOff,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useSeekablePlayer } from "../hooks/useSeekablePlayer";
+import { useClientSnapshot } from "@/features/shared/hooks/useClientSnapshot";
 
 export const MediaRecorderVideoAPISection = () => {
   const t = useTranslations();
@@ -48,12 +49,10 @@ export const MediaRecorderVideoAPISection = () => {
     return types.find((t) => MediaRecorder.isTypeSupported(t)) ?? "";
   };
 
-  const [isDisplayMediaSupported, setIsDisplayMediaSupported] =
-    useState(true);
-
-  useEffect(() => {
-    setIsDisplayMediaSupported(!!navigator.mediaDevices?.getDisplayMedia);
-  }, []);
+  const isDisplayMediaSupported = useClientSnapshot(
+    () => !!navigator.mediaDevices?.getDisplayMedia,
+    true,
+  );
 
   const shareScreen = async () => {
     if (!isDisplayMediaSupported) return;
@@ -233,7 +232,7 @@ export const MediaRecorderVideoAPISection = () => {
             }}
           >
             <div className="relative w-full aspect-video bg-black">
-              <video // NOSONAR: self-view ao vivo via getDisplayMedia, sem fonte de legenda real
+              <video
                 ref={videoRef}
                 autoPlay
                 playsInline

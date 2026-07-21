@@ -89,6 +89,7 @@ export const ClipboardAPISection = () => {
                 </button>
               </div>
               <textarea
+                aria-label={t("nativeIntegrations.clipboardCopyLabel")}
                 className="w-full h-40 resize-none p-4 bg-white border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:border-[var(--premium-red)] transition-all duration-300 text-sm text-gray-700"
                 value={textarea.textarea1}
                 onChange={(e) =>
@@ -124,6 +125,7 @@ export const ClipboardAPISection = () => {
                 </button>
               </div>
               <textarea
+                aria-label={t("nativeIntegrations.clipboardPasteLabel")}
                 className="w-full h-40 resize-none p-4 bg-white border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:border-[var(--premium-red)] transition-all duration-300 text-sm text-gray-700"
                 value={textarea.textarea2}
                 onChange={(e) =>

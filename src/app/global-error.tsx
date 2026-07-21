@@ -30,7 +30,7 @@ const GlobalError = ({
           color: "#111827",
         }}
       >
-        <div
+        <main
           style={{
             maxWidth: 480,
             width: "100%",
@@ -97,7 +97,7 @@ const GlobalError = ({
               Voltar para o início
             </Link>
           </div>
-        </div>
+        </main>
       </body>
     </html>
   );

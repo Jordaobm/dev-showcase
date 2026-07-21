@@ -3,6 +3,7 @@
 import { renderHtmlText } from "@/features/shared/utils/renderHtmlText";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { useClientSnapshot } from "@/features/shared/hooks/useClientSnapshot";
 
 interface NetworkInfo {
   downlink?: number;
@@ -23,14 +24,11 @@ const snapshotConnection = (c: NetworkInformation): NetworkInfo => {
 export const NetworkInformationAPISection = () => {
   const t = useTranslations();
   const [info, setInfo] = useState<NetworkInfo | null>(null);
-  const [isSupported, setIsSupported] = useState(true);
+  const isSupported = useClientSnapshot(() => !!navigator.connection, true);
 
   useEffect(() => {
     const connection = navigator.connection ?? null;
-    if (!connection) {
-      setIsSupported(false);
-      return;
-    }
+    if (!connection) return;
 
     const handleChange = () => setInfo(snapshotConnection(connection));
     handleChange();

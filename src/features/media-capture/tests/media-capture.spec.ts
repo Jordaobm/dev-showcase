@@ -1,5 +1,6 @@
 import { test, expect } from "@/testing/playwright-fixtures";
 import type { Page } from "@playwright/test";
+import { runAxeCheck } from "@/testing/a11y";
 
 const BREAKPOINTS = [375, 430, 768, 1024, 1280];
 
@@ -157,6 +158,11 @@ test.describe("Media Capture Studio — genéricos", () => {
     expect(h1Count).toBe(1);
   });
 
+  test("sem violações de acessibilidade (axe)", async ({ page }) => {
+    await page.goto("/showcase/media-capture");
+    expect(await runAxeCheck(page)).toEqual([]);
+  });
+
   test("sem scroll horizontal nos breakpoints de referência", async ({
     page,
   }) => {
@@ -310,6 +316,11 @@ test.describe("Media Capture Studio — Camera API", () => {
         });
       }
 
+      Object.defineProperty(navigator.mediaDevices, "getUserMedia", {
+        configurable: true,
+        value: async () => new MediaStream(),
+      });
+
       Object.defineProperty(navigator.mediaDevices, "getDisplayMedia", {
         configurable: true,
         value: undefined,
@@ -327,7 +338,13 @@ test.describe("Media Capture Studio — Camera API", () => {
 
   test("caso de erro: permissão de câmera negada degrada com mensagem clara em vez de travar", async ({
     page,
+    browserName,
   }) => {
+    test.skip(
+      browserName === "webkit",
+      "WebKit deste ambiente não aplica addInitScript a navigator.mediaDevices.getUserMedia (microsoft/playwright#5444)",
+    );
+
     const consoleErrors: string[] = [];
     page.on("console", (msg) => {
       if (msg.type() === "error") consoleErrors.push(msg.text());
@@ -401,7 +418,13 @@ test.describe("Media Capture Studio — MediaRecorder (tela)", () => {
 
   test("caso de erro: permissão de compartilhamento de tela negada degrada com mensagem clara", async ({
     page,
+    browserName,
   }) => {
+    test.skip(
+      browserName === "webkit",
+      "WebKit deste ambiente não aplica addInitScript a navigator.mediaDevices.getDisplayMedia (microsoft/playwright#5444)",
+    );
+
     const consoleErrors: string[] = [];
     page.on("console", (msg) => {
       if (msg.type() === "error") consoleErrors.push(msg.text());
@@ -474,7 +497,13 @@ test.describe("Media Capture Studio — MediaRecorder (áudio)", () => {
 
   test("indisponível no navegador: botão desabilita e mostra mensagem clara em vez de travar", async ({
     page,
+    browserName,
   }) => {
+    test.skip(
+      browserName === "webkit",
+      "WebKit deste ambiente não aplica addInitScript a navigator.mediaDevices.getUserMedia (microsoft/playwright#5444)",
+    );
+
     const consoleErrors: string[] = [];
     page.on("console", (msg) => {
       if (msg.type() === "error") consoleErrors.push(msg.text());

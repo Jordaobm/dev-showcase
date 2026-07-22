@@ -14,7 +14,9 @@ services:
     volumes:
       - runner_work:/tmp/runner/work
       - runner_npm_cache:/root/.npm
+      - runner_playwright_cache:/root/.cache/ms-playwright
 
 volumes:
   runner_work:
   runner_npm_cache:
+  runner_playwright_cache:

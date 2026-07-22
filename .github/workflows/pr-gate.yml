@@ -58,7 +58,12 @@ jobs:
         run: npm run verify:architecture
 
       - name: Instalar browsers do Playwright
-        run: npx playwright install --with-deps
+        run: |
+          for i in 1 2 3; do
+            npx playwright install --with-deps && break
+            echo "Tentativa $i falhou (provável instabilidade de rede com os mirrors do apt), tentando novamente..."
+            sleep 10
+          done
 
       - name: Build + suíte Playwright (chromium, webkit, mobile-chrome)
         run: npm test

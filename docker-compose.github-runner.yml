@@ -13,6 +13,8 @@ services:
       DISABLE_AUTO_UPDATE: "true"
     volumes:
       - runner_work:/tmp/runner/work
+      - runner_npm_cache:/root/.npm
 
 volumes:
   runner_work:
+  runner_npm_cache:

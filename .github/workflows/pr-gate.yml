@@ -46,7 +46,7 @@ jobs:
           node-version: 22
 
       - name: Instalar dependências
-        run: npm ci
+        run: npm ci --foreground-scripts
 
       - name: Lint (ESLint)
         run: npm run lint

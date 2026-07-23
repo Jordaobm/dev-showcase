@@ -5,16 +5,15 @@ import { renderHtmlText } from "@/features/shared/utils/renderHtmlText";
 import { Expand, Shrink } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { useClientSnapshot } from "@/features/shared/hooks/useClientSnapshot";
 
 export const FullScreenAPISection = () => {
   const t = useTranslations();
   const [fullScreen, setFullScreen] = useState(false);
-  const [isSupported, setIsSupported] = useState(true);
+  const isSupported = useClientSnapshot(() => document.fullscreenEnabled, true);
   const [unavailable, setUnavailable] = useState(false);
 
   useEffect(() => {
-    setIsSupported(document.fullscreenEnabled);
-
     const handleChange = () => {
       setFullScreen(!!document.fullscreenElement);
     };

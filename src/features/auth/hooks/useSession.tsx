@@ -181,6 +181,7 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
     const at = localStorage.getItem(LS_ACCESS);
 
     if (!at) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSessionState("refreshing");
       refreshAccessToken()
         .then(({ data }) => applyNewSession(data.accessToken, data.user))
@@ -246,9 +247,7 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
   ]);
 
   return (
-    <SessionContext.Provider value={value}>
-      {children}
-    </SessionContext.Provider>
+    <SessionContext.Provider value={value}>{children}</SessionContext.Provider>
   );
 };
 

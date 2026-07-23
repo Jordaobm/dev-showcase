@@ -4,19 +4,20 @@ import { Button } from "@/features/shared/components/Button";
 import { renderHtmlText } from "@/features/shared/utils/renderHtmlText";
 import { Bell, BellPlus, BellRing, Send } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { usePushSubscription } from "../hooks/usePushSubscription";
+import { useClientSnapshot } from "@/features/shared/hooks/useClientSnapshot";
 
 export const PushNotificationsSection = () => {
   const t = useTranslations();
-  const [permissionNotification, setPermissionNotification] =
-    useState<NotificationPermission>("default");
-
-  useEffect(() => {
-    if (typeof Notification !== "undefined") {
-      setPermissionNotification(Notification.permission);
-    }
-  }, []);
+  const initialPermission = useClientSnapshot<NotificationPermission>(
+    () =>
+      typeof Notification === "undefined" ? "default" : Notification.permission,
+    "default",
+  );
+  const [permissionOverride, setPermissionOverride] =
+    useState<NotificationPermission | null>(null);
+  const permissionNotification = permissionOverride ?? initialPermission;
 
   const {
     subscription,
@@ -31,7 +32,7 @@ export const PushNotificationsSection = () => {
 
   const requestPermission = () => {
     if (typeof Notification === "undefined") return;
-    Notification.requestPermission().then(setPermissionNotification);
+    Notification.requestPermission().then(setPermissionOverride);
   };
 
   return (

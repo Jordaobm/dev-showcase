@@ -1,4 +1,5 @@
 import { test, expect } from "@/testing/playwright-fixtures";
+import { runAxeCheck } from "@/testing/a11y";
 
 const BREAKPOINTS = [375, 430, 768, 1024, 1280];
 
@@ -66,7 +67,7 @@ const fakeSpeechSynthesisScript = () => {
     cancel: () => {},
     speak: (utterance: FakeUtterance) => {
       setTimeout(() => utterance.onstart?.(), 10);
-      setTimeout(() => utterance.onend?.(), 200);
+      setTimeout(() => utterance.onend?.(), 1000);
     },
   };
 
@@ -146,6 +147,11 @@ test.describe("Voice Interface", () => {
 
     const h1Count = await page.locator("h1").count();
     expect(h1Count).toBe(1);
+  });
+
+  test("sem violações de acessibilidade (axe)", async ({ page }) => {
+    await page.goto("/showcase/voice-interface");
+    expect(await runAxeCheck(page)).toEqual([]);
   });
 
   test("sem scroll horizontal nos breakpoints de referência", async ({

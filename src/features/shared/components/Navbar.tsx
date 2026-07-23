@@ -158,7 +158,7 @@ export const Navbar = () => {
                     "0 2px 8px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
                 }}
               />
-              <kbd className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-medium">
+              <kbd className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-600 font-medium">
                 ⌘K
               </kbd>
             </div>

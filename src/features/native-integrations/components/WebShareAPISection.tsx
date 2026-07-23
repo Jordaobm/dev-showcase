@@ -18,6 +18,8 @@ export const WebShareAPISection = () => {
     const text = document.querySelector("title")?.innerHTML ?? "";
     const url = window.location.href;
     const data = { title: "Dev Showcase", text, url };
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setShareData(data);
     setIsSupported(
       typeof navigator.share === "function" && navigator.canShare(data),

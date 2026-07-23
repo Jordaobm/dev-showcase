@@ -27,7 +27,7 @@ const ErrorPage = ({
 
   return (
     <div className="showroom-environment min-h-screen flex items-center justify-center p-6">
-      <motion.div
+      <motion.main
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -74,7 +74,7 @@ const ErrorPage = ({
             {t("shared.error.backHome")}
           </Link>
         </div>
-      </motion.div>
+      </motion.main>
     </div>
   );
 };

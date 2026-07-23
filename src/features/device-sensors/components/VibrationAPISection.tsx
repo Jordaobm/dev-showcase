@@ -5,6 +5,7 @@ import { renderHtmlText } from "@/features/shared/utils/renderHtmlText";
 import { Vibrate, VibrateOff } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
+import { useClientSnapshot } from "@/features/shared/hooks/useClientSnapshot";
 
 const PATTERN: number[] = [200, 100, 200];
 const PATTERN_DURATION = PATTERN.reduce((a, b) => a + b, 0);
@@ -14,7 +15,10 @@ type VibrateStatus = "idle" | "accepted" | "rejected";
 export const VibrationAPISection = () => {
   const t = useTranslations();
   const [isVibrating, setIsVibrating] = useState(false);
-  const [isSupported, setIsSupported] = useState(true);
+  const isSupported = useClientSnapshot(
+    () => typeof navigator.vibrate === "function",
+    true,
+  );
   const [vibrateStatus, setVibrateStatus] = useState<VibrateStatus>("idle");
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -50,8 +54,6 @@ export const VibrationAPISection = () => {
   };
 
   useEffect(() => {
-    setIsSupported(typeof navigator.vibrate === "function");
-
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);

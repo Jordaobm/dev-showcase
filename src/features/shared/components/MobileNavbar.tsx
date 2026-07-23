@@ -97,8 +97,10 @@ export const MobileNavbar = () => {
         >
           <div className="flex items-center justify-between gap-4 min-w-0">
             <Link
+              aria-label="Link Home"
               href="/"
               onClick={handleLogoClick}
+              data-testid="navbar-logo"
               className="flex items-center gap-3 group cursor-pointer min-w-0"
             >
               <motion.div
@@ -200,6 +202,7 @@ export const MobileNavbar = () => {
               </div>
 
               <Link
+                aria-label="Link Showcases"
                 href="/#featured"
                 onClick={(e) => handleSectionNavClick(e, "featured")}
                 className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-700 hover:text-[var(--premium-red)] hover:bg-gray-50 rounded-lg transition-colors cursor-pointer"
@@ -207,6 +210,7 @@ export const MobileNavbar = () => {
                 {t("shared.header.showcases")}
               </Link>
               <Link
+                aria-label="Link Categories"
                 href="/#showcase"
                 onClick={(e) => handleSectionNavClick(e, "showcase")}
                 className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-700 hover:text-[var(--premium-red)] hover:bg-gray-50 rounded-lg transition-colors cursor-pointer"
@@ -214,6 +218,7 @@ export const MobileNavbar = () => {
                 {t("shared.header.categories")}
               </Link>
               <Link
+                aria-label="Link About"
                 href="/sobre"
                 onClick={() => setIsOpen(false)}
                 className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-700 hover:text-[var(--premium-red)] hover:bg-gray-50 rounded-lg transition-colors cursor-pointer"

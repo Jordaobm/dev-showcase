@@ -1,0 +1,22 @@
+services:
+  github-runner:
+    image: myoung34/github-runner:2.336.0-ubuntu-noble
+    restart: unless-stopped
+    environment:
+      REPO_URL: https://github.com/Jordaobm/dev-showcase
+      ACCESS_TOKEN: ${GH_RUNNER_TOKEN}
+      RUNNER_SCOPE: repo
+      RUNNER_NAME: dev-showcase-runner
+      RUNNER_WORKDIR: /tmp/runner/work
+      LABELS: self-hosted,linux,x64,dev-showcase
+      EPHEMERAL: "true"
+      DISABLE_AUTO_UPDATE: "true"
+    volumes:
+      - runner_work:/tmp/runner/work
+      - runner_npm_cache:/root/.npm
+      - runner_playwright_cache:/root/.cache/ms-playwright
+
+volumes:
+  runner_work:
+  runner_npm_cache:
+  runner_playwright_cache:

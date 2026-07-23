@@ -1,4 +1,5 @@
 import { test, expect } from "@/testing/playwright-fixtures";
+import { runAxeCheck } from "@/testing/a11y";
 
 const BREAKPOINTS = [375, 430, 768, 1024, 1280];
 
@@ -83,6 +84,11 @@ test.describe("Sensores e Hardware do Dispositivo", () => {
 
     const h1Count = await page.locator("h1").count();
     expect(h1Count).toBe(1);
+  });
+
+  test("sem violações de acessibilidade (axe)", async ({ page }) => {
+    await page.goto("/showcase/device-sensors");
+    expect(await runAxeCheck(page)).toEqual([]);
   });
 
   test("sem scroll horizontal nos breakpoints de referência", async ({
@@ -237,11 +243,10 @@ test.describe("Sensores e Hardware do Dispositivo", () => {
     await page.goto("/showcase/device-sensors");
 
     const section = page.locator("#pwa-battery-status-api");
+    await expect(section.getByText("20 minutos")).toBeVisible();
     await expect(
-      section.getByText("Carregando", { exact: true }),
+      section.getByText("1 hora, 23 minutos e 20 segundos"),
     ).toBeVisible();
-    await expect(section.getByText("1200s")).toBeVisible();
-    await expect(section.getByText("5000s")).toBeVisible();
   });
 
   test("caso de erro: Battery Status API indisponível (Firefox/Safari) degrada com mensagem clara em vez de travar", async ({

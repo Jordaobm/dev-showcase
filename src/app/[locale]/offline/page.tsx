@@ -4,9 +4,9 @@ import { StatusApplication } from "@/features/pwa-core/components/StatusApplicat
 
 const OfflinePage = () => {
   return (
-    <div className="p-4 w-full max-w-2xl m-auto">
-      <StatusApplication />
-    </div>
+    <main className="p-4 w-full max-w-2xl m-auto">
+      <StatusApplication headingLevel="h1" />
+    </main>
   );
 };
 

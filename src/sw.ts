@@ -5,6 +5,7 @@ import {
   NetworkFirst,
   CacheFirst,
   StaleWhileRevalidate,
+  type PrecacheEntry,
 } from "serwist";
 import {
   readNotes,
@@ -21,7 +22,7 @@ declare const self: ServiceWorkerGlobalScope;
 
 declare global {
   interface WorkerGlobalScope {
-    __SW_MANIFEST: any;
+    __SW_MANIFEST: (PrecacheEntry | string)[];
   }
 }
 
@@ -137,7 +138,7 @@ self.addEventListener("activate", (event) => {
           if (response.ok) {
             await cache.put(url, response.clone());
           }
-        } catch (error) {
+        } catch {
           console.log("Erro ao cachear:", url);
         }
       }

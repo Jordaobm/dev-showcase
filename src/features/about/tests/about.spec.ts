@@ -1,4 +1,5 @@
-import { test, expect } from "@/testing/playwright-fixtures";
+import { test, expect, openMobileMenu } from "@/testing/playwright-fixtures";
+import { runAxeCheck } from "@/testing/a11y";
 
 const BREAKPOINTS = [375, 430, 768, 1024, 1280];
 
@@ -61,6 +62,11 @@ test.describe("Sobre", () => {
 
     const h1Count = await page.locator("h1").count();
     expect(h1Count).toBe(1);
+  });
+
+  test("sem violações de acessibilidade (axe)", async ({ page }) => {
+    await page.goto("/sobre");
+    expect(await runAxeCheck(page)).toEqual([]);
   });
 
   test("sem scroll horizontal nos breakpoints de referência", async ({
@@ -182,8 +188,10 @@ test.describe("Sobre", () => {
 
   test("busca do navbar (embutido na página) reporta estado vazio para termo sem correspondência, sem travar a tela", async ({
     page,
+    isMobile,
   }) => {
     await page.goto("/sobre");
+    if (isMobile) await openMobileMenu(page);
 
     const searchInput = page.getByPlaceholder(
       "Buscar por nome ou tecnologia...",

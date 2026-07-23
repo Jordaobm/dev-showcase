@@ -2,10 +2,11 @@
 
 import { Button } from "@/features/shared/components/Button";
 import { Info, Mic, MicOff, Save, Play, Pause } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { renderHtmlText } from "@/features/shared/utils/renderHtmlText";
 import { useSeekablePlayer } from "../hooks/useSeekablePlayer";
+import { useClientSnapshot } from "@/features/shared/hooks/useClientSnapshot";
 
 export const MediaRecorderAudioAPISection = () => {
   const t = useTranslations();
@@ -30,11 +31,10 @@ export const MediaRecorderAudioAPISection = () => {
   const chunks = useRef<Blob[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  const [isAudioSupported, setIsAudioSupported] = useState(true);
-
-  useEffect(() => {
-    setIsAudioSupported(!!navigator.mediaDevices?.getUserMedia);
-  }, []);
+  const isAudioSupported = useClientSnapshot(
+    () => !!navigator.mediaDevices?.getUserMedia,
+    true,
+  );
 
   const record = async () => {
     if (!isAudioSupported) return;
@@ -189,10 +189,6 @@ export const MediaRecorderAudioAPISection = () => {
                   "0 4px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(220, 38, 38, 0.05)",
               }}
             >
-              {/* eslint-disable-next-line jsx-a11y/media-has-caption -- reproduz a
-                  própria gravação de voz do usuário feita agora via MediaRecorder;
-                  não há fonte de legenda possível (nenhum pipeline de
-                  speech-to-text neste projeto) */}
               <audio
                 ref={audioRef}
                 src={audioURL}

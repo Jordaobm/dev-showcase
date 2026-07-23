@@ -1,4 +1,5 @@
 import { test, expect } from "@/testing/playwright-fixtures";
+import { runAxeCheck } from "@/testing/a11y";
 
 test.describe("Error boundary", () => {
   test("error.tsx captura o throw da rota e o botão de retry funciona", async ({
@@ -25,6 +26,14 @@ test.describe("Error boundary", () => {
     await expect(page).toHaveURL("/");
   });
 
+  test("error.tsx sem violações de acessibilidade (axe)", async ({ page }) => {
+    await page.goto("/diagnostics/error-boundary");
+    await expect(
+      page.getByRole("heading", { name: "Ops! Algo deu errado" }),
+    ).toBeVisible();
+    expect(await runAxeCheck(page)).toEqual([]);
+  });
+
   test("global-error.tsx captura o erro que escapa do error.tsx e o botão de retry funciona", async ({
     page,
   }) => {
@@ -47,5 +56,15 @@ test.describe("Error boundary", () => {
 
     await page.getByRole("link", { name: "Voltar para o início" }).click();
     await expect(page).toHaveURL("/");
+  });
+
+  test("global-error.tsx sem violações de acessibilidade (axe)", async ({
+    page,
+  }) => {
+    await page.goto("/diagnostics/global-error-boundary");
+    await expect(
+      page.getByRole("heading", { name: "Ops! Algo deu errado" }),
+    ).toBeVisible();
+    expect(await runAxeCheck(page)).toEqual([]);
   });
 });

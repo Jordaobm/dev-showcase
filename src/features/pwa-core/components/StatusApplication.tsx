@@ -7,9 +7,17 @@ import { useOnlineStatus } from "../hooks/useOnlineStatus";
 import { formatTime } from "@/features/shared/utils/formatDate";
 import { Button } from "@/features/shared/components/Button";
 
-export const StatusApplication = () => {
+interface StatusApplicationProps {
+  headingLevel?: "h1" | "h4";
+}
+
+export const StatusApplication = ({
+  headingLevel = "h4",
+}: Readonly<StatusApplicationProps>) => {
   const t = useTranslations();
   const { isOnline, timeOffline, timeOnline } = useOnlineStatus();
+  const Heading = headingLevel;
+  const SubHeading = headingLevel === "h1" ? "h2" : "h3";
 
   return (
     <div className="mt-16">
@@ -57,7 +65,7 @@ export const StatusApplication = () => {
       </motion.div>
 
       <div className="text-center space-y-3 mb-8">
-        <h4
+        <Heading
           className={
             isOnline
               ? "text-3xl font-bold bg-gradient-to-r from-green-500 to-green-400 bg-clip-text text-transparent"
@@ -67,7 +75,7 @@ export const StatusApplication = () => {
           {isOnline
             ? t("pwaCore.statusAppOnlineHeading")
             : t("pwaCore.statusAppOfflineHeading")}
-        </h4>
+        </Heading>
         <p className="text-gray-600">
           {isOnline
             ? t("pwaCore.statusAppOnlineMessage")
@@ -143,10 +151,10 @@ export const StatusApplication = () => {
           boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)",
         }}
       >
-        <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <SubHeading className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
           <Zap className="w-5 h-5 text-amber-500" />
           {t("pwaCore.statusAppWhatYouCanDo")}
-        </h3>
+        </SubHeading>
 
         <ul className="space-y-3">
           <li className="flex gap-3 items-start">

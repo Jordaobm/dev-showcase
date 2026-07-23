@@ -12,6 +12,7 @@ import { useTranslations } from "next-intl";
 import { renderHtmlText } from "@/features/shared/utils/renderHtmlText";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
+import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 
 const TOON_STEPS = 4;
 
@@ -471,7 +472,7 @@ const CameraController = ({
 }: {
   targetRef: React.RefObject<THREE.Group> | null;
   targetRadius: number;
-  controls: React.RefObject<any>;
+  controls: React.RefObject<OrbitControlsImpl | null>;
 }) => {
   const approachRef = useRef<CameraApproach | null>(null);
   const pendingSetupRef = useRef(false);
@@ -566,7 +567,7 @@ const SCENE_ELEMENT_KEYS = [
 
 export const TechStackSolarSystem = () => {
   const t = useTranslations();
-  const controlsRef = useRef<any>(null);
+  const controlsRef = useRef<OrbitControlsImpl | null>(null);
   const [focused, setFocused] = useState<{
     ref: React.RefObject<THREE.Group>;
     radius: number;

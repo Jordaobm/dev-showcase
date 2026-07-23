@@ -6,13 +6,6 @@ const BREAKPOINTS = [375, 430, 768, 1024, 1280];
 
 const mockFakeMediaDevices = async (page: Page) => {
   await page.addInitScript(() => {
-    if (!navigator.mediaDevices) {
-      Object.defineProperty(navigator, "mediaDevices", {
-        configurable: true,
-        value: {},
-      });
-    }
-
     const makeFakeVideoStream = () => {
       const canvas = document.createElement("canvas");
       canvas.width = 320;
@@ -36,53 +29,45 @@ const mockFakeMediaDevices = async (page: Page) => {
       return dest.stream;
     };
 
-    Object.defineProperty(navigator.mediaDevices, "getUserMedia", {
+    // Redefine navigator.mediaDevices as a fixed own object instead of mutating
+    // whatever instance the engine returns: some WebKit builds don't hand back a
+    // stable singleton from the native accessor, so patching individual methods
+    // on it can silently fail to affect the object the app later reads.
+    Object.defineProperty(navigator, "mediaDevices", {
       configurable: true,
-      value: async (constraints?: MediaStreamConstraints) =>
-        constraints?.audio ? makeFakeAudioStream() : makeFakeVideoStream(),
-    });
-
-    Object.defineProperty(navigator.mediaDevices, "getDisplayMedia", {
-      configurable: true,
-      value: async () => makeFakeVideoStream(),
+      value: {
+        getUserMedia: async (constraints?: MediaStreamConstraints) =>
+          constraints?.audio ? makeFakeAudioStream() : makeFakeVideoStream(),
+        getDisplayMedia: async () => makeFakeVideoStream(),
+      },
     });
   });
 };
 
 const mockRejectingGetUserMedia = async (page: Page) => {
   await page.addInitScript(() => {
-    if (!navigator.mediaDevices) {
-      Object.defineProperty(navigator, "mediaDevices", {
-        configurable: true,
-        value: {},
-      });
-    }
-
-    Object.defineProperty(navigator.mediaDevices, "getUserMedia", {
+    Object.defineProperty(navigator, "mediaDevices", {
       configurable: true,
-      value: async () =>
-        Promise.reject(
-          new DOMException("Permission denied", "NotAllowedError"),
-        ),
+      value: {
+        getUserMedia: async () =>
+          Promise.reject(
+            new DOMException("Permission denied", "NotAllowedError"),
+          ),
+      },
     });
   });
 };
 
 const mockRejectingGetDisplayMedia = async (page: Page) => {
   await page.addInitScript(() => {
-    if (!navigator.mediaDevices) {
-      Object.defineProperty(navigator, "mediaDevices", {
-        configurable: true,
-        value: {},
-      });
-    }
-
-    Object.defineProperty(navigator.mediaDevices, "getDisplayMedia", {
+    Object.defineProperty(navigator, "mediaDevices", {
       configurable: true,
-      value: async () =>
-        Promise.reject(
-          new DOMException("Permission denied", "NotAllowedError"),
-        ),
+      value: {
+        getDisplayMedia: async () =>
+          Promise.reject(
+            new DOMException("Permission denied", "NotAllowedError"),
+          ),
+      },
     });
   });
 };
@@ -309,21 +294,12 @@ test.describe("Media Capture Studio — Camera API", () => {
     page,
   }) => {
     await page.addInitScript(() => {
-      if (!navigator.mediaDevices) {
-        Object.defineProperty(navigator, "mediaDevices", {
-          configurable: true,
-          value: {},
-        });
-      }
-
-      Object.defineProperty(navigator.mediaDevices, "getUserMedia", {
+      Object.defineProperty(navigator, "mediaDevices", {
         configurable: true,
-        value: async () => new MediaStream(),
-      });
-
-      Object.defineProperty(navigator.mediaDevices, "getDisplayMedia", {
-        configurable: true,
-        value: undefined,
+        value: {
+          getUserMedia: async () => new MediaStream(),
+          getDisplayMedia: undefined,
+        },
       });
     });
 
@@ -338,13 +314,7 @@ test.describe("Media Capture Studio — Camera API", () => {
 
   test("caso de erro: permissão de câmera negada degrada com mensagem clara em vez de travar", async ({
     page,
-    browserName,
   }) => {
-    test.skip(
-      browserName === "webkit",
-      "WebKit deste ambiente não aplica addInitScript a navigator.mediaDevices.getUserMedia (microsoft/playwright#5444)",
-    );
-
     const consoleErrors: string[] = [];
     page.on("console", (msg) => {
       if (msg.type() === "error") consoleErrors.push(msg.text());
@@ -418,13 +388,7 @@ test.describe("Media Capture Studio — MediaRecorder (tela)", () => {
 
   test("caso de erro: permissão de compartilhamento de tela negada degrada com mensagem clara", async ({
     page,
-    browserName,
   }) => {
-    test.skip(
-      browserName === "webkit",
-      "WebKit deste ambiente não aplica addInitScript a navigator.mediaDevices.getDisplayMedia (microsoft/playwright#5444)",
-    );
-
     const consoleErrors: string[] = [];
     page.on("console", (msg) => {
       if (msg.type() === "error") consoleErrors.push(msg.text());
@@ -497,13 +461,7 @@ test.describe("Media Capture Studio — MediaRecorder (áudio)", () => {
 
   test("indisponível no navegador: botão desabilita e mostra mensagem clara em vez de travar", async ({
     page,
-    browserName,
   }) => {
-    test.skip(
-      browserName === "webkit",
-      "WebKit deste ambiente não aplica addInitScript a navigator.mediaDevices.getUserMedia (microsoft/playwright#5444)",
-    );
-
     const consoleErrors: string[] = [];
     page.on("console", (msg) => {
       if (msg.type() === "error") consoleErrors.push(msg.text());
@@ -511,16 +469,9 @@ test.describe("Media Capture Studio — MediaRecorder (áudio)", () => {
     page.on("pageerror", (err) => consoleErrors.push(err.message));
 
     await page.addInitScript(() => {
-      if (!navigator.mediaDevices) {
-        Object.defineProperty(navigator, "mediaDevices", {
-          configurable: true,
-          value: {},
-        });
-      }
-
-      Object.defineProperty(navigator.mediaDevices, "getUserMedia", {
+      Object.defineProperty(navigator, "mediaDevices", {
         configurable: true,
-        value: undefined,
+        value: { getUserMedia: undefined },
       });
     });
 

@@ -1,13 +1,102 @@
 {
   "name": "Dashboards",
-  "description": "Dashboards are the heart of any good CRM, SaaS, or management application. In this demo you'll find different types of visualizations for each persona in your company.",
-  "longDescription": "A good dashboard needs to be simple enough that a manager can find the information they need within a few seconds. Thirty charts fighting for attention almost always communicate less than one well-chosen chart or a simple table with the numbers that matter. Data needs hierarchy: sections organized by priority, from the high-level summary down to the detail. The visualizations run on Recharts and D3.js, dense tabular data goes through TanStack Table, React Query keeps everything up to date without reloading the page, and Framer Motion animates transitions to guide the eye — never just to decorate. Good dashboard UX comes down to one thing: how many seconds does it take someone to understand what they're looking at?",
-  "tags": "CRM, SaaS, Dashboard, Performance, Recharts, D3.js, React Query, TanStack Table, Framer Motion",
-  "architecture": "Rendering interactive visualizations with Recharts and D3.js, asynchronous data managed via React Query (cache and polling), and data tables with TanStack Table",
+  "description": "Observability dashboard inspired by tools like Grafana, simulating the real-time health of a distributed application through metrics, events, interactive charts, and incident scenarios.",
+  "shortDescription": "Observability dashboard inspired by tools like Grafana, simulating the real-time health of a distributed application through metrics, events, interactive charts, and incident scenarios.",
+  "longDescription": "This demo represents a monitoring hub for a production application, where the user tracks infrastructure, performance, and availability metrics in real time. Instead of just displaying static charts, the dashboard tells a story: CPU, memory, request rate, latency, errors, service availability, and application events evolve dynamically as different scenarios are simulated. The user can trigger simulations like a traffic spike, a slow database, a memory leak, a service failure, a new deployment, or an automatic recovery, and watch how every metric relates to the others. The goal isn't to reproduce Grafana, but to demonstrate the ability to build complex, highly interactive, experience-driven interfaces using synchronized data, subtle animation, and a scalable architecture.",
+  "tags": "Observability, Monitoring, Dashboard, Grafana, DevOps, SRE, Performance, Recharts, D3.js, React Query, TanStack Table, Framer Motion",
+  "architecture": "Simulation engine implemented as a pure function of elapsed time since the scenario started (no mutable state kept on the server), the client holding only the active scenario and its start timestamp, an API route recalculating every instant's metrics deterministically on each React Query fetch, charts synchronized with Recharts and D3.js, and an endpoint table built with TanStack Table",
   "technologies": "Recharts, D3.js, React Query, TanStack Table, Framer Motion",
-  "concepts": "Data visualization for decision-making, caching and polling of asynchronous data, UI animation, high-performance data tables",
+  "concepts": "Observability, Application monitoring, Real-time metrics visualization, Polling, Data caching, Component synchronization, Operational dashboards, Event-driven architecture, UX for monitoring, Functional animation, Large-scale data visualization, Stateless simulation as a pure function of elapsed time, Shareable state via URL",
 
   "summary": "Summary",
   "methodsTitle": "Methods used",
-  "howToUseLabel": "How to use"
+  "howToUseLabel": "How to use",
+
+  "uiuxTitle": "UI/UX",
+  "uiuxIntro1": "Before jumping into the demo, it's worth explaining the reasoning behind this panel. A dashboard needs to be clear and efficient at getting information across to whoever is reading it. Numbers need context about what they represent, and they need to help the person looking at them make a decision when one is needed.",
+  "uiuxIntro2": "In practice, I've seen the opposite pattern play out on nearly every project: the request is always for more charts, more filters, more metrics on screen at once. The result is almost always a screen nobody can read in under a minute — when the actual goal was the reverse: telling whether the operation is healthy within a few seconds.",
+  "uiuxBusinessTitle": "Business dashboards",
+  "uiuxBusinessDesc": "CRMs, SaaS tools, ERPs, and admin panels are examples of this type. They track business indicators — sales, churn, conversion, average order value — and are typically used by managers, sales teams, and product teams to understand how the operation is performing over time.",
+  "uiuxSystemTitle": "System dashboards",
+  "uiuxSystemDesc": "Grafana, Datadog, and SigNoz are examples of this type. They track the technical health of a production application — CPU, memory, latency, error rate, uptime — and are typically used by engineering, DevOps, and SRE teams to spot and resolve issues quickly.",
+  "uiuxIntro3": "This project simulates the second kind: a quick read on the health of a production application. The principles below — summarized from an article on dashboard design — were the criteria used to structure this demo.",
+  "uiuxPrinciplesTitle": "What shaped this panel",
+  "uiuxPrinciple1": "<b>What a metric is.</b> A metric is a number that describes the state of something at a specific moment — CPU, latency, error rate, requests per second. That's the kind of data this panel displays and keeps updating.",
+  "uiuxPrinciple2": "<b>Visual hierarchy guides the eye.</b> Eye-tracking research shows people scan the top of a screen first. That's why the most important KPIs are large and placed near the top of the panel.",
+  "uiuxPrinciple3": "<b>Context helps make sense of a number.</b> A comparison with the previous period, a target, and a trend (up, flat, or down) help someone quickly understand what a value means.",
+  "uiuxPrinciple4": "<b>The right chart type makes numbers easier to read.</b> A line for trends over time, a bar for comparing categories, a single number for current status — the choice of chart matters as much as the data itself.",
+  "uiuxPrinciple5": "<b>Empty, loading, and error states are part of the design too.</b> A screen with no data, a loading state, or a failed API call are common moments in real use, and get the same visual care as the state with full data.",
+  "uiuxPrinciple6": "<b>Accessibility benefits everyone.</b> Proper contrast, keyboard navigation, and text labels alongside color help anyone use the panel, including people with low vision or color blindness.",
+  "uiuxCredit": "Principles summarized and adapted from the article <b>12 Dashboard Design Principles for a Better User Experience</b>, by Khanh Linh Le, published by <link>UX Pilot</link>.",
+
+  "dashboardTitle": "Dashboard",
+  "dashboardLoading": "Loading metrics...",
+  "dashboardError": "Couldn't load the metrics right now. Please try again shortly.",
+
+  "live": "LIVE",
+  "timeRangeLabel": "Time range shown",
+
+  "timeRange": {
+    "1m": "1 min",
+    "5m": "5 min",
+    "10m": "10 min",
+    "15m": "15 min",
+    "30m": "30 min",
+    "1h": "1 hour"
+  },
+
+  "status": {
+    "normal": "Normal",
+    "warning": "Warning",
+    "critical": "Critical"
+  },
+
+  "trend": {
+    "up": "Rising",
+    "down": "Falling",
+    "stable": "Stable"
+  },
+
+  "kpiSectionTitle": "Real-time indicators",
+  "chartsSectionTitle": "Metrics history",
+
+  "metrics": {
+    "cpu": "CPU usage",
+    "mem": "Memory usage",
+    "lat": "Latency",
+    "success": "Success rate",
+    "successSubtitle": "of requests",
+    "error": "Error rate",
+    "errorSubtitle": "of requests",
+    "reqsPerMinute": "Requests / minute",
+    "reqsPerMinuteSubtitle": "current throughput"
+  },
+
+  "scenario": {
+    "title": "Incident simulation",
+    "active": "Simulation active",
+    "idle": "System normal",
+    "activate": "Activate simulation",
+    "deactivate": "Click to deactivate",
+    "hint": "Pick a scenario to simulate on the server. Only one at a time — CPU overload already changes the generated metrics; memory and requests don't have an effect yet.",
+    "cpu": {
+      "label": "CPU overload",
+      "description": "Simulates CPU usage near 100%, increasing latency and errors."
+    },
+    "memory": {
+      "label": "Memory overload",
+      "description": "Simulates critical RAM consumption causing service degradation."
+    },
+    "requests": {
+      "label": "Request overload",
+      "description": "Simulates a traffic spike with a high volume of requests per minute."
+    }
+  },
+
+  "availabilityTitle": "Availability timeline",
+  "availability": {
+    "good": "Operational",
+    "degraded": "Degraded",
+    "critical": "Critical"
+  }
 }

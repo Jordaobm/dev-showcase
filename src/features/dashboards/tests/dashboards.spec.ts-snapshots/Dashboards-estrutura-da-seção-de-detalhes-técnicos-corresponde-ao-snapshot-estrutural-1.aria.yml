@@ -1,0 +1,23 @@
+- heading "Tecnologias" [level=2]
+- list:
+  - listitem: Shadcn
+  - listitem: Recharts
+  - listitem: React Query
+- heading "Arquitetura" [level=2]
+- list:
+  - listitem: Simulação implementada como função pura do tempo decorrido
+  - listitem: stateless
+  - listitem: API recalculando métricas com base no timestamp
+  - listitem: gráficos sincronizados com Recharts
+- heading "Conceitos" [level=2]
+- list:
+  - listitem: Observabilidade
+  - listitem: Monitoramento de aplicações
+  - listitem: Visualização de métricas em tempo real
+  - listitem: Polling
+  - listitem: Cache de dados
+  - listitem: Sincronização entre componentes
+  - listitem: Dashboards operacionais
+  - listitem: UX para monitoramento
+  - listitem: Animações funcionais
+  - listitem: Simulação stateless

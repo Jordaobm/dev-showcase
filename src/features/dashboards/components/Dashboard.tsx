@@ -76,6 +76,7 @@ export const Dashboard = () => {
     queryKey: ["dashboards"],
     queryFn: () => getData(timeRange, scenarioData),
     refetchInterval: DATA_INTERVAL_MS,
+    retry: false,
   });
 
   const history = useMemo<IMetric[]>(() => data?.data ?? [], [data]);
@@ -285,7 +286,7 @@ export const Dashboard = () => {
                     data={history}
                     dataKey="success"
                     unit="%"
-                    domain={[85, 100]}
+                    domain={[0, 100]}
                     formatValue={(v) => v.toFixed(2)}
                     accentClassName={METRIC_ACCENTS.success}
                   />

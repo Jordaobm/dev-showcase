@@ -35,18 +35,33 @@ const randomValue = (
   return min + random * (max - min);
 };
 
-const progressiveGenerate = (
+const lerp = (a: number, b: number, t: number): number => a + t * (b - a);
+
+const rampProgress = (tick: number, ticks: number) => {
+  if (tick >= ticks - 1) return { p0: 1, p1: 1 };
+
+  const OVERLAP = 0.15;
+  const progress = tick / (ticks - 1);
+
+  return {
+    p0: Math.max(0, progress - OVERLAP),
+    p1: Math.min(1, progress + OVERLAP),
+  };
+};
+
+const rampValue = (
   interval: number,
   timestamp: number,
-  events?: ScenarioEvent[],
-) => {
+  events: ScenarioEvent[] | undefined,
+  idleMin: number,
+  idleMax: number,
+  peakMin: number,
+  peakMax: number,
+): number => {
   const TICK = 4;
-  const STEP = 100 / TICK;
-  const OVERLAP = STEP * 0.8;
-  const NOISE = 6;
 
-  let min = 1;
-  let max = 10;
+  let p0 = 0;
+  let p1 = 0;
 
   const event = events?.filter((e) => e.start <= timestamp).at(-1);
   const start = event?.start;
@@ -55,37 +70,49 @@ const progressiveGenerate = (
   if (start && timestamp >= start) {
     const tick = Math.min(Math.floor((timestamp - start) / interval), TICK - 1);
 
-    min = Math.max(0, tick * STEP - OVERLAP);
-    max = Math.min(100, (tick + 1) * STEP + OVERLAP);
+    ({ p0, p1 } = rampProgress(tick, TICK));
   }
 
   if (end && timestamp >= end) {
-    const descendElapsed = timestamp - end;
-    const descendTicks = Math.floor(descendElapsed / interval);
+    const descendTicks = Math.floor((timestamp - end) / interval);
 
     if (descendTicks < TICK) {
       const descendingTick = TICK - 1 - descendTicks;
 
-      min = Math.max(0, descendingTick * STEP - OVERLAP);
-      max = Math.min(100, (descendingTick + 1) * STEP + OVERLAP);
+      ({ p0, p1 } = rampProgress(descendingTick, TICK));
     } else {
-      min = 1;
-      max = 10;
+      p0 = 0;
+      p1 = 0;
     }
   }
 
+  const min = lerp(idleMin, peakMin, p0);
+  const max = lerp(idleMax, peakMax, p1);
+
   const value = randomValue(timestamp, interval, min, max);
+  const noiseAmplitude = Math.abs(max - min) * 0.15;
+  const noise = randomValue(
+    timestamp + 9999,
+    interval,
+    -noiseAmplitude,
+    noiseAmplitude,
+  );
 
-  const noise = randomValue(timestamp + 9999, interval, -NOISE, NOISE);
-
-  return Math.max(0, Math.min(100, value + noise));
+  return value + noise;
 };
 
-const scaleIntensity = (
-  intensity: number,
-  idle: number,
-  peak: number,
-): number => idle + (intensity / 100) * (peak - idle);
+const worstOf = (idleMid: number, candidates: number[]): number =>
+  candidates.reduce(
+    (worst, candidate) =>
+      Math.abs(candidate - idleMid) > Math.abs(worst - idleMid)
+        ? candidate
+        : worst,
+    idleMid,
+  );
+
+const clampPercent = (value: number): number =>
+  Math.max(0, Math.min(100, value));
+const clampMin0 = (value: number): number => Math.max(0, value);
 
 interface ScenarioData {
   selected?: string;
@@ -104,50 +131,60 @@ const generateMetrics = (
   const length = elapsedTime / interval;
   const timeStart = Date.now() - elapsedTime;
 
+  const cpuEvents = scenarioData?.data?.cpu?.events;
+  const memEvents = scenarioData?.data?.memory?.events;
+  const reqEvents = scenarioData?.data?.requests?.events;
+
   return Array.from({ length }, (_, index) => {
     const timestamp = timeStart + interval * (index + 1);
 
-    const cpuIntensity = progressiveGenerate(
-      interval,
-      timestamp,
-      scenarioData?.data?.cpu?.events,
-    );
-    const memIntensity = progressiveGenerate(
-      interval,
-      timestamp,
-      scenarioData?.data?.memory?.events,
-    );
-    const reqIntensity = progressiveGenerate(
-      interval,
-      timestamp,
-      scenarioData?.data?.requests?.events,
+    const cpu = clampPercent(
+      worstOf(5, [
+        rampValue(interval, timestamp, cpuEvents, 0, 10, 80, 100),
+        rampValue(interval, timestamp, reqEvents, 0, 10, 90, 100),
+      ]),
     );
 
-    const cpu = cpuIntensity;
-    const mem = scaleIntensity(memIntensity, 32, 96);
-    const reqsPerMinute = scaleIntensity(reqIntensity, 110, 560);
-
-    const latStress = Math.max(
-      cpuIntensity * 0.9,
-      memIntensity * 0.6,
-      reqIntensity * 0.5,
+    const mem = clampPercent(
+      worstOf(30, [
+        rampValue(interval, timestamp, memEvents, 20, 40, 90, 100),
+        rampValue(interval, timestamp, reqEvents, 20, 40, 80, 100),
+      ]),
     );
-    const lat = scaleIntensity(latStress, 40, 940);
 
-    const errorStress = Math.max(
-      cpuIntensity * 0.8,
-      memIntensity * 0.5,
-      reqIntensity * 0.3,
+    const reqsPerMinute = clampMin0(
+      worstOf(150, [
+        rampValue(interval, timestamp, reqEvents, 100, 200, 500, 1000), // pico de tráfego: sobe
+        rampValue(interval, timestamp, cpuEvents, 100, 200, 10, 20), // CPU saturada: throughput desaba
+        rampValue(interval, timestamp, memEvents, 100, 200, 0, 5), // memória saturada: desaba mais ainda
+      ]),
     );
-    const error = scaleIntensity(errorStress, 0.2, 12.2);
-    const success = Math.max(0, 100 - error);
 
-    const availabilityStress = Math.max(
-      cpuIntensity * 0.25,
-      memIntensity * 0.9,
-      reqIntensity * 0.15,
+    const lat = clampMin0(
+      worstOf(75, [
+        rampValue(interval, timestamp, cpuEvents, 60, 90, 700, 999),
+        rampValue(interval, timestamp, memEvents, 60, 90, 700, 999),
+        rampValue(interval, timestamp, reqEvents, 60, 90, 700, 999),
+      ]),
     );
-    const availability = scaleIntensity(availabilityStress, 99.98, 94.98);
+
+    const error = clampPercent(
+      worstOf(1, [
+        rampValue(interval, timestamp, cpuEvents, 0, 2, 40, 100),
+        rampValue(interval, timestamp, memEvents, 0, 2, 90, 100),
+        rampValue(interval, timestamp, reqEvents, 0, 2, 90, 100),
+      ]),
+    );
+
+    const success = clampPercent(100 - error);
+
+    const availability = clampPercent(
+      worstOf(99.95, [
+        rampValue(interval, timestamp, cpuEvents, 99.9, 100, 97, 99), // CPU sozinha degrada, mas raramente derruba
+        rampValue(interval, timestamp, memEvents, 99.9, 100, 90, 95), // memória é o cenário mais próximo de outage real
+        rampValue(interval, timestamp, reqEvents, 99.9, 100, 95, 98),
+      ]),
+    );
 
     return {
       cpu,

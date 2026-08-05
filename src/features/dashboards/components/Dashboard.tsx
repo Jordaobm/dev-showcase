@@ -276,7 +276,7 @@ export const Dashboard = () => {
                     data={history}
                     dataKey="lat"
                     unit="ms"
-                    domain={[0, 100]}
+                    domain={[0, "auto"]}
                     formatValue={(v) => String(Math.round(v))}
                     accentClassName={METRIC_ACCENTS.lat}
                   />

@@ -78,7 +78,7 @@
     "idle": "System normal",
     "activate": "Activate simulation",
     "deactivate": "Click to deactivate",
-    "hint": "Pick a scenario to simulate on the server. Only one at a time — CPU overload already changes the generated metrics; memory and requests don't have an effect yet.",
+    "hint": "Pick a scenario to simulate on the server. Only one at a time — each one affects the generated metrics differently.",
     "cpu": {
       "label": "CPU overload",
       "description": "Simulates CPU usage near 100%, increasing latency and errors."

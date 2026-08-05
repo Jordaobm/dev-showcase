@@ -60,12 +60,18 @@ const progressiveGenerate = (
   }
 
   if (end && timestamp >= end) {
-    const tick = Math.min(Math.floor((timestamp - end) / interval), TICK - 1);
+    const descendElapsed = timestamp - end;
+    const descendTicks = Math.floor(descendElapsed / interval);
 
-    const descendingTick = TICK - 1 - tick;
+    if (descendTicks < TICK) {
+      const descendingTick = TICK - 1 - descendTicks;
 
-    min = Math.max(0, descendingTick * STEP - OVERLAP);
-    max = Math.min(100, (descendingTick + 1) * STEP + OVERLAP);
+      min = Math.max(0, descendingTick * STEP - OVERLAP);
+      max = Math.min(100, (descendingTick + 1) * STEP + OVERLAP);
+    } else {
+      min = 1;
+      max = 10;
+    }
   }
 
   const value = randomValue(timestamp, interval, min, max);
@@ -75,11 +81,17 @@ const progressiveGenerate = (
   return Math.max(0, Math.min(100, value + noise));
 };
 
+const scaleIntensity = (
+  intensity: number,
+  idle: number,
+  peak: number,
+): number => idle + (intensity / 100) * (peak - idle);
+
 interface ScenarioData {
   selected?: string;
   data?: {
     cpu?: { events?: ScenarioEvent[] };
-    mem?: { events?: ScenarioEvent[] };
+    memory?: { events?: ScenarioEvent[] };
     requests?: { events?: ScenarioEvent[] };
   };
 }
@@ -95,18 +107,56 @@ const generateMetrics = (
   return Array.from({ length }, (_, index) => {
     const timestamp = timeStart + interval * (index + 1);
 
+    const cpuIntensity = progressiveGenerate(
+      interval,
+      timestamp,
+      scenarioData?.data?.cpu?.events,
+    );
+    const memIntensity = progressiveGenerate(
+      interval,
+      timestamp,
+      scenarioData?.data?.memory?.events,
+    );
+    const reqIntensity = progressiveGenerate(
+      interval,
+      timestamp,
+      scenarioData?.data?.requests?.events,
+    );
+
+    const cpu = cpuIntensity;
+    const mem = scaleIntensity(memIntensity, 32, 96);
+    const reqsPerMinute = scaleIntensity(reqIntensity, 110, 560);
+
+    const latStress = Math.max(
+      cpuIntensity * 0.9,
+      memIntensity * 0.6,
+      reqIntensity * 0.5,
+    );
+    const lat = scaleIntensity(latStress, 40, 940);
+
+    const errorStress = Math.max(
+      cpuIntensity * 0.8,
+      memIntensity * 0.5,
+      reqIntensity * 0.3,
+    );
+    const error = scaleIntensity(errorStress, 0.2, 12.2);
+    const success = Math.max(0, 100 - error);
+
+    const availabilityStress = Math.max(
+      cpuIntensity * 0.25,
+      memIntensity * 0.9,
+      reqIntensity * 0.15,
+    );
+    const availability = scaleIntensity(availabilityStress, 99.98, 94.98);
+
     return {
-      cpu: progressiveGenerate(
-        interval,
-        timestamp,
-        scenarioData?.data?.cpu?.events,
-      ),
-      mem: 0,
-      lat: 0,
-      success: 0,
-      error: 0,
-      reqsPerMinute: 0,
-      availability: 0,
+      cpu,
+      mem,
+      lat,
+      success,
+      error,
+      reqsPerMinute,
+      availability,
       timestamp,
       date: new Date(timestamp).toISOString(),
     };

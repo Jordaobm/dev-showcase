@@ -78,7 +78,7 @@
     "idle": "Sistema normal",
     "activate": "Activar simulación",
     "deactivate": "Clic para desactivar",
-    "hint": "Elige un escenario para simular en el servidor. Solo uno a la vez — la sobrecarga de CPU ya altera las métricas generadas; memoria y solicitudes todavía no tienen efecto.",
+    "hint": "Elige un escenario para simular en el servidor. Solo uno a la vez — cada uno afecta las métricas generadas de forma diferente.",
     "cpu": {
       "label": "Sobrecarga de CPU",
       "description": "Simula uso de CPU cercano al 100%, aumentando la latencia y los errores."

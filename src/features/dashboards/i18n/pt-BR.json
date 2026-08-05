@@ -2,11 +2,11 @@
   "name": "Dashboards",
   "description": "Dashboard de observabilidade inspirado em ferramentas como Grafana, simulando em tempo real a saúde de uma aplicação distribuída através de métricas, eventos, gráficos interativos e cenários de incidentes.",
   "shortDescription": "Dashboard de observabilidade inspirado em ferramentas como Grafana, simulando em tempo real a saúde de uma aplicação distribuída através de métricas, eventos, gráficos interativos e cenários de incidentes.",
-  "longDescription": "Esta demo representa um centro de monitoramento de uma aplicação em produção, onde o usuário acompanha métricas de infraestrutura, desempenho e disponibilidade em tempo real. Em vez de apenas exibir gráficos estáticos, o dashboard conta uma história: CPU, memória, taxa de requisições, latência, erros, disponibilidade dos serviços e eventos da aplicação evoluem dinamicamente conforme diferentes cenários são simulados. O usuário pode iniciar simulações como pico de tráfego, banco de dados lento, memory leak, falha de serviços, deploy de uma nova versão ou recuperação automática, observando como todas as métricas se relacionam entre si. O objetivo não é reproduzir o Grafana, mas demonstrar a capacidade de construir interfaces complexas, altamente interativas e orientadas à experiência do usuário, utilizando dados sincronizados, animações discretas e arquitetura escalável.",
-  "tags": "Observabilidade, Monitoring, Dashboard, Grafana, DevOps, SRE, Performance, Recharts, D3.js, React Query, TanStack Table, Framer Motion",
-  "architecture": "Motor de simulação implementado como função pura do tempo decorrido desde o início do cenário (sem estado mutável guardado no servidor), Cliente mantendo apenas o cenário ativo e o timestamp de início, API route recalculando as métricas de cada instante de forma determinística a cada consulta do React Query, Gráficos sincronizados com Recharts e D3.js e tabela de endpoints construída com TanStack Table",
-  "technologies": "Recharts, D3.js, React Query, TanStack Table, Framer Motion",
-  "concepts": "Observabilidade, Monitoramento de aplicações, Visualização de métricas em tempo real, Polling, Cache de dados, Sincronização entre componentes, Dashboards operacionais, Arquitetura orientada a eventos, UX para monitoramento, Animações funcionais, Visualização de grandes volumes de dados, Simulação stateless como função pura de tempo decorrido, Estado compartilhável via URL",
+  "longDescription": "Esta demo representa um centro de monitoramento de uma aplicação em produção, onde o usuário acompanha métricas de infraestrutura, desempenho e disponibilidade em tempo real. Em vez de apenas exibir gráficos estáticos, o dashboard conta uma história: CPU, memória, taxa de requisições, latência, erros, disponibilidade dos serviços e eventos da aplicação evoluem dinamicamente conforme diferentes cenários são simulados. O usuário pode iniciar simulações como pico de tráfego, sobrecarga na CPU, e alto uso de memória pela aplicação, observando como todas as métricas se relacionam entre si. O objetivo é demonstrar a capacidade de construir interfaces interativas e orientadas à experiência do usuário, utilizando dados sincronizados e animações discretas.",
+  "tags": "Observabilidade, Dashboard, Grafana/Signoz, DevOps, SRE, Performance, Shadcn, D3.js, React Query, TanStack Table, Framer Motion",
+  "architecture": "Simulação implementada como função pura do tempo decorrido, Stateless, API recalculando métricas com base no timestamp, Gráficos sincronizados com Shadcn e D3.js, TanStack React",
+  "technologies": "Shadcn, D3.js, React Query, TanStack Table, Framer Motion",
+  "concepts": "Observabilidade, Monitoramento de aplicações, Visualização de métricas em tempo real, Polling, Cache de dados, Sincronização entre componentes, Dashboards operacionais,, UX para monitoramento, Animações funcionais, Simulação stateless",
 
   "summary": "Sumário",
   "methodsTitle": "Métodos utilizados",
@@ -78,7 +78,7 @@
     "idle": "Sistema normal",
     "activate": "Ativar simulação",
     "deactivate": "Clique para desativar",
-    "hint": "Escolha um cenário para simular no servidor. Apenas um por vez — hoje só a sobrecarga de CPU altera as métricas geradas; memória e requisições ainda não têm efeito.",
+    "hint": "Escolha um cenário para simular no servidor. Apenas um por vez — cada um afeta as métricas geradas de forma diferente.",
     "cpu": {
       "label": "Sobrecarga de CPU",
       "description": "Simula uso de CPU próximo a 100%, aumentando latência e erros."

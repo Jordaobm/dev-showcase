@@ -1,13 +1,102 @@
 {
   "name": "Dashboards",
-  "description": "Los dashboards son el corazón de un buen CRM, SaaS o aplicación de gestión. En esta demo encontrarás distintos tipos de visualizaciones para diferentes personas de tu empresa.",
-  "longDescription": "Un buen dashboard debe ser tan simple que un gestor encuentre la información que necesita en cuestión de segundos. Treinta gráficos compitiendo por la atención casi siempre comunican menos que un gráfico bien elegido o una tabla simple con los números que importan. Los datos necesitan jerarquía: secciones organizadas por prioridad, desde el resumen general hasta el detalle. Las visualizaciones usan Recharts y D3.js, los datos tabulares densos pasan por TanStack Table, React Query mantiene todo actualizado sin recargar la página, y Framer Motion anima las transiciones para guiar la mirada — nunca solo para decorar. Una buena UX de dashboard se reduce a una pregunta simple: ¿en cuántos segundos alguien entiende lo que está viendo?",
-  "tags": "CRM, SaaS, Dashboard, Performance, Recharts, D3.js, React Query, TanStack Table, Framer Motion",
-  "architecture": "Renderizado de visualizaciones interactivas con Recharts y D3.js, datos asíncronos gestionados con React Query (caché y polling) y tablas de datos con TanStack Table",
-  "technologies": "Recharts, D3.js, React Query, TanStack Table, Framer Motion",
-  "concepts": "Visualización de datos para la toma de decisiones, caché y polling de datos asíncronos, animación de interfaz, tablas de datos de alto rendimiento",
+  "description": "Dashboard de observabilidad inspirado en herramientas como Grafana, que simula en tiempo real la salud de una aplicación distribuida a través de métricas, eventos, gráficos interactivos y escenarios de incidentes.",
+  "shortDescription": "Dashboard de observabilidad inspirado en herramientas como Grafana, que simula en tiempo real la salud de una aplicación distribuida a través de métricas, eventos, gráficos interactivos y escenarios de incidentes.",
+  "longDescription": "Esta demo representa un centro de monitoreo de una aplicación en producción, donde el usuario hace seguimiento de métricas de infraestructura, rendimiento y disponibilidad en tiempo real. En vez de mostrar solo gráficos estáticos, el dashboard cuenta una historia: CPU, memoria, tasa de solicitudes, latencia, errores y disponibilidad de los servicios evolucionan dinámicamente a medida que se simulan distintos escenarios. El usuario puede iniciar simulaciones como un pico de tráfico, sobrecarga de CPU o un alto uso de memoria, y observar cómo se relacionan todas las métricas entre sí. El objetivo es demostrar la capacidad de construir interfaces interactivas y orientadas a la experiencia del usuario, usando datos sincronizados y animaciones sutiles.",
+  "tags": "Observabilidad, Monitoring, Dashboard, Grafana/Signoz, DevOps, SRE, Performance, Shadcn, Recharts, React Query",
+  "architecture": "Motor de simulación implementado como función pura del tiempo transcurrido desde el inicio del escenario (sin estado mutable guardado en el servidor), cliente que mantiene solo el escenario activo y su timestamp de inicio, ruta de API que recalcula las métricas de cada instante de forma determinista en cada consulta de React Query, gráficos sincronizados con Recharts",
+  "technologies": "Shadcn, Recharts, React Query",
+  "concepts": "Observabilidad, Monitoreo de aplicaciones, Visualización de métricas en tiempo real, Polling, Caché de datos, Sincronización entre componentes, Dashboards operacionales, Arquitectura orientada a eventos, UX para monitoreo, Animaciones funcionales, Visualización de grandes volúmenes de datos, Simulación stateless como función pura de tiempo transcurrido, Estado compartible vía URL",
 
   "summary": "Resumen",
   "methodsTitle": "Métodos utilizados",
-  "howToUseLabel": "¿Cómo utilizar?"
+  "howToUseLabel": "¿Cómo utilizar?",
+
+  "uiuxTitle": "UI/UX",
+  "uiuxIntro1": "Antes de entrar en la demo, vale la pena explicar el razonamiento detrás de este panel. Un dashboard necesita ser claro y eficiente al transmitir información a quien lo está leyendo. Los números necesitan contexto sobre lo que representan y deben ayudar a quien los mira a tomar una decisión cuando sea necesario.",
+  "uiuxIntro2": "En la práctica, vi el patrón contrario repetirse en casi todos los proyectos: el pedido siempre es por más gráficos, más filtros, más métricas visibles al mismo tiempo. El resultado casi siempre es una pantalla que nadie interpreta en menos de un minuto, cuando el objetivo real era el opuesto: informar si la operación está saludable en pocos segundos.",
+  "uiuxBusinessTitle": "Paneles de negocio",
+  "uiuxBusinessDesc": "Los CRM, las herramientas SaaS, los ERP y los paneles administrativos son ejemplos de este tipo. Hacen seguimiento de indicadores de negocio — ventas, churn, conversión, ticket promedio — y suelen usarlos gestores, equipos comerciales y de producto para entender cómo está rindiendo la operación a lo largo del tiempo.",
+  "uiuxSystemTitle": "Paneles de sistema",
+  "uiuxSystemDesc": "Grafana, Datadog y SigNoz son ejemplos de este tipo. Hacen seguimiento de la salud técnica de una aplicación en producción — CPU, memoria, latencia, tasa de error, disponibilidad — y suelen usarlos equipos de ingeniería, DevOps y SRE para detectar y resolver problemas rápidamente.",
+  "uiuxIntro3": "Este proyecto simula el segundo tipo: una lectura rápida de la salud de una aplicación en producción. Los principios de abajo — resumidos a partir de un artículo sobre diseño de dashboards — fueron el criterio usado para estructurar esta demo.",
+  "uiuxPrinciplesTitle": "Qué guió este panel",
+  "uiuxPrinciple1": "<b>Qué es una métrica.</b> Una métrica es un número que describe el estado de algo en un momento específico — CPU, latencia, tasa de error, cantidad de solicitudes por segundo. Ese es el tipo de dato que este panel muestra y actualiza continuamente.",
+  "uiuxPrinciple2": "<b>La jerarquía visual guía la mirada.</b> Estudios de eye-tracking muestran que la mirada recorre primero la parte superior de la pantalla. Por eso los KPIs más importantes son grandes y están al inicio del panel.",
+  "uiuxPrinciple3": "<b>El contexto ayuda a interpretar el número.</b> Una comparación con el período anterior, una meta y la tendencia (subiendo, estable o bajando) ayudan a entender rápidamente qué significa ese valor.",
+  "uiuxPrinciple4": "<b>El tipo de gráfico correcto facilita la lectura.</b> Línea para tendencias en el tiempo, barra para comparar categorías, número aislado para el estado actual — la elección del gráfico importa tanto como los datos en sí.",
+  "uiuxPrinciple5": "<b>Los estados vacío, de carga y de error también son parte del diseño.</b> Una pantalla sin datos, una carga o una llamada a la API fallida son momentos comunes de uso y reciben el mismo cuidado visual que la pantalla con datos completos.",
+  "uiuxPrinciple6": "<b>La accesibilidad beneficia a todos.</b> Un contraste adecuado, la navegación por teclado y las etiquetas de texto junto con el color ayudan a cualquier persona a usar el panel, incluyendo a quienes tienen baja visión o daltonismo.",
+  "uiuxCredit": "Principios resumidos y adaptados del artículo <b>12 principios de diseño de dashboards para una mejor experiencia de usuario</b>, de Khanh Linh Le, publicado por <link>UX Pilot</link>.",
+
+  "dashboardTitle": "Dashboard",
+  "dashboardLoading": "Cargando métricas...",
+  "dashboardError": "No se pudieron cargar las métricas en este momento. Intenta de nuevo en unos instantes.",
+
+  "live": "EN VIVO",
+  "timeRangeLabel": "Período mostrado",
+
+  "timeRange": {
+    "1m": "1 min",
+    "5m": "5 min",
+    "10m": "10 min",
+    "15m": "15 min",
+    "30m": "30 min",
+    "1h": "1 hora"
+  },
+
+  "status": {
+    "normal": "Normal",
+    "warning": "Alerta",
+    "critical": "Crítico"
+  },
+
+  "trend": {
+    "up": "En alza",
+    "down": "En baja",
+    "stable": "Estable"
+  },
+
+  "kpiSectionTitle": "Indicadores en tiempo real",
+  "chartsSectionTitle": "Historial de métricas",
+
+  "metrics": {
+    "cpu": "Uso de CPU",
+    "mem": "Uso de memoria",
+    "lat": "Latencia",
+    "success": "Tasa de éxito",
+    "successSubtitle": "de las solicitudes",
+    "error": "Tasa de errores",
+    "errorSubtitle": "de las solicitudes",
+    "reqsPerMinute": "Solicitudes / minuto",
+    "reqsPerMinuteSubtitle": "throughput actual"
+  },
+
+  "scenario": {
+    "title": "Simulación de problemas",
+    "active": "Simulación activa",
+    "idle": "Sistema normal",
+    "activate": "Activar simulación",
+    "deactivate": "Clic para desactivar",
+    "hint": "Elige un escenario para simular en el servidor. Solo uno a la vez — cada uno afecta las métricas generadas de forma diferente.",
+    "cpu": {
+      "label": "Sobrecarga de CPU",
+      "description": "Simula uso de CPU cercano al 100%, aumentando la latencia y los errores."
+    },
+    "memory": {
+      "label": "Sobrecarga de memoria",
+      "description": "Simula un consumo crítico de RAM que degrada el servicio."
+    },
+    "requests": {
+      "label": "Sobrecarga de solicitudes",
+      "description": "Simula un pico de tráfico con un alto volumen de solicitudes por minuto."
+    }
+  },
+
+  "availabilityTitle": "Línea de tiempo de disponibilidad",
+  "availability": {
+    "good": "Operativo",
+    "degraded": "Degradado",
+    "critical": "Crítico"
+  }
 }

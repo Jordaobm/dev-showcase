@@ -9,10 +9,12 @@ export const metadata: DemoMetadata = {
   category: "shared.categories.dashboards",
   tags: "dashboards.tags",
   featured: true,
-  status: "coming-soon",
+  status: "live",
   architecture: "dashboards.architecture",
   technologies: "dashboards.technologies",
   concepts: "dashboards.concepts",
   i18nNamespace: "dashboards",
+  component: () =>
+    import("../pages/Demo").then((m) => ({ default: m.DashboardDemo })),
   imageUrl: backgroundImage.src,
 };

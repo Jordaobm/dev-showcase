@@ -152,12 +152,16 @@ test.describe("Dashboards", () => {
     await page.goto("/showcase/dashboards");
 
     await expect(page.locator("html")).toHaveAttribute("lang", "pt-BR");
-    await expect(page.getByText("Sobrecarga de CPU")).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Sobrecarga de CPU" }),
+    ).toBeVisible();
 
     await page.getByRole("button", { name: "Mudar idioma" }).click();
     await page.getByRole("button", { name: "English" }).click();
 
-    await expect(page.getByText("CPU overload")).toBeVisible({
+    await expect(
+      page.getByRole("button", { name: "CPU overload" }),
+    ).toBeVisible({
       timeout: 10_000,
     });
     await expect(page.locator("html")).toHaveAttribute("lang", "en-US");

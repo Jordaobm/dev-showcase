@@ -46,5 +46,16 @@ export const getData = async (
     interval: DATA_INTERVAL_MS,
     scenarioData,
   });
-  return response;
+
+  const metrics = response.data;
+  const last = metrics[metrics.length - 1];
+  // O servidor gera os timestamps da série com o próprio relógio; se o relógio do
+  // cliente estiver dessincronizado (comum fora do ambiente de dev, onde cliente e
+  // servidor são a mesma máquina), a rampa de simulação quebra: `start`/`end` são
+  // marcados com Date.now() do cliente e comparados a timestamps do servidor em
+  // rampValue (route.ts). Esse offset corrige a leitura de "agora" para o relógio
+  // do servidor antes de qualquer novo evento ser registrado.
+  const serverOffsetMs = last ? last.timestamp - Date.now() : 0;
+
+  return { data: metrics, serverOffsetMs };
 };

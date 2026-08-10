@@ -16,6 +16,7 @@ export interface ScenarioOption {
 interface SimulationPanelProps {
   value: ScenarioState;
   onChange: (value: ScenarioState) => void;
+  getNow: () => number;
   title: string;
   activeLabel: string;
   idleLabel: string;
@@ -28,6 +29,7 @@ interface SimulationPanelProps {
 export const SimulationPanel = ({
   value,
   onChange,
+  getNow,
   title,
   activeLabel,
   idleLabel,
@@ -70,10 +72,10 @@ export const SimulationPanel = ({
                   const nextEvents = isActive
                     ? events.map((event, index) =>
                         index === events.length - 1
-                          ? { ...event, end: Date.now() }
+                          ? { ...event, end: getNow() }
                           : event,
                       )
-                    : [...events, { start: Date.now() }];
+                    : [...events, { start: getNow() }];
 
                   onChange({
                     selected: isActive ? "none" : opt.mode,

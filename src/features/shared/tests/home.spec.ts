@@ -98,7 +98,7 @@ test.describe("Home", () => {
       - text: Premium Developer Portfolio
       - heading "Engenharia para explorar." [level=1]
       - heading "Um showcase técnico onde cada implementação demonstra uma competência real de engenharia de software. Arquitetura, performance, segurança, PWAs, Browser APIs, renderização 3D e muito mais, reunidos em experiências interativas." [level=2]
-      - text: /9 ao vivo \\d+ total de demos 7 em breve/
+      - text: /10 ao vivo \\d+ total de demos 6 em breve/
       - button "Explorar o Showcase"
       - link "Conheça o Autor":
         - /url: /sobre
@@ -108,7 +108,7 @@ test.describe("Home", () => {
       - text: Premium Developer Portfolio
       - heading "Engenharia para explorar." [level=1]
       - heading "Um showcase técnico onde cada implementação demonstra uma competência real de engenharia de software. Arquitetura, performance, segurança, PWAs, Browser APIs, renderização 3D e muito mais, reunidos em experiências interativas." [level=2]
-      - text: /9 ao vivo \\d+ total de demos 7 em breve/
+      - text: /10 ao vivo \\d+ total de demos 6 em breve/
       - button "Explorar o Showcase"
       - link "Conheça o Autor":
         - /url: /sobre

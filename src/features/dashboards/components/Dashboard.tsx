@@ -11,7 +11,7 @@ import {
   Zap,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { DATA_INTERVAL_MS, getData } from "../services/api";
 import type { IMetric, ScenarioState, TimeRange } from "../services/api";
 import { AvailabilityTimeline } from "./AvailabilityTimeline";
@@ -82,6 +82,12 @@ export const Dashboard = () => {
   const history = useMemo<IMetric[]>(() => data?.data ?? [], [data]);
   const current = history[history.length - 1];
   const previous = history[history.length - 1 - HISTORY_LOOKBACK];
+
+  const serverOffsetMs = data?.serverOffsetMs ?? 0;
+  const getSyncedNow = useCallback(
+    () => Date.now() + serverOffsetMs,
+    [serverOffsetMs],
+  );
 
   const timeOptions = TIME_RANGES.map((value) => ({
     value,
@@ -307,6 +313,7 @@ export const Dashboard = () => {
                 <SimulationPanel
                   value={scenarioData}
                   onChange={(data) => setScenarioData(data)}
+                  getNow={getSyncedNow}
                   title={t("scenario.title")}
                   activeLabel={t("scenario.active")}
                   idleLabel={t("scenario.idle")}

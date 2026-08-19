@@ -156,6 +156,7 @@ npm run metrics:export     # lê coverage/playwright + API local do Sonar, atual
 npm install
 cp .env.example .env.local   # preencha as chaves das demos que dependem de segredo (auth, push)
 npm run dev
+
 ```
 
 Algumas demos (`auth`, `push-notifications`) dependem de variáveis de ambiente reais para funcionar por completo — sem elas, o restante do site funciona normalmente.

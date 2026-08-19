@@ -4,6 +4,7 @@ FROM base AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
+RUN npm install --no-save sharp@0.34.5 lightningcss@1.32.0
 
 FROM base AS builder
 WORKDIR /app

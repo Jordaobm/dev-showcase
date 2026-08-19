@@ -12,7 +12,7 @@ concurrency:
 jobs:
   quality-gate:
     if: github.head_ref == 'develop' && github.base_ref == 'homolog'
-    runs-on: [self-hosted, dev-showcase]
+    runs-on: ubuntu-latest
     timeout-minutes: 90
     env:
       NEXT_PUBLIC_SITE_URL: http://localhost:3000

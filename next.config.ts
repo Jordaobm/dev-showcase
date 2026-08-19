@@ -11,6 +11,7 @@ const withSerwist = withSerwistInit({
 });
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   reactStrictMode: false,
   reactCompiler: true,
   productionBrowserSourceMaps: true,

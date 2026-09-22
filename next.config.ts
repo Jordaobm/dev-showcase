@@ -15,10 +15,12 @@ const nextConfig: NextConfig = {
   reactStrictMode: false,
   reactCompiler: true,
   productionBrowserSourceMaps: true,
-  allowedDevOrigins: ["192.168.1.172"],
+
+  allowedDevOrigins: ["192.168.2.5"],
   experimental: {
     inlineCss: true,
   },
+
   images: {
     remotePatterns: [
       {

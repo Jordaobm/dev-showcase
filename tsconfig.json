@@ -30,5 +30,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "sobre"]
+  "exclude": ["node_modules", "sobre", "docs/Tela de Chat em Tempo Real"]
 }

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
-    "dev-https": "next dev --webpack --experimental-https",
+    "dev-https": "next dev --webpack --experimental-https --experimental-https-key ./certificates/localhost-key.pem --experimental-https-cert ./certificates/localhost.pem",
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
@@ -31,6 +31,7 @@
     "@remotion/cli": "4.0.460",
     "@remotion/google-fonts": "^4.0.460",
     "@serwist/next": "^9.5.7",
+    "@stomp/stompjs": "^7.3.0",
     "@supabase/ssr": "^0.10.3",
     "@supabase/supabase-js": "^2.106.2",
     "@tanstack/react-query": "^5.100.7",

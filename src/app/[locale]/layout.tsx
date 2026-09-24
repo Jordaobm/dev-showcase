@@ -13,7 +13,7 @@ import { routing } from "@/i18n/routing";
 const inter = Inter({ subsets: ["latin"] });
 
 const SITE_DESCRIPTION =
-  "Um showcase técnico onde cada implementação demonstra uma competência real de engenharia de software. Arquitetura, performance, segurança, PWAs, Browser APIs, renderização 3D e muito mais, reunidos em experiências interativas.";
+  "Portfólio técnico de Jordão Beghetto Massariol, desenvolvedor de software pleno fullstack. Demos funcionais de autenticação, PWA, APIs do navegador, dados offline e 3D, com o código aberto no GitHub.";
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const siteUrl = getSiteUrl();

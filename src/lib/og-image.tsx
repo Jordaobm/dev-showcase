@@ -103,7 +103,7 @@ export const renderOgImage = () => {
           marginTop: 28,
         }}
       >
-        Líder Técnico | Desenvolvedor de Software Pleno
+        Desenvolvedor de Software Pleno Fullstack
       </div>
     </div>,
     { ...ogImageSize },

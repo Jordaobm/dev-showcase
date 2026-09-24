@@ -5,7 +5,7 @@ const manifest = (): MetadataRoute.Manifest => {
     name: "Dev Showcase — Progressive Web App",
     short_name: "Dev Showcase",
     description:
-      "Um showcase técnico interativo demonstrando skills avançados em web development: PWA, Auth, 3D, APIs e muito mais.",
+      "Portfólio técnico com demos funcionais de autenticação, PWA, APIs do navegador, dados offline, 3D e mais.",
     start_url: "/",
     scope: "/",
     display: "standalone",

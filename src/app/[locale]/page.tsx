@@ -3,7 +3,7 @@ import { HomePage } from "@/features/shared/pages/HomePage";
 
 const TITLE = "Dev Showcase | Jordão Beghetto Massariol";
 const DESCRIPTION =
-  "Um showcase técnico onde cada implementação demonstra uma competência real de engenharia de software. Arquitetura, performance, segurança, PWAs, Browser APIs, renderização 3D e muito mais, reunidos em experiências interativas.";
+  "Portfólio técnico de Jordão Beghetto Massariol, desenvolvedor de software pleno fullstack. Demos funcionais de autenticação, PWA, APIs do navegador, dados offline e 3D, com o código aberto no GitHub.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },

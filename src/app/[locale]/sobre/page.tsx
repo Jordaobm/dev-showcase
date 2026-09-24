@@ -3,7 +3,7 @@ import { AboutPage } from "@/features/about/pages/AboutPage";
 
 const TITLE = "Sobre | Jordão Beghetto Massariol";
 const DESCRIPTION =
-  "Desenvolvedor de software com cinco anos de experiência no mercado, atuando em arquitetura de aplicações para os setores público e privado, além de liderança técnica. Trajetória, formação e stack técnico completos.";
+  "Desenvolvedor de software pleno fullstack — Java, Spring Boot, Node.js, PostgreSQL, React e TypeScript. Trajetória, experiência, formação e stack técnico.";
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -1,9 +1,9 @@
 {
   "hero": {
-    "eyebrow": "Desenvolvedor de Software",
+    "eyebrow": "Desenvolvedor de Software Pleno Fullstack",
     "firstName": "Jordão",
     "lastName": "Beghetto Massariol",
-    "manifesto": "Desenvolvedor de software com cinco anos de experiência, atuando na arquitetura de aplicações para os setores público e privado e na liderança técnica de equipes. Minha trajetória me levou da atuação como desenvolvedor à posição de Líder Técnico, participando da definição de arquiteturas, da implementação de soluções e da condução técnica de projetos para clientes de diferentes segmentos e níveis de complexidade. Atualmente, concentro meu trabalho no desenvolvimento e na evolução de aplicações modernas, priorizando entregas adequadas aos clientes, qualidade, boas práticas e uma visão orientada à entrega de valor.",
+    "manifesto": "Sou desenvolvedor de software fullstack pleno há pouco mais de cinco anos e cheguei à liderança técnica do meu time aos poucos, ganhando a confiança da equipe no dia a dia. Ao longo desses anos, passei por uma variedade de projetos: rebuilds de sistemas legados, sustentação de longo prazo, CRMs, marketplaces, aplicativos de saúde e portais corporativos com IA aplicada, incluindo um sistema de saúde pública com TDD e auditoria via Spring AOP e uma plataforma financeira digital com lançamento em rollout controlado. Atuo com Java, Spring Boot, Node.js, React e TypeScript. Hoje, meu foco está no desenvolvimento de aplicações fullstack.",
     "location": "Curitiba, PR — Brasil",
     "downloadResume": "Baixar Currículo"
   },
@@ -42,24 +42,28 @@
       "period": "Jul 2023 — Atual",
       "title": "Líder Técnico",
       "org": "Supera Inovação em Tecnologia · Remoto",
-      "desc": "Atuo na liderança técnica de equipes sendo a referência arquitetural e o ponto de decisão em stack, padrões de projeto e estrutura de novos sistemas. Conduzi dois rebuilds simultâneos de sistemas estaduais, modernizando aplicações Groovy/Grails para React, TypeScript e Java Spring Boot, e lidero a definição dos contratos REST entre frontend e backend. No dia a dia por conta das minhas atribuições acabo escrevendo um pouco menos de código do que anteriormente pois coordeno cada vez mais o processo em si escrevendo e refinando tarefas, conduzindo diárias, planejamentos, refinamentos e retrospectivas, alinhando estimativas e escopo com o time, conversando diretamente com clientes sobre prazos, entregas e homologações, revisando código e mantendo os pipelines de CI/CD e ambientes de desenvolvimento, homologação e produção sempre funcionando. Também integro novos desenvolvedores ao time e participo de decisões estratégicas da empresa.",
+      "desc": "Hoje sou a referência arquitetural do meu time: participo da definição de stack, dos padrões de projeto e da estrutura dos sistemas novos, do desenvolvimento de funcionalidades e do refinamento técnico com os clientes. Conduzo três projetos de abrangência nacional para clientes institucionais (saúde pública, indústria e telecomunicações), cada um com suas próprias regras de negócio e desafios técnicos — nesses sistemas, trabalhamos com TDD do início ao fim e um módulo de auditoria via Spring AOP. Também coordenei com o time a construção de uma plataforma financeira digital integrada à CELCOIN: backend em NestJS, cache em Redis, frontend em Next.js como PWA mobile-first e lançamento em rollout controlado até a liberação geral. Conduzi dois rebuilds simultâneos de sistemas estaduais legados, modernizando aplicações Groovy/Grails para React, TypeScript e Java Spring Boot — trabalho que exigiu bastante engenharia reversa, já que a documentação original já não refletia mais o sistema em produção. Estruturei o processo de definição dos contratos REST entre as equipes antes de cada sprint começar, o que antecipa decisões de arquitetura e reduz retrabalho. No dia a dia, escrevo um pouco menos código do que antes, porque coordeno mais o processo: refino tarefas, conduzo as cerimônias, converso diretamente com os clientes sobre prazos, entregas e homologações, reviso código e mantenho os ambientes e os pipelines de CI/CD funcionando. Também integro novos desenvolvedores ao time e participo das decisões estratégicas da empresa.",
       "tags": [
-        "Liderança Técnica",
-        "Arquitetura de Software",
-        "Engenharia Reversa",
-        "Groovy/Grails",
         "Java Spring Boot",
-        "Contratos REST API",
+        "Spring AOP",
+        "Node.js",
+        "NestJS",
+        "PostgreSQL",
+        "Redis",
+        "Groovy/Grails",
         "React",
         "TypeScript",
+        "Next.js",
+        "PWA",
+        "TDD",
+        "Arquitetura de Software",
+        "Engenharia Reversa",
+        "Contratos REST API",
         "CI/CD",
         "GitLab",
         "Code Review",
         "Cerimônias Ágeis",
-        "Estimativas",
-        "Mentoria Técnica",
-        "Processo Seletivo",
-        "Decisões Estratégicas"
+        "Mentoria Técnica"
       ]
     },
     {
@@ -83,21 +87,18 @@
       "period": "Jun 2022 — Jun 2023",
       "title": "Desenvolvedor de Software Pleno",
       "org": "Supera Inovação em Tecnologia · Remoto",
-      "desc": "Foi aqui que passei de executar para decidir. Arquitetei os primeiros projetos de rebuild da empresa, definindo stack e estrutura de repositório para times que cresceriam nos anos seguintes. Conduzi entrevistas técnicas de contratação, revisei código de outros desenvolvedores e comecei a escrever e refinar tarefas para o time, além de expandir minha atuação para o framework Angular em projetos corporativos. O trabalho começou a se dividir entre código e processo — e o processo passou a fazer cada vez mais parte do meu dia-a-dia. Decisões estratégicas da empresa em conjunto com alinhamentos profissionais da minha parte me fizeram evoluir de nível cada vez mais. Em paralelo atuei em alguns projetos internos de menor expressão onde automatizamos processos que futuramente seriam benéficos para minha própria gestão.",
+      "desc": "Foi aqui que passei de executar para decidir: arquitetei os primeiros projetos de rebuild da empresa, definindo a stack e a estrutura dos repositórios para os times que cresceriam nos anos seguintes. Trabalhei no desenvolvimento e na implantação de sistemas para hospitais da rede pública estadual, contribuindo com decisões de arquitetura que ajudaram a viabilizar o projeto, e expandi minha atuação para Angular em um sistema institucional corporativo nacional. Conduzi entrevistas técnicas de contratação e comecei a revisar o código dos outros desenvolvedores, além de escrever e refinar tarefas para o time. Vi o trabalho começar a se dividir entre código e processo, com o processo ocupando cada vez mais espaço no meu dia a dia, e fui ganhando a confiança da equipe para assumir responsabilidades maiores nas entregas das sprints. Também atuei em projetos internos de menor expressão, automatizando processos que mais tarde seriam úteis para minha própria gestão.",
       "tags": [
-        "Groovy/Grails",
         "Java Spring Boot",
-        "Contratos REST API",
         "React",
+        "Angular",
         "TypeScript",
-        "CI/CD",
-        "GitLab",
+        "Arquitetura de Software",
         "Code Review",
-        "Cerimônias Ágeis",
-        "Estimativas",
-        "Mentoria Técnica",
         "Processo Seletivo",
-        "Decisões Estratégicas"
+        "Cerimônias Ágeis",
+        "Git",
+        "GitLab CI/CD"
       ]
     },
     {
@@ -105,21 +106,20 @@
       "period": "Mar 2022 — Mai 2022",
       "title": "Desenvolvedor de Software Júnior III",
       "org": "Supera Inovação em Tecnologia · Remoto",
-      "desc": "Comecei a sair do teclado por alguns momentos: participei das minhas primeiras reuniões de definição arquitetural, ainda como colaborador, não como decisor. Em paralelo, aprofundei meu conhecimento na stack que estávamos utilizando para os projetos na época (ReactJS/Angular no FrontEnd; Java Spring Book/Quarkus no Backend; PostgreSQL, MySQL, MongoDB e Redis para Bancos de Dados). O objetivo era conseguir executar tarefas de forma mais rápida sem precarizar o resultado final. Passei a acompanhar o ciclo completo de cerimônias ágeis — diárias, planejamentos, refinamentos, revisões e retrospectiva — como participante ativo, não só como executor de tarefas.",
+      "desc": "Participei das minhas primeiras reuniões de definição arquitetural, ainda como colaborador, não como decisor. Aprofundei meu conhecimento na stack que usávamos nos projetos da época — Java Spring Boot e Quarkus no backend, React e Angular no frontend, PostgreSQL, MySQL, MongoDB e Redis nos bancos de dados — buscando executar as tarefas de forma mais rápida sem abrir mão do resultado final. Passei a acompanhar o ciclo completo de cerimônias ágeis — diárias, planejamentos, refinamentos, revisões e retrospectivas — como participante ativo, não só como executor de tarefas. Também avancei pautas importantes em reuniões estratégicas sobre a cultura de code review e ajudei a colocar em pauta o que, mais tarde, viraria os contratos REST entre as equipes de desenvolvimento.",
       "tags": [
-        "React",
-        "Angular",
         "Java Spring Boot",
+        "Quarkus",
         "PostgreSQL",
         "MySQL",
+        "MongoDB",
         "Redis",
+        "React",
+        "Angular",
         "Arquitetura de Software",
+        "Code Review",
         "Scrum",
-        "Diárias",
-        "Planejamentos",
-        "Refinamento",
-        "Retrospectiva",
-        "Feedback"
+        "Cerimônias Ágeis"
       ]
     },
     {
@@ -127,23 +127,21 @@
       "period": "Out 2021 — Fev 2022",
       "title": "Desenvolvedor de Software Júnior II",
       "org": "Supera Inovação em Tecnologia · Remoto",
-      "desc": "Nessa fase, comecei a ganhar a confiança dos desenvolvedores mais experientes e fui alocado para um projeto de CRM um pouco mais complexo do que o habitual — um sistema que já existia e já era referência de sucesso antes da minha chegada. Me tornei uma peça fundamental na implementação de features inteiras, integrando autenticação via LDAP/Active Directory, escrevendo stored procedures em SQL Server e construindo componentes React reutilizáveis em TypeScript, sempre em contato direto com o backend em Node.js e Java Spring Boot. Atuei lado a lado com o time de QA na correção de bugs, bugfixes e hotfixes conforme os chamados chegavam direto da produção — identificando queries N+1 que travavam telas inteiras e escrevendo testes unitários para evitar regressões. Também dei os primeiros passos em desenvolvimento mobile com React Native. Ainda estava no começo, mas já estava conseguindo demonstrar a equipe e a gestão meu potencial dentro dos projetos e meu interesse em resolver as tarefas.",
+      "desc": "Ganhei a confiança dos desenvolvedores mais experientes e fui alocado para um projeto de CRM mais complexo do que o habitual — um sistema que já era referência de sucesso antes da minha chegada. Passei a participar da implementação de features inteiras: integrei autenticação via LDAP/Active Directory, escrevi stored procedures em SQL Server e construí componentes React reutilizáveis em TypeScript, sempre em contato direto com o backend em Node.js e Java Spring Boot. Trabalhei lado a lado com o time de QA na correção de bugs, bugfixes e hotfixes vindos diretamente da produção — identifiquei queries N+1 que travavam telas inteiras e escrevi testes unitários para evitar regressões. Também dei os primeiros passos em desenvolvimento mobile com React Native e já conseguia mostrar para a equipe e para a gestão meu potencial e meu interesse em resolver as tarefas.",
       "tags": [
-        "CRM Corporativo",
-        "LDAP/Active Directory",
-        "Stored Procedures",
+        "Java Spring Boot",
+        "Node.js",
         "SQL Server",
-        "Componentes Reutilizáveis",
+        "Stored Procedures",
+        "LDAP/Active Directory",
         "React",
         "TypeScript",
-        "Node.js",
-        "Java Spring Boot",
-        "QA",
-        "Bugfix",
-        "Hotfix",
+        "React Native",
+        "Componentes Reutilizáveis",
         "Queries N+1",
         "Testes Unitários",
-        "React Native"
+        "QA",
+        "Hotfix"
       ]
     },
     {
@@ -151,16 +149,15 @@
       "period": "Mar 2021 — Set 2021",
       "title": "Desenvolvedor de Software Júnior I",
       "org": "Supera Inovação em Tecnologia · Remoto",
-      "desc": "Iniciei na empresa começando do básico, atuando em apenas um ou dois projetos por vez e focado em tarefas mais simples: correção de bugs visuais, ajustes em endpoints simples, CRUDs objetivos e telas pontuais. Participava das reuniões diárias mais como ouvinte, repassando meu status para os desenvolvedores mais experientes. Em alguns momentos do dia atuei em pair programming com colegas de mais tempo de casa — foi assim que aprendi as regras de negócio do sistema e entendi, na prática, a rotina de um desenvolvedor.",
+      "desc": "Comecei na empresa pelo básico, atuando em um ou dois projetos por vez, com tarefas mais simples: correção de bugs visuais, ajustes em endpoints simples, CRUDs objetivos e telas pontuais. Participava das reuniões diárias como ouvinte, repassando meu status para os desenvolvedores mais experientes. Fiz bastante pair programming com colegas com mais tempo de casa — foi assim que aprendi as regras de negócio do sistema e entendi, na prática, a rotina de um desenvolvedor.",
       "tags": [
+        "Java Spring Boot",
+        "Node.js",
         "React",
         "TypeScript",
-        "Node.js",
-        "Java Spring Boot",
-        "Correção de Bugs",
         "CRUDs",
+        "Correção de Bugs",
         "Pair Programming",
-        "Onboarding Técnico",
         "Fullstack"
       ]
     },
@@ -188,16 +185,6 @@
   },
   "skills": [
     {
-      "label": "Frontend",
-      "items": [
-        "JavaScript / TypeScript",
-        "React / React Native",
-        "Next.js",
-        "Angular / PrimeNG / PrimeFaces",
-        "React Query / Chakra UI"
-      ]
-    },
-    {
       "label": "Backend",
       "items": [
         "Java (Spring Boot, Quarkus)",
@@ -207,23 +194,32 @@
       ]
     },
     {
-      "label": "Dados & Arquitetura",
+      "label": "Frontend",
       "items": [
-        "MySQL / PostgreSQL / SQL Server",
-        "MongoDB / Redis",
-        "Modelagem de Dados",
-        "Stored Procedures",
-        "Arquitetura de Software"
+        "React / React Native",
+        "Next.js / PWA",
+        "Angular / PrimeNG",
+        "TypeScript / JavaScript (ES6+)"
       ]
     },
     {
-      "label": "Processos & Práticas",
+      "label": "Dados & Persistência",
       "items": [
-        "Liderança Técnica",
+        "PostgreSQL / MySQL / SQL Server",
+        "Oracle / MongoDB / Redis",
+        "InfluxDB (séries temporais)",
+        "Prisma (ORM) / Stored Procedures"
+      ]
+    },
+    {
+      "label": "Arquitetura & Processos",
+      "items": [
+        "Arquitetura de Software",
         "Engenharia Reversa",
-        "Code Review",
-        "Scrum & GitFlow",
-        "Cerimônias Ágeis",
+        "TDD / Mock Service Worker (MSW)",
+        "Microsserviços e monolitos",
+        "CI/CD (GitLab, Azure Pipelines) / Docker",
+        "Code Review / Scrum",
         "Mentoria Técnica"
       ]
     }
@@ -232,6 +228,6 @@
     "eyebrow": "Contato",
     "titlePlain": "Vamos",
     "titleHighlight": "conversar?",
-    "description": "Abaixo você encontra meus principais canais para contato."
+    "description": "Se quiser falar sobre uma vaga, um projeto ou alguma coisa que viu por aqui, é só me chamar por um dos canais abaixo."
   }
 }

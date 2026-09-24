@@ -167,7 +167,7 @@ Algumas demos (`auth`, `push-notifications`) dependem de variáveis de ambiente 
 Meu nome é Jordão Beghetto Massariol, desenvolvedor de software há mais ou menos 5 anos. A trajetória completa — empresas, stacks anteriores (Angular, Java/Spring Boot, SQL avançado) e formação — está na página **Sobre** da aplicação (`/sobre`).
 
 - [Currículo em PDF](public/Jordao_Beghetto_Massariol_CV.pdf)
-- [LinkedIn](https://linkedin.com/in/jordão-beghetto-massariol-9a9800105)
+- [LinkedIn](https://linkedin.com/in/jordao-beghetto-massariol)
 - [GitHub](https://github.com/Jordaobm)
 - jbmassariol@gmail.com
 

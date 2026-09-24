@@ -97,20 +97,20 @@ test.describe("Home", () => {
       - img "Banner Dev Showcase"
       - text: Premium Developer Portfolio
       - heading "Engenharia para explorar." [level=1]
-      - heading "Um showcase técnico onde cada implementação demonstra uma competência real de engenharia de software. Arquitetura, performance, segurança, PWAs, Browser APIs, renderização 3D e muito mais, reunidos em experiências interativas." [level=2]
+      - heading "Um espaço onde eu guardo, testo e mostro o que venho estudando e aplicando como desenvolvedor fullstack. Cada demo é uma implementação funcional de verdade — autenticação, PWA, APIs do navegador, dados offline, 3D e mais — que você pode abrir, testar e conferir o código." [level=2]
       - text: /10 ao vivo \\d+ total de demos 6 em breve/
       - button "Explorar o Showcase"
-      - link "Conheça o Autor":
+      - link "Sobre mim":
         - /url: /sobre
       - text: Role para explorar
     `;
     const desktopSnapshot = `
       - text: Premium Developer Portfolio
       - heading "Engenharia para explorar." [level=1]
-      - heading "Um showcase técnico onde cada implementação demonstra uma competência real de engenharia de software. Arquitetura, performance, segurança, PWAs, Browser APIs, renderização 3D e muito mais, reunidos em experiências interativas." [level=2]
+      - heading "Um espaço onde eu guardo, testo e mostro o que venho estudando e aplicando como desenvolvedor fullstack. Cada demo é uma implementação funcional de verdade — autenticação, PWA, APIs do navegador, dados offline, 3D e mais — que você pode abrir, testar e conferir o código." [level=2]
       - text: /10 ao vivo \\d+ total de demos 6 em breve/
       - button "Explorar o Showcase"
-      - link "Conheça o Autor":
+      - link "Sobre mim":
         - /url: /sobre
       - img "Banner Dev Showcase"
       - text: Role para explorar
@@ -126,7 +126,7 @@ test.describe("Home", () => {
   }) => {
     await page.goto("/");
 
-    const meetAuthorLink = page.getByRole("link", { name: "Conheça o Autor" });
+    const meetAuthorLink = page.getByRole("link", { name: "Sobre mim" });
     await expect(meetAuthorLink).toBeVisible();
 
     let reached = false;
@@ -141,7 +141,7 @@ test.describe("Home", () => {
     }
     expect(
       reached,
-      "Tab não alcançou o CTA 'Conheça o Autor' dentro do limite esperado de passos",
+      "Tab não alcançou o CTA 'Sobre mim' dentro do limite esperado de passos",
     ).toBe(true);
 
     await page.keyboard.press("Enter");

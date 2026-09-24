@@ -135,14 +135,14 @@ test.describe("Sobre", () => {
 
     await expect(page.locator("html")).toHaveAttribute("lang", "pt-BR");
     await expect(
-      page.getByText("Desenvolvedor de Software", { exact: true }),
+      page.getByText("Desenvolvedor de Software Pleno Fullstack", { exact: true }),
     ).toBeVisible();
 
     await page.getByRole("button", { name: "Mudar idioma" }).click();
     await page.getByRole("button", { name: "English" }).click();
 
     await expect(
-      page.getByText("Software Developer", { exact: true }),
+      page.getByText("Mid-Level Full Stack Software Developer", { exact: true }),
     ).toBeVisible({
       timeout: 10_000,
     });

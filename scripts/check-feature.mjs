@@ -29,11 +29,14 @@ if (!existsSync(featureTestsDir)) {
   process.exit(1);
 }
 
-const run = (label, command, args) => {
+const E2E_HTTPS_FEATURES = new Set(["realtime"]);
+
+const run = (label, command, args, env = {}) => {
   console.log(`\n[check:feature] ▶ ${label}`);
   const result = spawnSync(command, args, {
     stdio: "inherit",
     shell: process.platform === "win32",
+    env: { ...process.env, ...env },
   });
   if (result.status !== 0) {
     console.error(
@@ -52,7 +55,7 @@ run("suíte Playwright (5 engines, só as specs desta feature)", "npx", [
   "playwright",
   "test",
   `src/features/${slug}/tests`,
-]);
+], E2E_HTTPS_FEATURES.has(slug) ? { E2E_HTTPS: "1" } : {});
 
 run("cobertura da feature", "node", [
   "scripts/check-coverage-threshold.mjs",

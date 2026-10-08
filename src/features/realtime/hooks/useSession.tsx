@@ -11,54 +11,40 @@ import {
   useRef,
   useState,
 } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { AxiosError, AxiosResponse } from "axios";
-import {
-  AuthResponse,
-  RefreshResponse,
-  logout as logoutApi,
-  refreshAccessToken,
-} from "../services/api";
-import { DecodedJWT, decodeJWT } from "@/features/shared/utils/decodeJWT";
+import { LS_ACCESS } from "@/features/auth/hooks/useSession";
+import { decodeJWT } from "@/features/shared/utils/decodeJWT";
+import { ChatUser, logoutRequest, refreshAccessToken } from "../services/api";
 
-export const LS_ACCESS = "jwt_demo_access_token";
+const LS_USER = "realtime_demo_user";
 const EXPIRY_WARNING_SECONDS = 15;
 
 type SessionState = "idle" | "active" | "expired" | "refreshing";
 
 interface SessionContextProps {
-  user: AuthResponse["user"] | null;
-  decoded: DecodedJWT | null;
+  user: ChatUser | null;
   sessionState: SessionState;
   timeLeft: number;
   isLoggedIn: boolean;
-  isActive: boolean;
   isExpiring: boolean;
-  isExpired: boolean;
   isRefreshing: boolean;
-  hasSession: boolean;
   initialized: boolean;
-  applyNewSession: (token: string, user: AuthResponse["user"]) => void;
-  logout: () => Promise<void>;
+  applySession: (user: ChatUser) => void;
+  logout: () => void;
   refresh: () => Promise<void>;
 }
 
 const noop = async () => {};
 
-export const SessionContext = createContext<SessionContextProps>({
+const SessionContext = createContext<SessionContextProps>({
   user: null,
-  decoded: null,
   sessionState: "idle",
   timeLeft: 0,
   isLoggedIn: false,
-  isActive: false,
   isExpiring: false,
-  isExpired: false,
   isRefreshing: false,
-  hasSession: false,
   initialized: false,
-  applyNewSession: () => {},
-  logout: noop,
+  applySession: () => {},
+  logout: () => {},
   refresh: noop,
 });
 
@@ -68,72 +54,64 @@ interface SessionProviderProps {
 
 export const SessionProvider = ({ children }: SessionProviderProps) => {
   const [sessionState, setSessionState] = useState<SessionState>("idle");
-  const [decoded, setDecoded] = useState<DecodedJWT | null>(null);
-  const [user, setUser] = useState<AuthResponse["user"] | null>(null);
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [user, setUser] = useState<ChatUser | null>(null);
+  const [timeLeft, setTimeLeft] = useState(0);
   const [expiry, setExpiry] = useState<number | null>(null);
   const [initialized, setInitialized] = useState(false);
 
   const sessionStateRef = useRef<SessionState>("idle");
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const didInitRef = useRef(false);
+  const logoutEpochRef = useRef(0);
 
   useEffect(() => {
     sessionStateRef.current = sessionState;
   }, [sessionState]);
 
-  const { mutateAsync: mutateRefresh } = useMutation<
-    AxiosResponse<RefreshResponse>,
-    AxiosError<{ error: string }>,
-    void
-  >({ mutationFn: refreshAccessToken });
+  const applySession = useCallback((newUser: ChatUser) => {
+    localStorage.setItem(LS_USER, JSON.stringify(newUser));
 
-  const { mutateAsync: mutateLogout } = useMutation<
-    AxiosResponse,
-    AxiosError<{ error: string }>,
-    void
-  >({ mutationFn: logoutApi });
+    const token = localStorage.getItem(LS_ACCESS);
+    const dec = token ? decodeJWT(token) : null;
+    setUser({ ...newUser, token });
 
-  const applyNewSession = useCallback(
-    (token: string, userData: AuthResponse["user"]) => {
-      const dec = decodeJWT(token);
-      if (!dec) return;
+    if (dec) {
       const expMs = (dec.payload.exp as number) * 1000;
-
-      localStorage.setItem(LS_ACCESS, token);
-      setDecoded(dec);
-      setUser(userData);
       setExpiry(expMs);
       setTimeLeft(Math.max(0, Math.floor((expMs - Date.now()) / 1000)));
-      setSessionState("active");
-    },
-    [],
-  );
+    }
+
+    setSessionState("active");
+  }, []);
 
   const clearSession = useCallback(() => {
+    localStorage.removeItem(LS_USER);
     localStorage.removeItem(LS_ACCESS);
     setSessionState("idle");
-    setDecoded(null);
     setUser(null);
     setExpiry(null);
   }, []);
 
   const doRefresh = useCallback(async () => {
+    const epoch = logoutEpochRef.current;
     try {
       setSessionState("refreshing");
-      const result = await mutateRefresh();
-      applyNewSession(result.data.accessToken, result.data.user);
+      const refreshedUser = await refreshAccessToken();
+      if (epoch !== logoutEpochRef.current) {
+        localStorage.removeItem(LS_ACCESS);
+        return;
+      }
+      applySession(refreshedUser);
     } catch {
-      clearSession();
+      if (epoch === logoutEpochRef.current) clearSession();
     }
-  }, [mutateRefresh, applyNewSession, clearSession]);
+  }, [applySession, clearSession]);
 
-  const logout = useCallback(async () => {
+  const logout = useCallback(() => {
+    logoutEpochRef.current += 1;
     clearSession();
-    try {
-      await mutateLogout();
-    } catch {}
-  }, [mutateLogout, clearSession]);
+    void logoutRequest();
+  }, [clearSession]);
 
   const refresh = useCallback(async () => {
     await doRefresh();
@@ -178,24 +156,51 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
     if (didInitRef.current) return;
     didInitRef.current = true;
 
-    const at = localStorage.getItem(LS_ACCESS);
-    const dec = at ? decodeJWT(at) : null;
-
-    if (!dec) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+    const attemptRefresh = () => {
+      const epoch = logoutEpochRef.current;
       setSessionState("refreshing");
       refreshAccessToken()
-        .then(({ data }) => applyNewSession(data.accessToken, data.user))
-        .catch(() => clearSession())
+        .then((refreshedUser) => {
+          if (epoch !== logoutEpochRef.current) {
+            localStorage.removeItem(LS_ACCESS);
+            return;
+          }
+          applySession(refreshedUser);
+        })
+        .catch(() => {
+          if (epoch === logoutEpochRef.current) clearSession();
+        })
         .finally(() => setInitialized(true));
+    };
+
+    const token = localStorage.getItem(LS_ACCESS);
+    const dec = token ? decodeJWT(token) : null;
+
+    if (!dec) {
+      attemptRefresh();
+      return;
+    }
+
+    const storedUser = localStorage.getItem(LS_USER);
+    let parsedUser: ChatUser | null = null;
+    if (storedUser) {
+      try {
+        parsedUser = JSON.parse(storedUser) as ChatUser;
+      } catch {
+        localStorage.removeItem(LS_USER);
+      }
+    }
+
+    if (!parsedUser) {
+      attemptRefresh();
       return;
     }
 
     const expMs = (dec.payload.exp as number) * 1000;
 
     startTransition(() => {
+      setUser({ ...parsedUser, token });
       if (expMs > Date.now()) {
-        setDecoded(dec);
         setExpiry(expMs);
         setTimeLeft(Math.max(0, Math.floor((expMs - Date.now()) / 1000)));
         setSessionState("active");
@@ -208,35 +213,28 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
 
   const value = useMemo(() => {
     const isActive = sessionState === "active";
-    const isExpiring = isActive && timeLeft <= EXPIRY_WARNING_SECONDS;
-    const isExpired = sessionState === "expired";
     const isRefreshing = sessionState === "refreshing";
-    const hasSession = sessionState !== "idle";
-    const isLoggedIn = isActive || isRefreshing;
+    const isExpiring = isActive && timeLeft <= EXPIRY_WARNING_SECONDS;
+    const isLoggedIn = isActive || isRefreshing || sessionState === "expired";
 
     return {
       user,
-      decoded,
       sessionState,
       timeLeft,
       isLoggedIn,
-      isActive,
       isExpiring,
-      isExpired,
       isRefreshing,
-      hasSession,
       initialized,
-      applyNewSession,
+      applySession,
       logout,
       refresh,
     };
   }, [
     user,
-    decoded,
     sessionState,
     timeLeft,
     initialized,
-    applyNewSession,
+    applySession,
     logout,
     refresh,
   ]);
@@ -246,6 +244,4 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
   );
 };
 
-export const useSession = () => {
-  return useContext(SessionContext);
-};
+export const useSession = () => useContext(SessionContext);

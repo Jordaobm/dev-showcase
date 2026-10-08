@@ -3,7 +3,7 @@ name: Publish Docker Image
 on:
   push:
     branches:
-      - homolog
+      - main
   workflow_dispatch:
 
 concurrency:
@@ -15,6 +15,7 @@ env:
 
 jobs:
   build-and-push:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -26,7 +27,9 @@ jobs:
       - name: Criar .env.local de produção
         env:
           ENV_LOCAL_PRODUCTION: ${{ secrets.ENV_LOCAL_PRODUCTION }}
-        run: printf '%s' "$ENV_LOCAL_PRODUCTION" | tr -d '\r' > .env.local
+        run: |
+          printf '%s' "$ENV_LOCAL_PRODUCTION" | tr -d '\r' > .env.local
+          printf '\nNEXT_PUBLIC_JAVA_API_URL=https://vps.jordao.dev/api\nNEXT_PUBLIC_JAVA_API_WSS=wss://vps.jordao.dev/api\n' >> .env.local
 
       - name: Configurar Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -49,3 +52,32 @@ jobs:
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  deploy:
+    needs: build-and-push
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Preparar SSH
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Atualizar a VPS
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          ssh -i ~/.ssh/deploy_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -e
+          docker network inspect dev-showcase-edge >/dev/null 2>&1 || docker network create dev-showcase-edge >/dev/null
+          cd ~/dev-showcase
+          git pull --ff-only origin main
+          docker compose pull
+          docker compose up -d
+          REMOTE

@@ -55,14 +55,20 @@ const buildForgotSchema = (t: TranslateFn) =>
   });
 
 const buildResetSchema = (t: TranslateFn) =>
-  z.object({
-    newPassword: z
-      .string()
-      .min(4, t("chatAuthValidationPasswordMin"))
-      .regex(/[a-zA-Z]/, t("chatAuthValidationPasswordLetter"))
-      .regex(/\d/, t("chatAuthValidationPasswordNumber"))
-      .regex(/[^a-zA-Z0-9]/, t("chatAuthValidationPasswordSymbol")),
-  });
+  z
+    .object({
+      newPassword: z
+        .string()
+        .min(4, t("chatAuthValidationPasswordMin"))
+        .regex(/[a-zA-Z]/, t("chatAuthValidationPasswordLetter"))
+        .regex(/\d/, t("chatAuthValidationPasswordNumber"))
+        .regex(/[^a-zA-Z0-9]/, t("chatAuthValidationPasswordSymbol")),
+      confirmPassword: z.string(),
+    })
+    .refine((data) => data.newPassword === data.confirmPassword, {
+      path: ["confirmPassword"],
+      message: t("chatAuthValidationPasswordMatch"),
+    });
 
 const extractFieldErrors = <T extends z.ZodTypeAny>(
   schema: T,
@@ -111,6 +117,7 @@ export const ChatAuthGate = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [forgotEmail, setForgotEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [registerStatus, setRegisterStatus] = useState<OperationStatus>("idle");
   const [loginStatus, setLoginStatus] = useState<OperationStatus>("idle");
@@ -136,8 +143,8 @@ export const ChatAuthGate = () => {
   const invalidLogin = !loginSchema.safeParse(loginData).success;
   const forgotErrors = extractFieldErrors(forgotSchema, { email: forgotEmail });
   const invalidForgot = !forgotSchema.safeParse({ email: forgotEmail }).success;
-  const resetErrors = extractFieldErrors(resetSchema, { newPassword });
-  const invalidReset = !resetSchema.safeParse({ newPassword }).success;
+  const resetErrors = extractFieldErrors(resetSchema, { newPassword, confirmPassword });
+  const invalidReset = !resetSchema.safeParse({ newPassword, confirmPassword }).success;
 
   const handleRegister = async () => {
     try {
@@ -194,6 +201,7 @@ export const ChatAuthGate = () => {
     setView("credentials");
     setResetStatus("idle");
     setNewPassword("");
+    setConfirmPassword("");
     router.replace(pathname);
   };
 
@@ -236,7 +244,7 @@ export const ChatAuthGate = () => {
                     <button
                       type="button"
                       onClick={goToLogin}
-                      className="mt-2 text-xs font-medium text-green-800 hover:underline"
+                      className="mt-2 text-xs font-medium text-green-800 hover:underline cursor-pointer"
                     >
                       {t("chatAuthResetGoToLoginButton")}
                     </button>
@@ -265,7 +273,7 @@ export const ChatAuthGate = () => {
                         <button
                           type="button"
                           onClick={() => setShowPassword((s) => !s)}
-                          className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                          className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer"
                           aria-label={t("chatAuthTogglePasswordLabel")}
                         >
                           {showPassword ? (
@@ -278,6 +286,24 @@ export const ChatAuthGate = () => {
                       {resetTouched && resetErrors.newPassword && (
                         <p className="mt-1 text-xs text-red-600">
                           {resetErrors.newPassword}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        aria-label={t("chatAuthConfirmPasswordLabel")}
+                        value={confirmPassword}
+                        onChange={(e) => {
+                          setConfirmPassword(e.target.value);
+                          setResetTouched(true);
+                        }}
+                        placeholder={t("chatAuthConfirmPasswordPlaceholder")}
+                        className={inputClass(!!(resetTouched && resetErrors.confirmPassword))}
+                      />
+                      {resetTouched && resetErrors.confirmPassword && (
+                        <p className="mt-1 text-xs text-red-600">
+                          {resetErrors.confirmPassword}
                         </p>
                       )}
                     </div>
@@ -314,7 +340,7 @@ export const ChatAuthGate = () => {
                   setView("credentials");
                   setForgotStatus("idle");
                 }}
-                className="text-xs font-medium text-amber-700 hover:underline mb-4"
+                className="text-xs font-medium text-amber-700 hover:underline mb-4 cursor-pointer"
               >
                 {t("chatAuthForgotBackLink")}
               </button>
@@ -450,7 +476,7 @@ export const ChatAuthGate = () => {
                       <button
                         type="button"
                         onClick={() => setShowPassword((s) => !s)}
-                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer"
                         aria-label={t("chatAuthTogglePasswordLabel")}
                       >
                         {showPassword ? (
@@ -548,7 +574,7 @@ export const ChatAuthGate = () => {
                   <button
                     type="button"
                     onClick={() => setView("forgot")}
-                    className="self-start text-[11px] text-[var(--premium-red)] hover:underline font-medium"
+                    className="self-start text-[11px] text-[var(--premium-red)] hover:underline font-medium cursor-pointer"
                   >
                     {t("chatAuthForgotLink")}
                   </button>

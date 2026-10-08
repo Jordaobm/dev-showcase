@@ -15,9 +15,6 @@ interface RetriableConfig extends InternalAxiosRequestConfig {
   _retry?: boolean;
 }
 
-// Dedupe concorrente: se varias chamadas 401am ao mesmo tempo, todas aguardam o mesmo refresh
-// em vez de disparar N chamadas a /refresh (o backend rotaciona o refresh token a cada uso,
-// entao chamadas paralelas se invalidariam umas as outras).
 let nextRefreshPromise: Promise<string> | null = null;
 let javaRefreshPromise: Promise<string> | null = null;
 

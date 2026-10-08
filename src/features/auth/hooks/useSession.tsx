@@ -182,7 +182,6 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
     const dec = at ? decodeJWT(at) : null;
 
     if (!dec) {
-      // Sem token ou token corrompido: tenta revalidar via refresh_token antes de desistir.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setSessionState("refreshing");
       refreshAccessToken()

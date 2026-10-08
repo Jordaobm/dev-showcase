@@ -21,7 +21,7 @@ export const RoomListItem = ({
   return (
     <button
       onClick={onClick}
-      className={`w-full text-left px-3 py-2.5 rounded-xl transition-colors ${
+      className={`w-full text-left px-3 py-2.5 rounded-xl transition-colors cursor-pointer ${
         selected ? "bg-red-50 ring-1 ring-red-200" : "hover:bg-black/[0.03]"
       }`}
     >

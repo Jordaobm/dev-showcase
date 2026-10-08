@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import {
@@ -14,7 +13,7 @@ import {
 } from "react";
 import { LS_ACCESS } from "@/features/auth/hooks/useSession";
 import { decodeJWT } from "@/features/shared/utils/decodeJWT";
-import { ChatUser, refreshAccessToken } from "../services/api";
+import { ChatUser, logoutRequest, refreshAccessToken } from "../services/api";
 
 const LS_USER = "realtime_demo_user";
 const EXPIRY_WARNING_SECONDS = 15;
@@ -63,12 +62,11 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
   const sessionStateRef = useRef<SessionState>("idle");
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const didInitRef = useRef(false);
+  const logoutEpochRef = useRef(0);
 
   useEffect(() => {
     sessionStateRef.current = sessionState;
   }, [sessionState]);
-
-  console.log({ sessionState, user });
 
   const applySession = useCallback((newUser: ChatUser) => {
     localStorage.setItem(LS_USER, JSON.stringify(newUser));
@@ -95,17 +93,24 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
   }, []);
 
   const doRefresh = useCallback(async () => {
+    const epoch = logoutEpochRef.current;
     try {
       setSessionState("refreshing");
       const refreshedUser = await refreshAccessToken();
+      if (epoch !== logoutEpochRef.current) {
+        localStorage.removeItem(LS_ACCESS);
+        return;
+      }
       applySession(refreshedUser);
     } catch {
-      clearSession();
+      if (epoch === logoutEpochRef.current) clearSession();
     }
   }, [applySession, clearSession]);
 
   const logout = useCallback(() => {
+    logoutEpochRef.current += 1;
     clearSession();
+    void logoutRequest();
   }, [clearSession]);
 
   const refresh = useCallback(async () => {
@@ -152,10 +157,19 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
     didInitRef.current = true;
 
     const attemptRefresh = () => {
+      const epoch = logoutEpochRef.current;
       setSessionState("refreshing");
       refreshAccessToken()
-        .then((refreshedUser) => applySession(refreshedUser))
-        .catch(() => clearSession())
+        .then((refreshedUser) => {
+          if (epoch !== logoutEpochRef.current) {
+            localStorage.removeItem(LS_ACCESS);
+            return;
+          }
+          applySession(refreshedUser);
+        })
+        .catch(() => {
+          if (epoch === logoutEpochRef.current) clearSession();
+        })
         .finally(() => setInitialized(true));
     };
 
@@ -201,7 +215,7 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
     const isActive = sessionState === "active";
     const isRefreshing = sessionState === "refreshing";
     const isExpiring = isActive && timeLeft <= EXPIRY_WARNING_SECONDS;
-    const isLoggedIn = isActive || isRefreshing;
+    const isLoggedIn = isActive || isRefreshing || sessionState === "expired";
 
     return {
       user,

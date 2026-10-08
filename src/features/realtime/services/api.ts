@@ -50,14 +50,24 @@ export interface RoomMembership {
 export interface ChatRoom {
   id: string;
   name: string;
+  link: string;
+  ownerId: number;
   expiresInDays: number;
   participantCount: number;
   maxParticipants: number;
+  members: RoomMemberUser[];
   lastMessage?: string;
 }
 
-// Espelha o limite de 10 membros aplicado em RoomService.signinRoom no backend.
+export interface ChatParticipant {
+  id: string;
+  name: string;
+  isOnline: boolean;
+}
+
 const MAX_ROOM_MEMBERS = 10;
+
+export const MAX_MESSAGE_LENGTH = 1000;
 
 const toExpiresInDays = (expiresAt: string): number => {
   const diffMs = new Date(expiresAt).getTime() - Date.now();
@@ -67,9 +77,12 @@ const toExpiresInDays = (expiresAt: string): number => {
 const toChatRoom = (membership: RoomMembership): ChatRoom => ({
   id: String(membership.room.id),
   name: membership.room.name,
+  link: membership.room.link,
+  ownerId: membership.room.jwtUser.id,
   expiresInDays: toExpiresInDays(membership.room.expiresAt),
   participantCount: membership.room.roomMembers.length,
   maxParticipants: MAX_ROOM_MEMBERS,
+  members: membership.room.roomMembers.map((rm) => rm.jwtUser),
 });
 
 export interface MessageSender {
@@ -163,6 +176,13 @@ export const refreshAccessToken = async (): Promise<ChatUser> => {
   return applyAccessToken(response.data);
 };
 
+export const logoutRequest = async (): Promise<void> => {
+  try {
+    await javaApi().post("/logout");
+  } catch {
+  }
+};
+
 export const forgotPassword = async (email: string): Promise<void> => {
   await javaApi().post("/forgot-password", { email });
 };
@@ -199,16 +219,39 @@ export const listMessages = async (roomId: string): Promise<MessageEntry[]> => {
   return response.data;
 };
 
-const extractRoomLink = (rawLink: string): string => {
+export const extractRoomLink = (rawLink: string): string => {
   const trimmed = rawLink.trim();
-  return trimmed.split("/").filter(Boolean).pop() ?? trimmed;
+  const fromQuery = /[?&]room=([^&#\s]+)/.exec(trimmed)?.[1];
+  if (fromQuery) return fromQuery;
+  return trimmed.split(/[/?#]/).filter(Boolean).pop() ?? trimmed;
 };
 
 export const joinRoomByLink = async (data: {
   link: string;
 }): Promise<IResponseCreateRoom> => {
-  const response = await javaApi().post<IResponseCreateRoom>("/room/signin", {
-    link: extractRoomLink(data.link),
-  });
+  try {
+    const response = await javaApi().post<IResponseCreateRoom>("/room/signin", {
+      link: extractRoomLink(data.link),
+    });
+    return response.data;
+  } catch (error) {
+    throw toApiError(error);
+  }
+};
+
+export const deleteRoom = async (roomId: string): Promise<void> => {
+  try {
+    await javaApi().delete(`/room/${roomId}`);
+  } catch (error) {
+    throw toApiError(error);
+  }
+};
+
+export const pingPresence = async (): Promise<void> => {
+  await javaApi().post("/presence/ping");
+};
+
+export const getOnlineMemberIds = async (roomId: string): Promise<number[]> => {
+  const response = await javaApi().get<number[]>(`/room/${roomId}/presence`);
   return response.data;
 };

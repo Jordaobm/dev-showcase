@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Link2, Plus } from "lucide-react";
+import { Bell, BellOff, Link2, Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { ChatRoom } from "../services/api";
 import { ParticipantAvatar } from "./ParticipantAvatar";
@@ -14,8 +14,12 @@ interface RoomSidebarProps {
   onSelectRoom: (id: string) => void;
   onCreateRoom: () => void;
   onJoinByLink: (link: string) => void;
+  joinErrorCode: string | null;
+  onClearJoinError: () => void;
   onLogout: () => void;
   isJoining: boolean;
+  notificationsEnabled: boolean;
+  onToggleNotifications: () => void;
 }
 
 export const RoomSidebar = ({
@@ -25,11 +29,22 @@ export const RoomSidebar = ({
   onSelectRoom,
   onCreateRoom,
   onJoinByLink,
+  joinErrorCode,
+  onClearJoinError,
   onLogout,
   isJoining,
+  notificationsEnabled,
+  onToggleNotifications,
 }: Readonly<RoomSidebarProps>) => {
   const t = useTranslations("realtime");
   const [joinValue, setJoinValue] = useState("");
+
+  const joinErrorMessage = (code: string) => {
+    if (code === "room_full") return t("chatJoinErrorFull");
+    if (code === "room_expired") return t("chatJoinErrorExpired");
+    if (code === "room_not_found") return t("chatJoinErrorNotFound");
+    return t("chatJoinErrorGeneric");
+  };
 
   const handleJoin = () => {
     if (!joinValue.trim()) return;
@@ -42,7 +57,7 @@ export const RoomSidebar = ({
       <div className="p-3 space-y-2 border-b border-gray-100">
         <button
           onClick={onCreateRoom}
-          className="w-full flex items-center justify-center gap-2 rounded-full text-white text-sm font-semibold px-4 py-2.5 transition-transform active:scale-[0.98]"
+          className="w-full flex items-center justify-center gap-2 rounded-full text-white text-sm font-semibold px-4 py-2.5 transition-transform active:scale-[0.98] cursor-pointer"
           style={{ background: "linear-gradient(135deg, #DC2626, #B91C1C)" }}
         >
           <Plus className="w-4 h-4" /> {t("chatSidebarCreateRoom")}
@@ -51,7 +66,10 @@ export const RoomSidebar = ({
           <input
             type="text"
             value={joinValue}
-            onChange={(e) => setJoinValue(e.target.value)}
+            onChange={(e) => {
+              setJoinValue(e.target.value);
+              if (joinErrorCode) onClearJoinError();
+            }}
             onKeyDown={(e) => e.key === "Enter" && handleJoin()}
             placeholder={t("chatSidebarJoinPlaceholder")}
             aria-label={t("chatSidebarJoinPlaceholder")}
@@ -62,11 +80,16 @@ export const RoomSidebar = ({
             disabled={isJoining || !joinValue.trim()}
             title={t("chatSidebarJoinButton")}
             aria-label={t("chatSidebarJoinButton")}
-            className="flex-shrink-0 w-9 rounded-xl bg-white border-2 border-gray-200 text-gray-500 flex items-center justify-center hover:border-gray-300 disabled:opacity-50 transition-colors"
+            className="flex-shrink-0 w-9 rounded-xl bg-white border-2 border-gray-200 text-gray-500 flex items-center justify-center hover:border-gray-300 disabled:opacity-50 transition-colors cursor-pointer disabled:cursor-not-allowed"
           >
             <Link2 className="w-3.5 h-3.5" />
           </button>
         </div>
+        {joinErrorCode && (
+          <p role="alert" className="px-1 text-[11px] text-red-600">
+            {joinErrorMessage(joinErrorCode)}
+          </p>
+        )}
       </div>
 
       <div className="flex-1 overflow-y-auto p-2 space-y-4">
@@ -97,8 +120,17 @@ export const RoomSidebar = ({
           </span>
         </div>
         <button
+          onClick={onToggleNotifications}
+          title={notificationsEnabled ? t("chatNotificationsOff") : t("chatNotificationsOn")}
+          aria-label={notificationsEnabled ? t("chatNotificationsOff") : t("chatNotificationsOn")}
+          aria-pressed={notificationsEnabled}
+          className="text-gray-400 hover:text-gray-600 flex-shrink-0 cursor-pointer"
+        >
+          {notificationsEnabled ? <Bell className="w-3.5 h-3.5" /> : <BellOff className="w-3.5 h-3.5" />}
+        </button>
+        <button
           onClick={onLogout}
-          className="text-[11px] text-gray-400 hover:text-gray-600 font-medium flex-shrink-0"
+          className="text-[11px] text-gray-400 hover:text-gray-600 font-medium flex-shrink-0 cursor-pointer"
         >
           {t("chatWorkspaceLogout")}
         </button>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { SessionProvider, useSession } from "../hooks/useSession";
 import { ChatAuthGate } from "./ChatAuthGate";
@@ -7,10 +8,13 @@ import { ChatWorkspace } from "./ChatWorkspace";
 
 const ChatDemoBody = () => {
   const { isLoggedIn, initialized } = useSession();
+  const hasResetToken = !!useSearchParams().get("resetToken");
+
+  const showAuthGate = !isLoggedIn || hasResetToken;
 
   return (
     <div className="rounded-3xl border border-gray-200 shadow-sm overflow-hidden h-[640px] bg-white">
-      {initialized && (isLoggedIn ? <ChatWorkspace /> : <ChatAuthGate />)}
+      {initialized && (showAuthGate ? <ChatAuthGate /> : <ChatWorkspace />)}
     </div>
   );
 };

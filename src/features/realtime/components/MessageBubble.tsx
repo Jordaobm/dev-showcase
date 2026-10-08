@@ -30,7 +30,9 @@ export const MessageBubble = ({ message, grouped }: MessageBubbleProps) => {
   }
 
   return (
-    <div className={`flex items-end gap-2 ${grouped ? "mt-1" : "mt-4"}`}>
+    <div
+      className={`flex gap-2 ${grouped ? "items-end mt-1" : "items-start mt-4"}`}
+    >
       {!grouped ? (
         <ParticipantAvatar name={message.senderName} size="sm" />
       ) : (

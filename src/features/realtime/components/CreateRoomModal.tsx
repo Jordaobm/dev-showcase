@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 interface CreateRoomModalProps {
   onClose: () => void;
   onCreate: (name: string) => void;
+  onGoToRoom: () => void;
   createdRoomLink: string | null;
   isCreating: boolean;
 }
@@ -14,6 +15,7 @@ interface CreateRoomModalProps {
 export const CreateRoomModal = ({
   onClose,
   onCreate,
+  onGoToRoom,
   createdRoomLink,
   isCreating,
 }: Readonly<CreateRoomModalProps>) => {
@@ -34,8 +36,15 @@ export const CreateRoomModal = ({
         className="absolute inset-0 bg-black/20 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative w-full max-w-[380px] mx-4 bg-white rounded-2xl shadow-xl overflow-hidden">
-        <div className="h-[3px] bg-gradient-to-r from-red-600 to-orange-600" />
+      <div
+        className="relative w-full max-w-[380px] mx-4 bg-white rounded-2xl border-t-[3px] border-transparent shadow-xl overflow-hidden"
+        style={{
+          backgroundImage:
+            "linear-gradient(#FFFFFF, #FFFFFF), linear-gradient(to right, #DC2626, #EA580C)",
+          backgroundOrigin: "border-box",
+          backgroundClip: "padding-box, border-box",
+        }}
+      >
         <div className="px-6 py-6">
           <div className="flex items-center justify-between mb-5">
             <h4 className="text-lg font-extrabold text-gray-900">
@@ -44,7 +53,7 @@ export const CreateRoomModal = ({
             <button
               onClick={onClose}
               aria-label={t("chatCreateRoomClose")}
-              className="w-7 h-7 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+              className="w-7 h-7 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -77,7 +86,7 @@ export const CreateRoomModal = ({
               <button
                 type="submit"
                 disabled={!name.trim() || isCreating}
-                className="w-full rounded-full text-white text-sm font-semibold px-5 py-2.5 disabled:opacity-50"
+                className="w-full rounded-full text-white text-sm font-semibold px-5 py-2.5 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
                 style={{ background: "linear-gradient(135deg, #DC2626, #B91C1C)" }}
               >
                 {isCreating
@@ -102,7 +111,7 @@ export const CreateRoomModal = ({
                 <button
                   onClick={handleCopy}
                   aria-label={t("chatCreateRoomCopy")}
-                  className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-colors ${
+                  className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-colors cursor-pointer ${
                     copied
                       ? "bg-emerald-50 text-emerald-600"
                       : "bg-white border border-gray-200 text-gray-500"
@@ -112,8 +121,8 @@ export const CreateRoomModal = ({
                 </button>
               </div>
               <button
-                onClick={onClose}
-                className="w-full rounded-full border border-gray-200 text-gray-700 text-sm font-medium px-4 py-2 hover:bg-gray-50 transition-colors"
+                onClick={onGoToRoom}
+                className="w-full rounded-full border border-gray-200 text-gray-700 text-sm font-medium px-4 py-2 hover:bg-gray-50 transition-colors cursor-pointer"
               >
                 {t("chatCreateRoomGoToRoom")}
               </button>

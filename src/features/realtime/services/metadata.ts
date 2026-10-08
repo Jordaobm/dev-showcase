@@ -8,9 +8,11 @@ export const metadata: DemoMetadata = {
   category: "shared.categories.communication",
   tags: "realtime.tags",
   featured: false,
-  status: "coming-soon",
+  status: "live",
   architecture: "realtime.architecture",
   technologies: "realtime.technologies",
   concepts: "realtime.concepts",
+  component: () =>
+    import("../pages/Demo").then((m) => ({ default: m.RealtimeDemo })),
   i18nNamespace: "realtime",
 };

@@ -1,6 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const baseURL = "http://localhost:3000";
+const useHttps = process.env.E2E_HTTPS === "1";
+const baseURL = useHttps ? "https://localhost:3000" : "http://localhost:3000";
+const httpsFlags =
+  "--experimental-https --experimental-https-key ./certificates/localhost-key.pem --experimental-https-cert ./certificates/localhost.pem";
 
 export default defineConfig({
   testDir: "./src",
@@ -16,6 +19,7 @@ export default defineConfig({
   reporter: "html",
   use: {
     baseURL,
+    ignoreHTTPSErrors: useHttps,
     locale: "pt-BR",
     trace: "on-first-retry",
   },
@@ -25,8 +29,11 @@ export default defineConfig({
     { name: "mobile-chrome", use: { ...devices["Pixel 5"] } },
   ],
   webServer: {
-    command: "npm run build && npm run start",
+    command: useHttps
+      ? `npm run build && npx next start ${httpsFlags}`
+      : "npm run build && npm run start",
     url: baseURL,
+    ignoreHTTPSErrors: useHttps,
     reuseExistingServer: !process.env.CI,
     timeout: 300_000,
   },

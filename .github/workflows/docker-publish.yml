@@ -29,7 +29,7 @@ jobs:
           ENV_LOCAL_PRODUCTION: ${{ secrets.ENV_LOCAL_PRODUCTION }}
         run: |
           printf '%s' "$ENV_LOCAL_PRODUCTION" | tr -d '\r' > .env.local
-          printf '\nNEXT_PUBLIC_JAVA_API_URL=https://vps.jordao.dev/api\nNEXT_PUBLIC_JAVA_API_WSS=wss://vps.jordao.dev/api\n' >> .env.local
+          printf '\nNEXT_PUBLIC_JAVA_API_URL=https://jordao.dev/api\nNEXT_PUBLIC_JAVA_API_WSS=wss://jordao.dev/api\n' >> .env.local
 
       - name: Configurar Docker Buildx
         uses: docker/setup-buildx-action@v3

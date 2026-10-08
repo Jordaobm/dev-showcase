@@ -1,4 +1,4 @@
-vps.jordao.dev {
+jordao.dev, vps.jordao.dev {
     handle_path /api/* {
         reverse_proxy api:8081 {
             flush_interval -1
@@ -6,4 +6,8 @@ vps.jordao.dev {
     }
 
     reverse_proxy app:3000
+}
+
+www.jordao.dev {
+    redir https://jordao.dev{uri} permanent
 }

@@ -1,3 +1,9 @@
 vps.jordao.dev {
+    handle_path /api/* {
+        reverse_proxy api:8081 {
+            flush_interval -1
+        }
+    }
+
     reverse_proxy app:3000
 }

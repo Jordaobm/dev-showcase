@@ -12,7 +12,7 @@ test.describe("Error boundary", () => {
     ).toBeVisible();
     await expect(
       page.getByText(
-        "Esta demo está suspensa por enquanto, estamos atualizando seu funcionamento.",
+        "Alguma coisa não saiu como esperado nesta página.",
         { exact: false },
       ),
     ).toBeVisible();
@@ -44,7 +44,7 @@ test.describe("Error boundary", () => {
     ).toBeVisible();
     await expect(
       page.getByText(
-        "Esta demo está suspensa por enquanto, estamos atualizando seu funcionamento.",
+        "Alguma coisa não saiu como esperado nesta página.",
         { exact: false },
       ),
     ).toBeVisible();

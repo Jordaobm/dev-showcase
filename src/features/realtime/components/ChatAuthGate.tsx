@@ -191,6 +191,7 @@ export const ChatAuthGate = () => {
       setResetStatus("loading");
       await mutateReset({ token: resetToken, newPassword });
       setResetStatus("success");
+      router.replace(pathname, { scroll: false });
     } catch (error) {
       setResetErrorCode(error instanceof ApiError ? error.code : undefined);
       setResetStatus("error");
@@ -254,7 +255,13 @@ export const ChatAuthGate = () => {
                 <>
                   <p className="font-semibold text-amber-800">{t("chatAuthResetTitle")}</p>
                   <p className="mt-1 text-xs text-amber-700">{t("chatAuthResetDesc")}</p>
-                  <div className="mt-3 flex flex-col gap-2">
+                  <form
+                    className="mt-3 flex flex-col gap-2"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      void handleResetPassword();
+                    }}
+                  >
                     <div>
                       <div className="relative">
                         <input
@@ -311,7 +318,6 @@ export const ChatAuthGate = () => {
                       type="primary"
                       className="w-full"
                       disabled={resetStatus === "loading"}
-                      onClick={handleResetPassword}
                     >
                       {resetStatus === "loading" ? (
                         <>
@@ -328,7 +334,7 @@ export const ChatAuthGate = () => {
                         <span>{resetErrorMessage(resetErrorCode)}</span>
                       </div>
                     )}
-                  </div>
+                  </form>
                 </>
               )}
             </div>
@@ -361,7 +367,13 @@ export const ChatAuthGate = () => {
                 <>
                   <p className="font-semibold text-amber-800">{t("chatAuthForgotTitle")}</p>
                   <p className="mt-1 text-xs text-amber-700">{t("chatAuthForgotDesc")}</p>
-                  <div className="mt-3 flex flex-col gap-2">
+                  <form
+                    className="mt-3 flex flex-col gap-2"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      void handleForgot();
+                    }}
+                  >
                     <div>
                       <input
                         type="email"
@@ -382,7 +394,6 @@ export const ChatAuthGate = () => {
                       type="primary"
                       className="w-full"
                       disabled={forgotStatus === "loading"}
-                      onClick={handleForgot}
                     >
                       {forgotStatus === "loading" ? (
                         <>
@@ -399,7 +410,7 @@ export const ChatAuthGate = () => {
                         <span>{t("chatAuthGenericError")}</span>
                       </div>
                     )}
-                  </div>
+                  </form>
                 </>
               )}
             </div>
@@ -413,7 +424,13 @@ export const ChatAuthGate = () => {
                   {t("chatAuthRegisterStepDesc")}
                 </p>
 
-                <div className="mt-3 flex flex-col gap-2">
+                <form
+                  className="mt-3 flex flex-col gap-2"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    void handleRegister();
+                  }}
+                >
                   <div>
                     <input
                       type="text"
@@ -494,7 +511,6 @@ export const ChatAuthGate = () => {
                   </div>
                   <Button
                     type="primary"
-                    onClick={handleRegister}
                     disabled={invalidRegister || registerStatus === "loading"}
                     className="w-full"
                   >
@@ -507,7 +523,7 @@ export const ChatAuthGate = () => {
                       t("chatAuthRegisterButton")
                     )}
                   </Button>
-                </div>
+                </form>
 
                 {registerStatus === "success" && (
                   <div className="mt-2 flex items-center gap-1.5 text-green-700 text-xs">
@@ -532,7 +548,13 @@ export const ChatAuthGate = () => {
                 </p>
                 <p className="mt-1 text-xs text-amber-700">{t("chatAuthLoginStepDesc")}</p>
 
-                <div className="mt-3 flex flex-col gap-2">
+                <form
+                  className="mt-3 flex flex-col gap-2"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    void handleLogin();
+                  }}
+                >
                   <div>
                     <input
                       type="email"
@@ -580,7 +602,6 @@ export const ChatAuthGate = () => {
                   </button>
                   <Button
                     type="primary"
-                    onClick={handleLogin}
                     disabled={invalidLogin || loginStatus === "loading"}
                     className="w-full"
                   >
@@ -593,7 +614,7 @@ export const ChatAuthGate = () => {
                       t("chatAuthLoginButton")
                     )}
                   </Button>
-                </div>
+                </form>
 
                 {loginStatus === "error" && (
                   <div className="mt-2 flex items-center gap-1.5 text-red-700 text-xs">

@@ -35,8 +35,6 @@ export const NativeIntegrationsDemo = () => {
 
   return (
     <DemoPageLayout
-      name={t("nativeIntegrations.name")}
-      description={t("nativeIntegrations.description")}
       summaryLabel={t("nativeIntegrations.summary")}
       features={FEATURES}
     >

@@ -58,7 +58,7 @@
     "viewShowCase": "Ver Showcase",
     "demoPreview": "Ver demostración",
     "comingSoon": "Próximamente",
-    "comingSoonDescription": "La demostración interactiva de <b>{name}</b> está en desarrollo. La arquitectura y los detalles técnicos ya están documentados arriba.",
+    "comingSoonDescription": "La demostración interactiva de <b>{name}</b> está en desarrollo. La arquitectura y los detalles técnicos ya están documentados abajo.",
     "followOnGitHub": "Seguir en GitHub",
     "moreDemosAddedRegularly": "Sigo añadiendo nuevas demos a medida que estudio e implemento",
     "live": "En vivo",
@@ -70,7 +70,9 @@
     "keyConcepts": "Conceptos",
     "sourceCode": "Ver código fuente en GitHub",
     "previousDemo": "Demo Anterior",
-    "nextDemo": "Siguiente Demo"
+    "nextDemo": "Siguiente Demo",
+    "aboutDemo": "Sobre esta demo",
+    "technicalSheet": "Ficha técnica"
   },
   "languages": {
     "pt-BR": "Português",

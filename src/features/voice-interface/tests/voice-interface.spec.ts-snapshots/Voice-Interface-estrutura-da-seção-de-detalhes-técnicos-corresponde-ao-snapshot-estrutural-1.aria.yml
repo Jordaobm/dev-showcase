@@ -1,19 +1,21 @@
-- heading "Tecnologias" [level=2]
-- list:
-  - listitem: Web Speech API
-  - listitem: SpeechRecognition
-  - listitem: SpeechSynthesis
-- heading "Arquitetura" [level=2]
-- list:
-  - listitem: Web Speech API
-  - listitem: SpeechRecognition
-  - listitem: SpeechSynthesis
-  - listitem: Executado inteiramente no client
-  - listitem: Idioma sincronizados ao idioma ativo do site
-- heading "Conceitos" [level=2]
-- list:
-  - listitem: Transcrição em tempo real
-  - listitem: Deduplicação de resultados parciais/finais
-  - listitem: Fila de síntese de voz
-  - listitem: Carregamento assíncrono de vozes
-  - listitem: Acessibilidade por voz
+- region "Ficha técnica":
+  - heading "Ficha técnica" [level=2]
+  - heading "Tecnologias" [level=3]
+  - list:
+    - listitem: Web Speech API
+    - listitem: SpeechRecognition
+    - listitem: SpeechSynthesis
+  - heading "Arquitetura" [level=3]
+  - list:
+    - listitem: Web Speech API
+    - listitem: SpeechRecognition
+    - listitem: SpeechSynthesis
+    - listitem: Executado inteiramente no client
+    - listitem: Idioma sincronizados ao idioma ativo do site
+  - heading "Conceitos" [level=3]
+  - list:
+    - listitem: Transcrição em tempo real
+    - listitem: Deduplicação de resultados parciais/finais
+    - listitem: Fila de síntese de voz
+    - listitem: Carregamento assíncrono de vozes
+    - listitem: Acessibilidade por voz

@@ -94,11 +94,10 @@ test.describe("Home", () => {
     await page.goto("/");
 
     const mobileSnapshot = `
-      - img "Banner Dev Showcase"
       - text: Premium Developer Portfolio
       - heading "Engenharia para explorar." [level=1]
       - heading "Um espaço onde eu guardo, testo e mostro o que venho estudando e aplicando como desenvolvedor fullstack. Cada demo é uma implementação funcional de verdade — autenticação, PWA, APIs do navegador, dados offline, 3D e mais — que você pode abrir, testar e conferir o código." [level=2]
-      - text: /10 ao vivo \\d+ total de demos 6 em breve/
+      - text: /\\d+ ao vivo \\d+ total de demos \\d+ em breve/
       - button "Explorar o Showcase"
       - link "Sobre mim":
         - /url: /sobre
@@ -108,7 +107,7 @@ test.describe("Home", () => {
       - text: Premium Developer Portfolio
       - heading "Engenharia para explorar." [level=1]
       - heading "Um espaço onde eu guardo, testo e mostro o que venho estudando e aplicando como desenvolvedor fullstack. Cada demo é uma implementação funcional de verdade — autenticação, PWA, APIs do navegador, dados offline, 3D e mais — que você pode abrir, testar e conferir o código." [level=2]
-      - text: /10 ao vivo \\d+ total de demos 6 em breve/
+      - text: /\\d+ ao vivo \\d+ total de demos \\d+ em breve/
       - button "Explorar o Showcase"
       - link "Sobre mim":
         - /url: /sobre

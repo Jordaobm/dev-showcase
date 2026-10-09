@@ -1,15 +1,17 @@
-- heading "Tecnologias" [level=2]
-- list:
-  - listitem: Web App Manifest
-  - listitem: Service Worker
-  - listitem: Serwist
-- heading "Arquitetura" [level=2]
-- list:
-  - listitem: Disponível Offline
-  - listitem: Service Worker como proxy de rede
-  - listitem: Cache via Serwist
-- heading "Conceitos" [level=2]
-- list:
-  - listitem: Experiência nativa
-  - listitem: Sem conexão
-  - listitem: Estratégias de Cache Inteligente
+- region "Ficha técnica":
+  - heading "Ficha técnica" [level=2]
+  - heading "Tecnologias" [level=3]
+  - list:
+    - listitem: Web App Manifest
+    - listitem: Service Worker
+    - listitem: Serwist
+  - heading "Arquitetura" [level=3]
+  - list:
+    - listitem: Disponível Offline
+    - listitem: Service Worker como proxy de rede
+    - listitem: Cache via Serwist
+  - heading "Conceitos" [level=3]
+  - list:
+    - listitem: Experiência nativa
+    - listitem: Sem conexão
+    - listitem: Estratégias de Cache Inteligente

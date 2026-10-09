@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { RoomDeletedEvent } from "./useRoomSocket";
 import { JAVA_API_URL } from "@/features/shared/services/api";
 
 export interface NewMessageNotification {
@@ -16,17 +17,18 @@ interface UseMessageNotificationsOptions {
   selectedRoomId: string | null;
   onOpenRoom: (roomId: string) => void;
   onNewMessage?: (event: NewMessageNotification) => void;
+  onRoomDeleted?: (event: RoomDeletedEvent) => void;
 }
 
-const LS_NOTIFY = "realtime_notifications_enabled";
+const LS_NOTIFY = "realtime_notifications_enabled_v2";
 const RECONNECT_BASE_DELAY_MS = 1_000;
 const RECONNECT_MAX_DELAY_MS = 15_000;
 
 const readEnabled = () => {
   try {
-    return localStorage.getItem(LS_NOTIFY) === "1";
+    return localStorage.getItem(LS_NOTIFY) !== "0";
   } catch {
-    return false;
+    return true;
   }
 };
 
@@ -54,13 +56,14 @@ const playBeep = (audioContext: AudioContext) => {
 
 export const useMessageNotifications = (
   token: string | null | undefined,
-  { selectedRoomId, onOpenRoom, onNewMessage }: UseMessageNotificationsOptions,
+  { selectedRoomId, onOpenRoom, onNewMessage, onRoomDeleted }: UseMessageNotificationsOptions,
 ) => {
   const [enabled, setEnabled] = useState(readInitialEnabled);
   const enabledRef = useRef(enabled);
   const selectedRoomIdRef = useRef(selectedRoomId);
   const onOpenRoomRef = useRef(onOpenRoom);
   const onNewMessageRef = useRef(onNewMessage);
+  const onRoomDeletedRef = useRef(onRoomDeleted);
   const audioContextRef = useRef<AudioContext | null>(null);
 
   useEffect(() => {
@@ -70,6 +73,10 @@ export const useMessageNotifications = (
   useEffect(() => {
     onOpenRoomRef.current = onOpenRoom;
   }, [onOpenRoom]);
+
+  useEffect(() => {
+    onRoomDeletedRef.current = onRoomDeleted;
+  }, [onRoomDeleted]);
 
   useEffect(() => {
     onNewMessageRef.current = onNewMessage;
@@ -86,6 +93,23 @@ export const useMessageNotifications = (
     }
     return audioContextRef.current;
   }, []);
+
+  useEffect(() => {
+    if (!token || !enabled) return;
+    const arm = () => {
+      const audioContext = getAudioContext();
+      if (audioContext?.state === "suspended") void audioContext.resume();
+      if (typeof Notification !== "undefined" && Notification.permission === "default") {
+        void Notification.requestPermission();
+      }
+    };
+    window.addEventListener("pointerdown", arm, { once: true });
+    window.addEventListener("keydown", arm, { once: true });
+    return () => {
+      window.removeEventListener("pointerdown", arm);
+      window.removeEventListener("keydown", arm);
+    };
+  }, [token, enabled, getAudioContext]);
 
   const toggle = useCallback(async () => {
     const next = !enabledRef.current;
@@ -118,6 +142,12 @@ export const useMessageNotifications = (
       try {
         parsed = JSON.parse(event.data);
       } catch {
+        return;
+      }
+      if ((parsed as { type: string }).type === "room_deleted") {
+        onRoomDeletedRef.current?.(
+          parsed as unknown as RoomDeletedEvent,
+        );
         return;
       }
       if (parsed.type !== "new_message") return;

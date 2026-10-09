@@ -17,8 +17,6 @@ export const VoiceInterfaceDemo = () => {
 
   return (
     <DemoPageLayout
-      name={t("voiceInterface.name")}
-      description={t("voiceInterface.description")}
       summaryLabel={t("voiceInterface.summary")}
       features={FEATURES}
     >

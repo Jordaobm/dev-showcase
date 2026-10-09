@@ -43,8 +43,6 @@ export const AuthDemo = () => {
 
   return (
     <DemoPageLayout
-      name={t("auth.name")}
-      description={t("auth.shortDescription")}
       summaryLabel={t("auth.summary")}
       features={FEATURES}
     >

@@ -63,8 +63,6 @@ export const ThreeDDemo = () => {
 
   return (
     <DemoPageLayout
-      name={t("demo3d.name")}
-      description={t("demo3d.shortDescription")}
       summaryLabel={t("demo3d.summary")}
       features={FEATURES}
     >

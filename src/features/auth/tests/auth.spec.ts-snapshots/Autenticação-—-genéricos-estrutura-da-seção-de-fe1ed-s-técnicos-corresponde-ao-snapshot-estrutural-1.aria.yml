@@ -1,27 +1,29 @@
-- heading "Tecnologias" [level=2]
-- list:
-  - listitem: NextAuth.js
-  - listitem: JWT
-  - listitem: OTPLIB
-  - listitem: WebAuthn API
-  - listitem: Next.js API Routes
-  - listitem: TypeScript
-- heading "Arquitetura" [level=2]
-- list:
-  - listitem: Next.js API
-  - listitem: Access Token de curta duração
-  - listitem: Refresh Token em HttpOnly cookie
-  - listitem: OAuth Authorization Code Flow
-  - listitem: TOTP
-  - listitem: WebAuthn/FIDO2 com chaves assimétricas
-- heading "Conceitos" [level=2]
-- list:
-  - listitem: Access Token + Refresh Token
-  - listitem: Token Rotation
-  - listitem: OAuth 2.0
-  - listitem: TOTP
-  - listitem: Magic Link
-  - listitem: WebAuthn/Passkeys (FIDO2)
-  - listitem: HttpOnly cookies
-  - listitem: LocalStorage
-  - listitem: Proteção CSRF
+- region "Ficha técnica":
+  - heading "Ficha técnica" [level=2]
+  - heading "Tecnologias" [level=3]
+  - list:
+    - listitem: NextAuth.js
+    - listitem: JWT
+    - listitem: OTPLIB
+    - listitem: WebAuthn API
+    - listitem: Next.js API Routes
+    - listitem: TypeScript
+  - heading "Arquitetura" [level=3]
+  - list:
+    - listitem: Next.js API
+    - listitem: Access Token de curta duração
+    - listitem: Refresh Token em HttpOnly cookie
+    - listitem: OAuth Authorization Code Flow
+    - listitem: TOTP
+    - listitem: WebAuthn/FIDO2 com chaves assimétricas
+  - heading "Conceitos" [level=3]
+  - list:
+    - listitem: Access Token + Refresh Token
+    - listitem: Token Rotation
+    - listitem: OAuth 2.0
+    - listitem: TOTP
+    - listitem: Magic Link
+    - listitem: WebAuthn/Passkeys (FIDO2)
+    - listitem: HttpOnly cookies
+    - listitem: LocalStorage
+    - listitem: Proteção CSRF

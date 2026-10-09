@@ -17,8 +17,6 @@ export const PushNotificationsDemo = () => {
 
   return (
     <DemoPageLayout
-      name={t("pushNotifications.name")}
-      description={t("pushNotifications.description")}
       summaryLabel={t("pushNotifications.summary")}
       features={FEATURES}
     >

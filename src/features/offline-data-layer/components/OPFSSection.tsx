@@ -63,7 +63,7 @@ export const OPFSSection = () => {
             {t.rich("offlineDataLayer.flowStep2Prefix", renderHtmlText)}{" "}
             <Link
               href="/showcase/pwa-core#pwa-status"
-              className="underline text-blue-500"
+              className="underline text-blue-600"
             >
               {t("offlineDataLayer.flowStep2Link")}
             </Link>

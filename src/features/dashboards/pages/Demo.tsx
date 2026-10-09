@@ -23,8 +23,6 @@ export const DashboardDemo = () => {
 
   return (
     <DemoPageLayout
-      name={t("dashboards.name")}
-      description={t("dashboards.shortDescription")}
       summaryLabel={t("dashboards.summary")}
       features={FEATURES}
     >

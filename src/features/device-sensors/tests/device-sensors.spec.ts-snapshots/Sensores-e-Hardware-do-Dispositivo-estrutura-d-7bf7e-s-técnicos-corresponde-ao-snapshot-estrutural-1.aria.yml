@@ -1,13 +1,15 @@
-- heading "Tecnologias" [level=2]
-- list:
-  - listitem: Informações de Conectividade API
-  - listitem: Nível de Bateria API
-  - listitem: API de Vibração
-- heading "Arquitetura" [level=2]
-- list:
-  - listitem: Leitura reativa de Browser APIs de hardware
-  - listitem: Listeners de mudança de estado
-- heading "Conceitos" [level=2]
-- list:
-  - listitem: UX adaptativa por condição de rede/energia
-  - listitem: Feedback háptico
+- region "Ficha técnica":
+  - heading "Ficha técnica" [level=2]
+  - heading "Tecnologias" [level=3]
+  - list:
+    - listitem: Informações de Conectividade API
+    - listitem: Nível de Bateria API
+    - listitem: API de Vibração
+  - heading "Arquitetura" [level=3]
+  - list:
+    - listitem: Leitura reativa de Browser APIs de hardware
+    - listitem: Listeners de mudança de estado
+  - heading "Conceitos" [level=3]
+  - list:
+    - listitem: UX adaptativa por condição de rede/energia
+    - listitem: Feedback háptico

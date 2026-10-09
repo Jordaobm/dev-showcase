@@ -113,7 +113,7 @@ test.describe("Dashboards", () => {
   }) => {
     await page.goto("/showcase/dashboards");
 
-    await expect(page.locator("section").nth(1)).toMatchAriaSnapshot();
+    await expect(page.locator('section[aria-labelledby="tech-sheet-heading"]')).toMatchAriaSnapshot();
   });
 
   test("navegação por teclado alcança o link Home do navbar e Enter navega para a Home", async ({

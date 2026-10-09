@@ -29,8 +29,6 @@ export const MediaCaptureDemo = () => {
 
   return (
     <DemoPageLayout
-      name={t("mediaCapture.name")}
-      description={t("mediaCapture.description")}
       summaryLabel={t("mediaCapture.summary")}
       features={FEATURES}
     >

@@ -7,8 +7,7 @@ import { Navbar } from "@/features/shared/components/Navbar";
 import { MobileNavbar } from "@/features/shared/components/MobileNavbar";
 import { Footer } from "@/features/shared/components/Footer";
 import { DemoCard } from "@/features/shared/components/DemoCard";
-import { FeaturedDemoLarge } from "@/features/shared/components/FeaturedDemoLarge";
-import { FeaturedDemoSmall } from "@/features/shared/components/FeaturedDemoSmall";
+import { FeaturedDemoCard } from "@/features/shared/components/FeaturedDemoCard";
 import { CategoryFilter } from "@/features/shared/components/CategoryFilter";
 import { registry } from "@/registry/index";
 import { Sparkles, ArrowDown, ChevronRight, Zap } from "lucide-react";
@@ -47,9 +46,9 @@ export const HomePage = () => {
     (demo) => selectedCategory === "All" || demo.category === selectedCategory,
   );
 
-  const featuredDemos = registry.filter((demo) => demo.featured);
-  const mainFeatured = featuredDemos[0];
-  const secondaryFeatured = featuredDemos.slice(1, 3);
+  const featuredDemos = registry
+    .filter((demo) => demo.featured)
+    .slice(0, 3);
 
   const liveCount = registry.filter((d) => d.status === "live").length;
   const totalCount = registry.length;
@@ -84,19 +83,6 @@ export const HomePage = () => {
           }}
         />
 
-        <div className="absolute inset-0 -z-20 xl:hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={backgroundImage.src}
-            alt="Banner Dev Showcase"
-            className="w-full h-full object-cover"
-          />
-          <div
-            className="absolute inset-0 backdrop-blur-md"
-            style={{ background: "rgba(12, 10, 10, 0.62)" }}
-          />
-        </div>
-
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid xl:grid-cols-2 gap-16 items-center">
             <div className="relative z-10">
@@ -126,7 +112,7 @@ export const HomePage = () => {
                 initial={{ y: 30 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-[32px] sm:text-[52px] leading-tight mb-6 font-semibold text-white xl:text-foreground"
+                className="text-[32px] sm:text-[52px] leading-tight mb-6 font-semibold"
               >
                 {t("shared.home.badgeFirstTitle")}
                 <br /> {t("shared.home.badgeSecondTitle")}{" "}
@@ -146,7 +132,7 @@ export const HomePage = () => {
                 initial={{ y: 30 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-[16px] sm:text-[22px] text-xl text-white/80 xl:text-gray-600 mb-6 leading-relaxed max-w-xl"
+                className="text-[16px] sm:text-[22px] text-xl text-gray-600 mb-6 leading-relaxed max-w-xl"
               >
                 {t("shared.home.badgeDescription")}
               </motion.h2>
@@ -168,10 +154,10 @@ export const HomePage = () => {
                     {liveCount} {t("shared.home.live")}
                   </div>
                 </div>
-                <div className="text-sm text-white/70 xl:text-gray-500">
+                <div className="text-sm text-gray-500">
                   {totalCount} {t("shared.home.totalDemos")}
                 </div>
-                <div className="text-sm text-white/70 xl:text-gray-500">
+                <div className="text-sm text-gray-500">
                   {totalCount - liveCount} {t("shared.home.comingSoon")}
                 </div>
               </motion.div>
@@ -294,31 +280,19 @@ export const HomePage = () => {
             </h2>
           </motion.div>
 
-          <div className="grid xl:grid-cols-3 gap-8">
-            <div className="mb-8 xl:mb-0 xl:col-span-2">
-              {mainFeatured && (
-                <FeaturedDemoLarge
-                  demo={mainFeatured}
-                  imageUrl={mainFeatured.imageUrl}
-                />
-              )}
-            </div>
-            <div className="flex flex-col gap-8">
-              {secondaryFeatured.map((demo, index) => (
-                <div key={demo.id} className="xl:flex-1 xl:min-h-0">
-                  <FeaturedDemoSmall
-                    demo={demo}
-                    imageUrl={demo.imageUrl}
-                    index={index}
-                  />
-                </div>
-              ))}
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+            {featuredDemos.map((demo, index) => (
+              <FeaturedDemoCard
+                key={demo.id}
+                demo={demo}
+                index={index}
+              />
+            ))}
           </div>
         </div>
       </section>
 
-      <section id="showcase" className="py-32 px-6 relative">
+      <section id="showcase" className="py-24 px-6 relative">
         <div
           className="absolute inset-0 -z-10"
           style={{
@@ -346,7 +320,7 @@ export const HomePage = () => {
             <h1 className="text-[22px] sm:text-6xl  font-semibold text-center mb-0 sm:mb-4">
               {t("shared.home.exploreAllTitle")}
             </h1>
-            <h2 className="text-[16px] sm:text-xl text-gray-600 mb-12 text-center">
+            <h2 className="text-[16px] sm:text-xl text-gray-600 mb-8 text-center">
               {t("shared.home.exploreAllDescription")}
             </h2>
 
@@ -358,7 +332,7 @@ export const HomePage = () => {
           </motion.div>
 
           <div
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-8"
             data-testid="demo-grid"
           >
             {filteredDemos.map((demo, index) => (

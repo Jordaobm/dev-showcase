@@ -41,8 +41,6 @@ export const RealtimeDemo = () => {
 
   return (
     <DemoPageLayout
-      name={t("realtime.name")}
-      description={t("realtime.shortDescription")}
       summaryLabel={t("realtime.summary")}
       features={FEATURES}
     >

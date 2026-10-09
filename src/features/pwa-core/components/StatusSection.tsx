@@ -27,7 +27,7 @@ export const StatusSection = () => {
         <p>
           {t("pwaCore.statusMdnTestBefore")}{" "}
           <a
-            className="underline text-blue-500"
+            className="underline text-blue-600"
             target="_blank"
             rel="noreferrer noopener"
             href={process.env.NEXT_PUBLIC_MDN_URL}

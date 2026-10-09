@@ -57,6 +57,7 @@ export const ChatWorkspace = () => {
   const [deleteFailed, setDeleteFailed] = useState(false);
   const [roomNotice, setRoomNotice] = useState<string | null>(null);
   const deletingRoomIdRef = useRef<string | null>(null);
+  const selectedRoomIdRef = useRef<string | null>(null);
 
   const { data: rooms = [] } = useQuery({
     queryKey: ROOMS_QUERY_KEY,
@@ -137,10 +138,12 @@ export const ChatWorkspace = () => {
   const handleRoomDeleted = useCallback(
     (event: RoomDeletedEvent) => {
       const roomId = String(event.roomId);
-      if (event.reason === "expired") {
-        setRoomNotice(t("chatRoomExpiredNotice"));
-      } else if (deletingRoomIdRef.current !== roomId) {
-        setRoomNotice(t("chatRoomDeletedNotice"));
+      if (selectedRoomIdRef.current === roomId) {
+        if (event.reason === "expired") {
+          setRoomNotice(t("chatRoomExpiredNotice"));
+        } else if (deletingRoomIdRef.current !== roomId) {
+          setRoomNotice(t("chatRoomDeletedNotice"));
+        }
       }
       closeDeletedRoom(roomId);
     },
@@ -173,7 +176,12 @@ export const ChatWorkspace = () => {
     useMessageNotifications(user?.token, {
       selectedRoomId,
       onOpenRoom: handleOpenRoomFromNotification,
+      onRoomDeleted: handleRoomDeleted,
     });
+
+  useEffect(() => {
+    selectedRoomIdRef.current = selectedRoomId;
+  }, [selectedRoomId]);
 
   const room = rooms.find((r) => r.id === selectedRoomId) ?? null;
   const isRoomOwner = !!room && room.ownerId === user?.id;

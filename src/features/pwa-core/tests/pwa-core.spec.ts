@@ -107,7 +107,7 @@ test.describe("PWA Core", () => {
   }) => {
     await page.goto("/showcase/pwa-core");
 
-    await expect(page.locator("section").nth(1)).toMatchAriaSnapshot();
+    await expect(page.locator('section[aria-labelledby="tech-sheet-heading"]')).toMatchAriaSnapshot();
   });
 
   test("navegação por teclado alcança o botão Home da seção de status e Enter navega para a Home", async ({

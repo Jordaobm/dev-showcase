@@ -1,22 +1,24 @@
-- heading "Tecnologias" [level=2]
-- list:
-  - listitem: MediaDevices API
-  - listitem: MediaRecorder API
-  - listitem: Blob
-  - listitem: URL.createObjectURL
-- heading "Arquitetura" [level=2]
-- list:
-  - listitem: Captura de MediaStream via Browser APIs
-  - listitem: Encoding client-side com MediaRecorder
-  - listitem: CODEC
-  - listitem: Player customizado
-- heading "Conceitos" [level=2]
-- list:
-  - listitem: Permissões de mídia no browser
-  - listitem: Negociação de CODEC
-  - listitem: Captura de stream em tempo real
-  - listitem: Encoding client-side
-  - listitem: Gerenciamento de Blob
-  - listitem: Object URL
-  - listitem: Player de mídia customizado
-  - listitem: Download sem upload a servidor
+- region "Ficha técnica":
+  - heading "Ficha técnica" [level=2]
+  - heading "Tecnologias" [level=3]
+  - list:
+    - listitem: MediaDevices API
+    - listitem: MediaRecorder API
+    - listitem: Blob
+    - listitem: URL.createObjectURL
+  - heading "Arquitetura" [level=3]
+  - list:
+    - listitem: Captura de MediaStream via Browser APIs
+    - listitem: Encoding client-side com MediaRecorder
+    - listitem: CODEC
+    - listitem: Player customizado
+  - heading "Conceitos" [level=3]
+  - list:
+    - listitem: Permissões de mídia no browser
+    - listitem: Negociação de CODEC
+    - listitem: Captura de stream em tempo real
+    - listitem: Encoding client-side
+    - listitem: Gerenciamento de Blob
+    - listitem: Object URL
+    - listitem: Player de mídia customizado
+    - listitem: Download sem upload a servidor

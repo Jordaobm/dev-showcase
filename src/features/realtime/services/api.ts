@@ -69,8 +69,11 @@ const MAX_ROOM_MEMBERS = 10;
 
 export const MAX_MESSAGE_LENGTH = 1000;
 
+export const parseServerDate = (value: string): Date =>
+  new Date(/(Z|[+-]\d{2}:?\d{2})$/.test(value) ? value : `${value}Z`);
+
 const toExpiresInDays = (expiresAt: string): number => {
-  const diffMs = new Date(expiresAt).getTime() - Date.now();
+  const diffMs = parseServerDate(expiresAt).getTime() - Date.now();
   return Math.max(0, Math.ceil(diffMs / (24 * 60 * 60 * 1000)));
 };
 

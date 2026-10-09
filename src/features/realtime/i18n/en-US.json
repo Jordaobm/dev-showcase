@@ -124,6 +124,7 @@
   "chatPanelBackToRooms": "Back to room list",
   "chatPanelExpiresIn": "{count, plural, one {expires in # day} other {expires in # days}}",
   "chatPanelOnlineCount": "{count} online",
+  "chatParticipantOnline": "online",
   "chatPanelCopyLink": "Copy room link",
   "chatPanelLinkCopied": "Link copied!",
   "chatPanelInputPlaceholder": "Message #{room}",

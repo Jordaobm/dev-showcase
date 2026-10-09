@@ -59,7 +59,10 @@ export const RoomListItem = ({
                 {t("chatSidebarExpiresInDays", { count: room.expiresInDays })}
               </span>
             )}
-            <div className="flex items-center gap-0.5 ml-auto">
+            <div
+              className="flex items-center gap-0.5 ml-auto"
+              title={room.members.map((m) => m.name).join(", ")}
+            >
               <Users className="w-2.5 h-2.5 text-gray-400" />
               <span
                 className={`text-[10px] tabular-nums ${

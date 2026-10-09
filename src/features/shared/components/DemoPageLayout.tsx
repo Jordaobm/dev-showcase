@@ -7,58 +7,47 @@ interface DemoFeatureChip {
 }
 
 interface DemoPageLayoutProps {
-  name: string;
-  description: string;
   summaryLabel: string;
   features: DemoFeatureChip[];
   children: React.ReactNode;
 }
 
 export const DemoPageLayout = ({
-  name,
-  description,
   summaryLabel,
   features,
   children,
 }: Readonly<DemoPageLayoutProps>) => {
   return (
     <div className="space-y-8 pb-12">
-      <div className="text-center space-y-2">
-        <h3 className="text-4xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
-          {name}
-        </h3>
-        <p className="text-gray-600">{description}</p>
-      </div>
-
-      <div className="p-5 rounded-2xl border border-gray-100 bg-white shadow-sm">
-        <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">
+      <nav
+        aria-label={summaryLabel}
+        className="flex flex-col gap-3 border-b border-gray-100 pb-6 sm:flex-row sm:items-baseline sm:gap-6"
+      >
+        <span className="shrink-0 text-sm font-semibold text-gray-900">
           {summaryLabel}
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {features.map(({ label, id, done }) =>
-            done ? (
-              <button
-                key={label}
-                onClick={() =>
-                  document
-                    .getElementById(id!)
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-green-50 text-green-700 border border-green-200 hover:bg-green-100 transition-colors cursor-pointer"
-              >
-                ✅ {label}
-              </button>
-            ) : (
-              <span
-                key={label}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-gray-400 border border-gray-200"
-              >
-                🚫 {label}
-              </span>
-            ),
-          )}
-        </div>
-      </div>
+        </span>
+        <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+          {features.map(({ label, id, done }) => (
+            <li key={label}>
+              {done ? (
+                <button
+                  type="button"
+                  onClick={() =>
+                    document
+                      .getElementById(id!)
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="cursor-pointer text-gray-600 transition-colors hover:text-[var(--premium-red)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--premium-red)]"
+                >
+                  {label}
+                </button>
+              ) : (
+                <span className="text-gray-400">{label}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       <div>{children}</div>
     </div>

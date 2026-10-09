@@ -124,6 +124,7 @@
   "chatPanelBackToRooms": "Voltar para a lista de salas",
   "chatPanelExpiresIn": "{count, plural, one {expira em # dia} other {expira em # dias}}",
   "chatPanelOnlineCount": "{count} online",
+  "chatParticipantOnline": "online",
   "chatPanelCopyLink": "Copiar link da sala",
   "chatPanelLinkCopied": "Link copiado!",
   "chatPanelInputPlaceholder": "Mensagem em #{room}",

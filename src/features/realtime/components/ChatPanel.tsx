@@ -94,6 +94,9 @@ export const ChatPanel = ({
     );
   }
 
+  const participantNames = participants
+    .map((p) => (p.isOnline ? `${p.name} (${t("chatParticipantOnline")})` : p.name))
+    .join(", ");
   const onlineCount = participants.filter((p) => p.isOnline).length;
 
   return (
@@ -119,7 +122,10 @@ export const ChatPanel = ({
             {t("chatPanelExpiresIn", { count: room.expiresInDays })}
           </p>
         </div>
-        <div className="hidden sm:flex items-center gap-1.5 text-[11px] text-gray-400">
+        <div
+          className="hidden sm:flex items-center gap-1.5 text-[11px] text-gray-400"
+          title={participantNames}
+        >
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
           {t("chatPanelOnlineCount", { count: onlineCount })}
         </div>
@@ -147,7 +153,7 @@ export const ChatPanel = ({
             <Trash2 className="w-3.5 h-3.5" />
           </button>
         )}
-        <div className="flex -space-x-2">
+        <div className="flex -space-x-2" title={participantNames}>
           {participants.slice(0, 5).map((p) => (
             <div key={p.id} className="ring-2 ring-white rounded-full">
               <ParticipantAvatar name={p.name} size="sm" showPresence online={p.isOnline} />

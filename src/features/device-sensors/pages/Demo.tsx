@@ -29,8 +29,6 @@ export const DeviceSensorsDemo = () => {
 
   return (
     <DemoPageLayout
-      name={t("deviceSensors.name")}
-      description={t("deviceSensors.description")}
       summaryLabel={t("deviceSensors.summary")}
       features={FEATURES}
     >

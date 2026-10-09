@@ -1,18 +1,20 @@
-- heading "Tecnologias" [level=2]
-- list:
-  - listitem: Push API
-  - listitem: Notifications API
-  - listitem: Service Worker
-  - listitem: Assinatura VAPID
-- heading "Arquitetura" [level=2]
-- list:
-  - listitem: Push API + Notifications API
-  - listitem: Service Worker
-  - listitem: Assinatura VAPID
-- heading "Conceitos" [level=2]
-- list:
-  - listitem: Push subscription
-  - listitem: Entrega em background via Service Worker
-  - listitem: Ciclo de vida de permissão do navegador
-  - listitem: Assinatura VAPID
-  - listitem: Web Push Protocol
+- region "Ficha técnica":
+  - heading "Ficha técnica" [level=2]
+  - heading "Tecnologias" [level=3]
+  - list:
+    - listitem: Push API
+    - listitem: Notifications API
+    - listitem: Service Worker
+    - listitem: Assinatura VAPID
+  - heading "Arquitetura" [level=3]
+  - list:
+    - listitem: Push API + Notifications API
+    - listitem: Service Worker
+    - listitem: Assinatura VAPID
+  - heading "Conceitos" [level=3]
+  - list:
+    - listitem: Push subscription
+    - listitem: Entrega em background via Service Worker
+    - listitem: Ciclo de vida de permissão do navegador
+    - listitem: Assinatura VAPID
+    - listitem: Web Push Protocol

@@ -1,15 +1,17 @@
-- heading "Tecnologias" [level=2]
-- list:
-  - listitem: API de Compartilhamento WEB
-  - listitem: API de Copiar/Colar Texto
-  - listitem: API de Bloqueio de Tela
-  - listitem: API de Tela Cheia
-- heading "Arquitetura" [level=2]
-- list:
-  - listitem: Integração direta com APIs nativas do navegador
-  - listitem: Sem dependências externas
-- heading "Conceitos" [level=2]
-- list:
-  - listitem: Web Platform APIs
-  - listitem: Integração com o SO via navegador
-  - listitem: UX native-like sem instalar um app
+- region "Ficha técnica":
+  - heading "Ficha técnica" [level=2]
+  - heading "Tecnologias" [level=3]
+  - list:
+    - listitem: API de Compartilhamento WEB
+    - listitem: API de Copiar/Colar Texto
+    - listitem: API de Bloqueio de Tela
+    - listitem: API de Tela Cheia
+  - heading "Arquitetura" [level=3]
+  - list:
+    - listitem: Integração direta com APIs nativas do navegador
+    - listitem: Sem dependências externas
+  - heading "Conceitos" [level=3]
+  - list:
+    - listitem: Web Platform APIs
+    - listitem: Integração com o SO via navegador
+    - listitem: UX native-like sem instalar um app

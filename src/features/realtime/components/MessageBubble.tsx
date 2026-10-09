@@ -1,8 +1,8 @@
-import type { ChatMessage } from "../services/api";
+import { parseServerDate, type ChatMessage } from "../services/api";
 import { ParticipantAvatar } from "./ParticipantAvatar";
 
 const formatTime = (iso: string) =>
-  new Date(iso).toLocaleTimeString(undefined, {
+  parseServerDate(iso).toLocaleTimeString(undefined, {
     hour: "2-digit",
     minute: "2-digit",
   });

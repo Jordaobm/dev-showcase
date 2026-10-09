@@ -226,7 +226,6 @@ test.describe("Realtime — notificações (SSE)", () => {
     const linkB = await createRoom(owner.page, roomB);
     await joinByLink(guestPage, linkB, roomB);
 
-    await guestPage.getByRole("button", { name: "Ativar notificações de mensagens" }).click();
     await expect(
       guestPage.getByRole("button", { name: "Silenciar notificações de mensagens" }),
     ).toBeVisible();

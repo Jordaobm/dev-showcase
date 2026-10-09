@@ -29,8 +29,6 @@ export const OfflineDataLayerDemo = () => {
 
   return (
     <DemoPageLayout
-      name={t("offlineDataLayer.name")}
-      description={t("offlineDataLayer.description")}
       summaryLabel={t("offlineDataLayer.summary")}
       features={FEATURES}
     >

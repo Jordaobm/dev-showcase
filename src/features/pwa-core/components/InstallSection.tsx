@@ -23,7 +23,7 @@ export const InstallSection = () => {
         <br />
         <p>{t("pwaCore.installIntro3")}</p>
         <br />
-        <p className="text-red-500 font-bold">
+        <p className="text-red-600 font-bold">
           {t("pwaCore.installBenefitsTitle")}
         </p>
         <br />
@@ -34,7 +34,7 @@ export const InstallSection = () => {
           <li>{t.rich("pwaCore.installBenefit4", renderHtmlText)}</li>
         </ul>
         <br />
-        <p className="text-red-500 font-bold">
+        <p className="text-red-600 font-bold">
           {t("pwaCore.installLimitsTitle")}
         </p>
         <br />

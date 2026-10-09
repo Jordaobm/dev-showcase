@@ -17,8 +17,6 @@ export const PwaCoreDemo = () => {
 
   return (
     <DemoPageLayout
-      name={t("pwaCore.name")}
-      description={t("pwaCore.description")}
       summaryLabel={t("pwaCore.summary")}
       features={FEATURES}
     >

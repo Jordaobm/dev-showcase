@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Modal completo — comparação</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        background: #f3f4f6;
+        font-family: system-ui, sans-serif;
+        display: flex;
+        gap: 20px;
+      }
+      .box {
+        width: 380px;
+      }
+      .label {
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #111827;
+      }
+      .card {
+        position: relative;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+      }
+      .bar {
+        height: 3px;
+        background: linear-gradient(to right, #dc2626, #ea580c);
+      }
+      .body {
+        padding: 24px;
+      }
+      .head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      h4 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 800;
+        color: #111827;
+      }
+      .x {
+        width: 28px;
+        height: 28px;
+        border-radius: 999px;
+        background: #f3f4f6;
+      }
+      label {
+        display: block;
+        font-size: 11px;
+        font-weight: 600;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        margin-bottom: 6px;
+      }
+      .input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 8px 12px;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #374151;
+      }
+      .submit {
+        margin-top: 16px;
+        width: 100%;
+        border: 0;
+        border-radius: 999px;
+        padding: 10px 20px;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        background: linear-gradient(135deg, #dc2626, #b91c1c);
+      }
+      /* A) atual */
+      .a {
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      /* B) barra absoluta sem clipping */
+      .b {
+        border-radius: 16px;
+      }
+      .b > .bar {
+        position: absolute;
+        inset: 0 0 auto 0;
+      }
+      /* C) gradiente no border-box do card */
+      .c {
+        border-radius: 16px;
+        border-top: 3px solid transparent;
+        background-image: linear-gradient(#fff, #fff),
+          linear-gradient(to right, #dc2626, #ea580c);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" id="a">
+      <p class="label">A) atual</p>
+      <div class="card a">
+        <div class="bar"></div>
+        <div class="body">
+          <div class="head"><h4>Nova sala</h4><div class="x"></div></div>
+          <label>Nome da sala</label>
+          <input class="input" placeholder="Ex.: Squad frontend" />
+          <button class="submit">Criar sala</button>
+        </div>
+      </div>
+    </div>
+    <div class="box" id="b">
+      <p class="label">B) barra sem clipping</p>
+      <div class="card b">
+        <div class="bar"></div>
+        <div class="body">
+          <div class="head"><h4>Nova sala</h4><div class="x"></div></div>
+          <label>Nome da sala</label>
+          <input class="input" placeholder="Ex.: Squad frontend" />
+          <button class="submit">Criar sala</button>
+        </div>
+      </div>
+    </div>
+    <div class="box" id="c">
+      <p class="label">C) gradiente como borda do card</p>
+      <div class="card c">
+        <div class="body">
+          <div class="head"><h4>Nova sala</h4><div class="x"></div></div>
+          <label>Nome da sala</label>
+          <input class="input" placeholder="Ex.: Squad frontend" />
+          <button class="submit">Criar sala</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { CheckCircle, Eye, EyeOff, Loader2, XCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
@@ -91,17 +90,17 @@ const inputClass = (hasError: boolean) =>
       : "border-gray-200 focus:border-red-400"
   }`;
 
-export const ChatAuthGate = () => {
+interface ChatAuthGateProps {
+  resetToken: string | null;
+  onResetFinished: () => void;
+}
+
+export const ChatAuthGate = ({ resetToken, onResetFinished }: ChatAuthGateProps) => {
   const t = useTranslations("realtime");
   const { applySession } = useSession();
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const resetToken = searchParams.get("resetToken");
 
-  const [view, setView] = useState<"credentials" | "forgot" | "reset">(
-    resetToken ? "reset" : "credentials",
-  );
+  const [view, setView] = useState<"credentials" | "forgot">("credentials");
+  const activeView = resetToken ? "reset" : view;
   const [showPassword, setShowPassword] = useState(false);
 
   const registerSchema = useMemo(() => buildRegisterSchema(t), [t]);
@@ -191,7 +190,6 @@ export const ChatAuthGate = () => {
       setResetStatus("loading");
       await mutateReset({ token: resetToken, newPassword });
       setResetStatus("success");
-      router.replace(pathname, { scroll: false });
     } catch (error) {
       setResetErrorCode(error instanceof ApiError ? error.code : undefined);
       setResetStatus("error");
@@ -201,9 +199,11 @@ export const ChatAuthGate = () => {
   const goToLogin = () => {
     setView("credentials");
     setResetStatus("idle");
+    setResetErrorCode(undefined);
+    setResetTouched(false);
     setNewPassword("");
     setConfirmPassword("");
-    router.replace(pathname);
+    onResetFinished();
   };
 
   const registerErrorMessage = (code: string | undefined) => {
@@ -230,7 +230,7 @@ export const ChatAuthGate = () => {
         </div>
 
         <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
-          {view === "reset" ? (
+          {activeView === "reset" ? (
             <div className="max-w-md mx-auto">
               {resetStatus === "success" ? (
                 <div className="flex items-start gap-2 p-3 bg-green-50 border border-green-200 rounded-lg">
@@ -253,6 +253,13 @@ export const ChatAuthGate = () => {
                 </div>
               ) : (
                 <>
+                  <button
+                    type="button"
+                    onClick={goToLogin}
+                    className="text-xs font-medium text-amber-700 hover:underline mb-4 cursor-pointer"
+                  >
+                    {t("chatAuthForgotBackLink")}
+                  </button>
                   <p className="font-semibold text-amber-800">{t("chatAuthResetTitle")}</p>
                   <p className="mt-1 text-xs text-amber-700">{t("chatAuthResetDesc")}</p>
                   <form

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Geometria da barra superior do modal</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 24px;
+        background: #e5e7eb;
+        font-family: system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 6px;
+      }
+      .card {
+        position: relative;
+        width: 380px;
+        height: 30px;
+        background: #fff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+      .bar {
+        height: 3px;
+        background: linear-gradient(to right, #dc2626, #ea580c);
+      }
+      /* A) atual: rounded-2xl (16px) + overflow-hidden + barra como filha */
+      .a {
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      /* B) sem clipping: barra absoluta de ponta a ponta */
+      .b {
+        border-radius: 16px;
+      }
+      .b > .bar {
+        position: absolute;
+        inset: 0 0 auto 0;
+      }
+      /* C) gradiente como parte do próprio card (bg-clip + border-top transparente) */
+      .c {
+        border-radius: 16px;
+        border-top: 3px solid transparent;
+        background-image: linear-gradient(#fff, #fff),
+          linear-gradient(to right, #dc2626, #ea580c);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+      }
+      /* D) mesmo padrão do A, mas com raio menor (rounded-lg = 8px) */
+      .d {
+        border-radius: 8px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="w" id="a">
+      <p class="label">A) atual — rounded-2xl + overflow-hidden</p>
+      <div class="card a"><div class="bar"></div></div>
+    </div>
+    <div class="w" id="b">
+      <p class="label">B) barra absoluta sem clipping (ponta a ponta)</p>
+      <div class="card b"><div class="bar"></div></div>
+    </div>
+    <div class="w" id="c">
+      <p class="label">C) gradiente no próprio card (bg-clip border-box)</p>
+      <div class="card c"></div>
+    </div>
+    <div class="w" id="d">
+      <p class="label">D) A com rounded-lg (8px)</p>
+      <div class="card d"><div class="bar"></div></div>
+    </div>
+  </body>
+</html>

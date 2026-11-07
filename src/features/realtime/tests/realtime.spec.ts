@@ -131,6 +131,28 @@ test.describe("Realtime — conta", () => {
     await page.getByRole("button", { name: "Alterar senha" }).click();
     await expect(page.getByText("Link inválido ou expirado. Solicite um novo.")).toBeVisible();
   });
+
+  test("resetToken sai da URL e dá pra voltar ao login sem F5", async ({ page }) => {
+    await page.goto(`${PAGE_URL}?resetToken=token-invalido`);
+    await expect(page.getByLabel("Nova senha", { exact: true })).toBeVisible();
+    await expect(page).not.toHaveURL(/resetToken/);
+
+    await page.getByRole("button", { name: "← Voltar para o login" }).click();
+    await expect(page.getByRole("button", { name: "Entrar" }).first()).toBeVisible();
+    await expect(page.getByLabel("Nova senha", { exact: true })).toHaveCount(0);
+  });
+
+  test("logado com resetToken na URL: mostra o reset e depois volta ao painel", async ({
+    page,
+  }) => {
+    await registerUser(page, newUser("tokenlogado"));
+    await page.goto(`${PAGE_URL}?resetToken=token-invalido`);
+    await expect(page.getByLabel("Nova senha", { exact: true })).toBeVisible();
+    await expect(page).not.toHaveURL(/resetToken/);
+
+    await page.getByRole("button", { name: "← Voltar para o login" }).click();
+    await expect(page.getByRole("button", { name: "Criar sala" }).first()).toBeVisible();
+  });
 });
 
 test.describe("Realtime — salas e mensagens", () => {
@@ -172,6 +194,46 @@ test.describe("Realtime — salas e mensagens", () => {
     await page.getByRole("button", { name: "Entrar com link" }).click();
     await expect(page.getByText("Sala não encontrada. Confira o link.")).toBeVisible();
   });
+
+  for (const timezoneId of ["America/Sao_Paulo", "Asia/Tokyo"]) {
+    test(`hora da mensagem bate com o relógio de quem vê (${timezoneId})`, async ({ browser }) => {
+      const context = await browser.newContext({
+        ignoreHTTPSErrors: true,
+        locale: "pt-BR",
+        timezoneId,
+      });
+      const page = await context.newPage();
+      await registerUser(page, newUser("hora"));
+      const roomName = `hora-${uniqueId()}`;
+      await createRoom(page, roomName);
+
+      const text = `conferindo a hora ${uniqueId()}`;
+      await sendMessage(page, roomName, text);
+      const bubble = page.getByText(text);
+      await expect(bubble).toBeVisible();
+
+      const shownTime = async () =>
+        (await bubble.locator("xpath=following-sibling::p").innerText()).trim();
+
+      // Hora local do navegador agora e 1 minuto atrás (tolera a virada do minuto).
+      const acceptable = () =>
+        page.evaluate(() => {
+          const fmt = (ms: number) =>
+            new Date(ms).toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+          return [fmt(Date.now()), fmt(Date.now() - 60_000)];
+        });
+
+      const live = await shownTime();
+      expect(await acceptable()).toContain(live);
+
+      await page.reload();
+      await page.getByText(roomName, { exact: true }).first().click();
+      await expect(bubble).toBeVisible();
+      expect(await shownTime()).toBe(live);
+
+      await context.close();
+    });
+  }
 
   test("limite de 1000 caracteres no campo de mensagem", async ({ page }) => {
     await registerUser(page, newUser("limite"));
